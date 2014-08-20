@@ -1,0 +1,26 @@
+language: python
+
+python:
+  - 2.7
+
+before_install:
+    - sudo apt-get update
+
+install:
+    - sudo apt-get install build-essential
+    - sudo apt-get install cmake
+    - sudo apt-get install subversion
+    - sudo apt-get install liblapack-dev
+
+before_script:
+    - mkdir -p build
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+    - svn co https://svn.code.sf.net/p/protomol/svn/trunk/test
+
+script:
+    - cd build && cmake .. -DBUILD_LAPACK_TYPE=lapack && make
+    - cd test && cp ../build/ProtoMol . && python xmltest.py
+
+after_script:
+    - mv test/results.xml shippable/testresults/junit.xml
