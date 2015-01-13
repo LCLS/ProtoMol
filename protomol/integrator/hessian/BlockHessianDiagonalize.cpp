@@ -507,10 +507,6 @@ namespace ProtoMol {
                   Vector3D V = ((*myPositions)[bHess->residues_alpha_c[residue]] - (*myPositions)[bHess->residues_phi_n[residue]]);
                   V.normalize();
                   for( int i = 0; i < block_max; i++ ){
-                      if( block_start+i < residue_start[residue] || block_start+i > residue_end[residue] ){
-                          continue;
-                      }
-
                       const Vector3D diff = (*myPositions)[block_start+i] - (*myPositions)[bHess->residues_alpha_c[residue]];
                       const Real ddotv = diff[0] * V[0] + diff[1] * V[1] + diff[2] * V[2];
                       const Vector3D ddotvV = V * ddotv;
@@ -540,10 +536,6 @@ namespace ProtoMol {
                   V = ((*myPositions)[bHess->residues_alpha_c[residue]] - (*myPositions)[bHess->residues_psi_c[residue]]);
                   V.normalize();
                   for( int i = 0; i < block_max; i++ ){
-                      if( block_start+i < residue_start[residue] || block_start+i > residue_end[residue] ){
-                          continue;
-                      }
-
                       const Vector3D diff = (*myPositions)[block_start+i] - (*myPositions)[bHess->residues_alpha_c[residue]];
                       const Real ddotv = diff[0] * V[0] + diff[1] * V[1] + diff[2] * V[2];
                       const Vector3D ddotvV = V * ddotv;
