@@ -517,13 +517,13 @@ namespace ProtoMol {
                       const Real z = sqrt(myTopo->atoms[block_start+i].scaledMass) * (dHat[0]*V[1] - dHat[1]*V[0]);
 
                       if( bHess->residues_alpha_c[residue] > bHess->residues_phi_n[residue] ){
-                          if( i < bHess->residues_alpha_c[residue] ){
+                          if( block_start + i < bHess->residues_alpha_c[residue] ){
                               tmpEigs(rowstart + i*3+0, colstart + eVector) = x;
                               tmpEigs(rowstart + i*3+1, colstart + eVector) = y;
                               tmpEigs(rowstart + i*3+2, colstart + eVector) = z;
                           }
                       }else{
-                          if( i < bHess->residues_phi_n[residue] ){
+                          if( block_start + i < bHess->residues_phi_n[residue] ){
                               tmpEigs(rowstart + i*3+0, colstart + eVector) = x;
                               tmpEigs(rowstart + i*3+1, colstart + eVector) = y;
                               tmpEigs(rowstart + i*3+2, colstart + eVector) = z;
