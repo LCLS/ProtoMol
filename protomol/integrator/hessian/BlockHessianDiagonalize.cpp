@@ -484,17 +484,6 @@ namespace ProtoMol {
           // Extra Modes
           size_t eVector = 6;
 
-          std::vector<int> residue_start, residue_end;
-          for(int residue = 0; residue < bHess->num_residues; residue++){
-              if( residue == 0 ){
-                  residue_start.push_back(0);
-                  residue_end.push_back(residue_start[residue]+bHess->residues_max[residue]-1);
-              }else{
-                  residue_start.push_back(residue_end[residue-1]+1);
-                  residue_end.push_back(residue_start[residue]+bHess->residues_max[residue]-1);
-              }
-          }
-
           const int start_residue = ii * bHess->rpb;
           int end_residue = (ii+1) * bHess->rpb;
           if( end_residue > bHess->num_residues ){
