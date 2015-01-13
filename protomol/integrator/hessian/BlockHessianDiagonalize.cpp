@@ -507,7 +507,7 @@ namespace ProtoMol {
                   Vector3D V = ((*myPositions)[bHess->residues_alpha_c[residue]] - (*myPositions)[bHess->residues_phi_n[residue]]);
                   V.normalize();
                   for( int i = 0; i < block_max; i++ ){
-                      if( block_start+i <= residue_start[residue] || block_start+i >= residue_end[residue] ){
+                      if( block_start+i < residue_start[residue] || block_start+i > residue_end[residue] ){
                           continue;
                       }
 
