@@ -576,13 +576,13 @@ namespace ProtoMol {
           }
 
           //set conserved dof
-          unsigned int cdof = 6;//eVector;
+          unsigned int cdof = eVector;
 
           //~~~~orthoganalize vectors 2 and 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          for( unsigned jj=4; jj<=5; jj++ ){
+          for( unsigned jj=4; jj<eVector; jj++ ){
 
               //(new vectors already have cdof vectors in them)
-              for( unsigned kk=3; kk<jj; kk++ ){
+              for( unsigned kk=0; kk<jj; kk++ ){
 
                   //get dot product (and norm of dots)
                   Real dots = 0.0;
