@@ -587,7 +587,7 @@ namespace ProtoMol {
           unsigned int cdof = eVector;
 
           //~~~~orthoganalize vectors 2 and 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          for( unsigned jj=4; jj<eVector; jj++ ){
+          for( unsigned jj=3; jj<eVector; jj++ ){
 
               //(new vectors already have cdof vectors in them)
               for( unsigned kk=0; kk<jj; kk++ ){
