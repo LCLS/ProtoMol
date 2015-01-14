@@ -510,12 +510,20 @@ namespace ProtoMol {
                               tmpEigs(rowstart + i*3+0, colstart + eVector) = x;
                               tmpEigs(rowstart + i*3+1, colstart + eVector) = y;
                               tmpEigs(rowstart + i*3+2, colstart + eVector) = z;
+                          }else{
+                              tmpEigs(rowstart + i*3+0, colstart + eVector) = -x;
+                              tmpEigs(rowstart + i*3+1, colstart + eVector) = -y;
+                              tmpEigs(rowstart + i*3+2, colstart + eVector) = -z;
                           }
                       }else{
                           if( block_start + i < bHess->residues_phi_n[residue] ){
                               tmpEigs(rowstart + i*3+0, colstart + eVector) = x;
                               tmpEigs(rowstart + i*3+1, colstart + eVector) = y;
                               tmpEigs(rowstart + i*3+2, colstart + eVector) = z;
+                          }else{
+                              tmpEigs(rowstart + i*3+0, colstart + eVector) = -x;
+                              tmpEigs(rowstart + i*3+1, colstart + eVector) = -y;
+                              tmpEigs(rowstart + i*3+2, colstart + eVector) = -z;
                           }
                       }
                   }
@@ -540,9 +548,9 @@ namespace ProtoMol {
                               tmpEigs(rowstart + i*3+1, colstart + eVector) = y;
                               tmpEigs(rowstart + i*3+2, colstart + eVector) = z;
                           }else{
-                              tmpEigs(rowstart + i*3+0, colstart + eVector + 1) = -x;
-                              tmpEigs(rowstart + i*3+1, colstart + eVector + 1) = -y;
-                              tmpEigs(rowstart + i*3+2, colstart + eVector + 1) = -z;
+                              tmpEigs(rowstart + i*3+0, colstart + eVector) = -x;
+                              tmpEigs(rowstart + i*3+1, colstart + eVector) = -y;
+                              tmpEigs(rowstart + i*3+2, colstart + eVector) = -z;
                           }
                       }else{
                           if( block_start+i < bHess->residues_psi_c[residue] ){
@@ -550,13 +558,13 @@ namespace ProtoMol {
                               tmpEigs(rowstart + i*3+1, colstart + eVector) = y;
                               tmpEigs(rowstart + i*3+2, colstart + eVector) = z;
                           }else{
-                              tmpEigs(rowstart + i*3+0, colstart + eVector + 1) = -x;
-                              tmpEigs(rowstart + i*3+1, colstart + eVector + 1) = -y;
-                              tmpEigs(rowstart + i*3+2, colstart + eVector + 1) = -z;
+                              tmpEigs(rowstart + i*3+0, colstart + eVector) = -x;
+                              tmpEigs(rowstart + i*3+1, colstart + eVector) = -y;
+                              tmpEigs(rowstart + i*3+2, colstart + eVector) = -z;
                           }
                       }
                   }
-                  eVector += 2;
+                  eVector += 1;
               }
           }
 
