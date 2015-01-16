@@ -369,6 +369,31 @@ namespace ProtoMol {
     }
   }
 
+  typedef std::pair<double, int> EigenvalueColumn;
+
+  bool sort_func( const EigenvalueColumn &a, const EigenvalueColumn &b ) {
+      if( std::fabs( a.first - b.first ) < 1e-8 ) {
+          return a.second < b.second;
+      } else {
+          return a.first < b.first;
+      }
+      return false;
+  }
+
+  std::vector<EigenvalueColumn> SortEigenvalues( const std::vector<double> &values ) {
+      std::vector<EigenvalueColumn> retVal;
+
+      // Create Array
+      for( unsigned int i = 0; i < values.size(); i++ ) {
+          retVal.push_back( std::make_pair( std::fabs( values[i] ), i ) );
+      }
+
+      // Sort Data
+      std::sort( retVal.begin(), retVal.end(), sort_func );
+
+      return retVal;
+  }
+
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Find isolated block eigenvectors
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -672,6 +697,30 @@ namespace ProtoMol {
 
               }
 
+          }
+
+          // Calculate Quotients
+          BlockMatrix TtH( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
+          tmpEigs.transposeProduct(blockEigVect[ii], TtH);
+
+          BlockMatrix quotients( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
+          TtH.product(tmpEigs, quotients);
+
+          int element = 0;
+          std::vector<double> eigVal;
+          for( int j = quotients.ColumnStart; j < quotients.ColumnStart+quotients.Columns; j++ ){
+            eigVal.push_back(quotients(quotients.RowStart+element, j));
+            element++;
+          }
+
+          BlockMatrix sorted = tmpEigs;
+          std::vector<EigenvalueColumn> sortedValues = SortEigenvalues(eigVal);
+
+          for( int i = 0; i < sortedValues.size(); i++ ){
+            int column = sortedValues[i].second;
+            for( int j = quotients.RowStart; j < quotients.RowStart+quotients.Rows; j++ ){
+                tmpEigs(j, quotients.ColumnStart+i) = sorted(j,quotients.ColumnStart+column);
+            }
           }
 
           //copy across
