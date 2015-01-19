@@ -706,9 +706,11 @@ namespace ProtoMol {
           BlockMatrix quotients( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
           TtH.product(tmpEigs, quotients);
 
+          const unsigned int ignoredVectors = 0;
+
           int element = 0;
           std::vector<double> eigVal;
-          for( int j = quotients.ColumnStart; j < quotients.ColumnStart+quotients.Columns; j++ ){
+          for( int j = quotients.ColumnStart + ignoredVectors; j < quotients.ColumnStart+quotients.Columns; j++ ){
             eigVal.push_back(quotients(quotients.RowStart+element, j));
             element++;
           }
@@ -719,7 +721,7 @@ namespace ProtoMol {
           for( int i = 0; i < sortedValues.size(); i++ ){
             int column = sortedValues[i].second;
             for( int j = quotients.RowStart; j < quotients.RowStart+quotients.Rows; j++ ){
-                tmpEigs(j, quotients.ColumnStart+i) = sorted(j,quotients.ColumnStart+column);
+                tmpEigs(j, quotients.ColumnStart+i+ignoredVectors) = sorted(j,quotients.ColumnStart+column);
             }
           }
 
