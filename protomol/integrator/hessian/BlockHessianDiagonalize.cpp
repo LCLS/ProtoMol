@@ -721,7 +721,7 @@ namespace ProtoMol {
           for( int i = 0; i < sortedValues.size(); i++ ){
             int column = sortedValues[i].second;
             for( int j = quotients.RowStart; j < quotients.RowStart+quotients.Rows; j++ ){
-                tmpEigs(j, quotients.ColumnStart+i+ignoredVectors) = sorted(j,quotients.ColumnStart+column);
+                tmpEigs(j, quotients.ColumnStart+i+ignoredVectors) = sorted(j,quotients.ColumnStart+column+ignoredVectors);
             }
           }
 
