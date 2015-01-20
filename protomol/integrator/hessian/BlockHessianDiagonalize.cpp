@@ -708,7 +708,7 @@ namespace ProtoMol {
 
           const unsigned int ignoredVectors = 0;
 
-          int element = 0;
+          int element = ignoredVectors;
           std::vector<double> eigVal;
           for( int j = quotients.ColumnStart + ignoredVectors; j < quotients.ColumnStart+quotients.Columns; j++ ){
             eigVal.push_back(quotients(quotients.RowStart+element, j));
