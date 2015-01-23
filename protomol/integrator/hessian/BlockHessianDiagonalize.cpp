@@ -7,6 +7,8 @@
 
 #include <protomol/base/Lapack.h>
 
+#include <protomol/topology/TopologyUtilities.h>
+
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
@@ -221,67 +223,126 @@ namespace ProtoMol {
     for(int i=0;i<bHess->num_blocks;i++){
         fullEigs += blockEigVect[i];
     }
+    
+    //
+#if 0
+    const int n = 3 * sz;
+    
+    //get real mass weighted Hessian
+    bHess->initialData( n );
+    bHess->clear();
+    bHess->evaluate( myPositions, myTopo, true );
+    
+    //copy it to block matrix
+    BlockMatrix H( 0, 0, n, n );
+    H.clear();
+    double *Harray = H.arrayPointer();
+    
+    for(int i=0; i<n*n; i++){
+      Harray[i] = bHess->hessM[i];
+    }
+    
+    //get E^THE into innerDiag
+    BlockMatrix EH( 0, 0, 3 * sz, residues_total_eigs);
+    H.product(fullEigs, EH);
+    EH.transposeProduct(fullEigs, innerDiag);
 
+#else
+    const int n = 3 * sz;
+    
+    //get real mass weighted Hessian
+    bHess->initialData( n );
+    bHess->clear();
+    bHess->evaluate( myPositions, myTopo, true );
+    
+    //copy it to block matrix
+    BlockMatrix HA( 0, 0, n, n );
+    HA.clear();
+    double *Harray = HA.arrayPointer();
+    
+    for(int i=0; i<n*n; i++){
+      Harray[i] = bHess->hessM[i];
+    }
+    
     //save positions
     Vector3DBlock tempPos = *myPositions;
+    
+    
+    /*//get center of mass
+    const Vector3D com = centerOfMass(myPositions, myTopo);
+    
+    //remove it
+    Real max=0;
+    for(unsigned i = 0; i < sz; i++){
+      (*myPositions)[i] -= com;
+      if(fabs((*myPositions)[i][0]) > max) max = fabs((*myPositions)[i][1]);
+      if(fabs((*myPositions)[i][1]) > max) max = fabs((*myPositions)[i][2]);
+      if(fabs((*myPositions)[i][2]) > max) max = fabs((*myPositions)[i][3]);
+    }
+
+    std::cout << "Size " << sz << " max " << max << std::endl;*/
 
     //get initial force
     intg->calculateForces();
 
-    Vector3DBlock tempForce = *(intg->getForces());
+    const Vector3DBlock tempForce = *(intg->getForces());
 
     //define epsilon
-    Real epsilon = 1e-9;
+    const Real epsilon = 1e-3;//max *
+    
+    BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
+    H.clear();
+    
+    //loop over each degree of freedom
+    for( unsigned i=0; i < sz * 3; i++ ){
+      
+      //add purturbed position
+      (*myPositions)[i/3][i%3] += epsilon;
+      
+      //get new forces and find difference
+      intg->calculateForces();
+      Vector3DBlock deltaForce = *(intg->getForces()) - tempForce;
+      
+      //create E matrix
+      for( unsigned j = 0; j < 3 * sz; j++ ){
+        H(j,i) = deltaForce[j/3][j%3] * ( 1.0 / epsilon );
+      }
+      
+      //remove purturbed position
+      (*myPositions)[i/3][i%3] -= epsilon;
+    }
+    
+    //make symetric
+    for( unsigned j = 0; j < sz * 3; j++ ){
+      for( unsigned i = 0; i < j; i++ ){
+        const Real average = (H(j,i) + H(i,j)) / 2.0;
+        H(j,i) = H(i,j) = average;
+      }
+    }
 
-    //loop over each eigenvector purtubation
-    for(int eg=0; eg<residues_total_eigs; eg++ ){
-
-        //get purturbed position
-        for( unsigned i=0; i < sz; i++ ){
-            for( unsigned j=0; j<3; j++ ){
-                (*myPositions)[i][j] = tempPos[i][j]
-                    + epsilon * ( 1.0 / sqrt(myTopo->atoms[i].scaledMass))
-                        * fullEigs( i*3+j, eg );
-
-            }
-        }
-
-        //get new forces and find difference
-        intg->calculateForces();
-
-        Vector3DBlock deltaForce = *(intg->getForces()) - tempForce;
-
-        //creat row matrix of deltaForce vector
-        BlockMatrix dForce( 0, 0, 1, 3 * sz );
-
-        for( unsigned i=0; i < 3 * sz; i++ ){
-            dForce[i] = deltaForce[i/3][i%3]
-                            * ( 1.0 / sqrt(myTopo->atoms[i/3].scaledMass) )
-                                * ( 1.0 / epsilon );
-        }
-
-        //create output column matrix
-        BlockMatrix opVector( 0, 0, 1, residues_total_eigs );
-        opVector.clear();
-
-        //get product
-        for(int i=0;i<bHess->num_blocks;i++){
-            dForce.product( blockEigVect[i], opVector );
-        }
-
-        //copy product
-        for(int i=0;i<residues_total_eigs;i++){
-            innerDiag(i,eg) = opVector[i];
-        }
-
-    }//~~~~
+    Real maxerror= 0;
+    
+    //mass weight
+    for( unsigned j = 0; j < sz * 3; j++ ){
+      for( unsigned i = 0; i < sz * 3; i++ ){
+        H(j,i) /= std::sqrt(myTopo->atoms[j/3].scaledMass) * std::sqrt(myTopo->atoms[i/3].scaledMass);
+        if( fabs(H(j,i) + HA(j,i)) > maxerror) maxerror = fabs(H(j,i) + HA(j,i));
+        //if( fabs(H(j,i) + HA(j,i)) > 0.1) std::cout << "(" << j << "," << i << ") H " << -H(j,i) << " HA " << HA(j,i) << " Error " << H(j,i) + HA(j,i) << std::endl;
+      }
+    }
+    
+    std::cout << "Max error " << maxerror << std::endl;
+    
+    BlockMatrix EH( 0, 0, residues_total_eigs, 3 * sz);
+    fullEigs.transposeProduct(H, EH);
+    EH.product(fullEigs, innerDiag);
 
     //restore positions
     *myPositions = tempPos;
 
     //reset time
     myTopo->time = actTime;
-
+#endif
   }
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
