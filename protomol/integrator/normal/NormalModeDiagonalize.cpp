@@ -395,6 +395,9 @@ namespace ProtoMol
       //*******************************************************************************************//
       report << debug(2) << "Start coarse diagonalization." << endr;
       
+      //clear energies as we will use PE
+      app->energies.clear();
+
       //find eienstuff
       Real max_eigenvalue = blockDiag.findEigenvectors( &app->positions, app->topology,
                                                        *Q , _3N, _rfM,

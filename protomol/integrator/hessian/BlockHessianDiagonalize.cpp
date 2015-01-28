@@ -196,6 +196,10 @@ namespace ProtoMol {
   void BlockHessianDiagonalize::calculateS( Vector3DBlock *myPositions,
                                                 GenericTopology *myTopo ){
 
+    Real oldPE, forcePE1, forcePE2, hessPE1, hessPE2;
+    Vector3DBlock num2ndDeriv;
+
+
     //save current time (calculate forces updates!)
     Real actTime = myTopo->time;
 
@@ -264,34 +268,85 @@ namespace ProtoMol {
       Harray[i] = bHess->hessM[i];
     }
     
+    //BlockMatrix EH1( 0, 0, residues_total_eigs, 3 * sz);
+    //fullEigs.transposeProduct(HA, EH1);
+    //EH1.product(fullEigs, innerDiag);
+    
+    std::ofstream oFile("Hanalytic.txt");
+    for( int j = HA.ColumnStart; j < HA.ColumnStart+HA.Columns; j++ ){
+      for( int i = HA.RowStart; i < HA.RowStart+HA.Rows; i++ ){
+        oFile << i + 1 << " " << j + 1 << " " << HA(i, j) << std::endl;
+      }
+    }
+
     //save positions
     Vector3DBlock tempPos = *myPositions;
     
-    
-    /*//get center of mass
-    const Vector3D com = centerOfMass(myPositions, myTopo);
-    
-    //remove it
-    Real max=0;
-    for(unsigned i = 0; i < sz; i++){
-      (*myPositions)[i] -= com;
-      if(fabs((*myPositions)[i][0]) > max) max = fabs((*myPositions)[i][1]);
-      if(fabs((*myPositions)[i][1]) > max) max = fabs((*myPositions)[i][2]);
-      if(fabs((*myPositions)[i][2]) > max) max = fabs((*myPositions)[i][3]);
-    }
-
-    std::cout << "Size " << sz << " max " << max << std::endl;*/
-
     //get initial force
     intg->calculateForces();
+
+    oldPE = intg->myPotEnergy;//myapp->energies.potentialEnergy();
 
     const Vector3DBlock tempForce = *(intg->getForces());
 
     //define epsilon
-    const Real epsilon = 1e-3;//max *
+    const Real epsilon = 1e-9;
     
     BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
     H.clear();
+    
+    num2ndDeriv.resize(3 * sz);
+#if 0
+    //loop over one dimension for second derivative
+    for (unsigned int i = 0; i < sz * 3; i++) {
+      (*myPositions)[i / 3][i % 3] += epsilon;
+      intg->calculateForces();
+      forcePE1 = intg->myPotEnergy;
+      
+      
+      (*myPositions)[i / 3][i % 3] -= 2.0 * epsilon;
+      intg->calculateForces();
+      forcePE2 = intg->myPotEnergy;
+      
+      //forces
+      //numForces[i / 3][i % 3] = -(forcePE1 - forcePE2) / (2.0 * epsilon);
+      
+      //2nd derivative
+      num2ndDeriv[i / 3][i % 3] = (forcePE1 + forcePE2) / (epsilon * epsilon) -
+                                    2.0 * oldPE / (epsilon * epsilon);
+      
+      //
+      (*myPositions)[i / 3][i % 3] += epsilon;      //restore force positions
+    }
+
+    //loop over each degree of freedom in rows and columns
+    for( unsigned i=0; i < sz * 3; i++ ){
+      for( unsigned j=0; j < sz * 3; j++ ){
+        //first point x+h
+        (*myPositions)[i / 3][i % 3] += epsilon;
+        (*myPositions)[j / 3][j % 3] += epsilon;
+        intg->calculateForces();
+        hessPE1 = intg->myPotEnergy;
+        
+        //x-h
+        (*myPositions)[i / 3][i % 3] -= 2.0 * epsilon;
+        (*myPositions)[j / 3][j % 3] -= 2.0 * epsilon;
+        intg->calculateForces();
+        hessPE2 = intg->myPotEnergy;
+        
+        //calc hess
+        H(i,j) =
+          ((hessPE1 + hessPE2) / (epsilon * epsilon) - 2.0 * oldPE /
+            (epsilon * epsilon) - num2ndDeriv[i / 3][i % 3] -
+              num2ndDeriv[j / 3][j % 3]) * 0.5;
+        
+        //restore positions
+        (*myPositions)[i / 3][i % 3] += epsilon;
+        (*myPositions)[j / 3][j % 3] += epsilon;
+        
+      }
+    }
+#endif
     
     //loop over each degree of freedom
     for( unsigned i=0; i < sz * 3; i++ ){
@@ -312,31 +367,38 @@ namespace ProtoMol {
       (*myPositions)[i/3][i%3] -= epsilon;
     }
     
-    //make symetric
+    /*//make symetric
     for( unsigned j = 0; j < sz * 3; j++ ){
       for( unsigned i = 0; i < j; i++ ){
         const Real average = (H(j,i) + H(i,j)) / 2.0;
         H(j,i) = H(i,j) = average;
       }
-    }
-
-    Real maxerror= 0;
+    }*/
     
     //mass weight
     for( unsigned j = 0; j < sz * 3; j++ ){
       for( unsigned i = 0; i < sz * 3; i++ ){
         H(j,i) /= std::sqrt(myTopo->atoms[j/3].scaledMass) * std::sqrt(myTopo->atoms[i/3].scaledMass);
-        if( fabs(H(j,i) + HA(j,i)) > maxerror) maxerror = fabs(H(j,i) + HA(j,i));
-        //if( fabs(H(j,i) + HA(j,i)) > 0.1) std::cout << "(" << j << "," << i << ") H " << -H(j,i) << " HA " << HA(j,i) << " Error " << H(j,i) + HA(j,i) << std::endl;
       }
     }
     
-    std::cout << "Max error " << maxerror << std::endl;
-    
+    innerDiag.clear();
+
     BlockMatrix EH( 0, 0, residues_total_eigs, 3 * sz);
     fullEigs.transposeProduct(H, EH);
     EH.product(fullEigs, innerDiag);
 
+    std::ofstream aFile("Hblock.txt");
+    for( int j = H.ColumnStart; j < H.ColumnStart+H.Columns; j++ ){
+      for( int i = H.RowStart; i < H.RowStart+H.Rows; i++ ){
+        aFile << i + 1 << " " << j + 1 << " " << H(i, j) << std::endl;
+      }
+    }
+    
+    //std::cout << "end of first" << std::endl;
+    
+    //exit(0);
+    
     //restore positions
     *myPositions = tempPos;
 

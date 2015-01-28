@@ -44,7 +44,9 @@ void StandardIntegrator::initializeForces() {
 
 void StandardIntegrator::calculateForces() {
   //  Save current value of potentialEnergy().
-  myPotEnergy = app->energies.potentialEnergy();
+  //myPotEnergy = app->energies.potentialEnergy();
+  //clear energies as we will use PE
+  app->energies.clear();
 
   myForces->zero();
 
@@ -70,7 +72,7 @@ void StandardIntegrator::calculateForces() {
   
   //  Compute my potentialEnergy as the difference before/after the call to
   //  calculateForces().
-  myPotEnergy = app->energies.potentialEnergy() - myPotEnergy;
+  myPotEnergy = app->energies.potentialEnergy();// - myPotEnergy;
 
 #ifdef HAVE_LIBFAH
   if (FAH::Core::isActive()) FAH::Core::instance().checkIn();
