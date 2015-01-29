@@ -123,9 +123,9 @@ namespace ProtoMol {
 
     //evaluate numerically?
     if( !numeric ){
-        bHess->evaluateResidues(myPositions, myTopo, true); //true for quasi-munimum, now NOT using false as improved results
+        bHess->evaluateResidues(myPositions, myTopo, false); //true for quasi-munimum, now NOT using false as improved results
     }else{
-        bHess->evaluateNumericalResidues(myPositions, myTopo);
+        bHess->evaluateNumericalResidues(myPositions, myTopo, intg);
     }
 
     hessianTime.stop();	//stop timer
@@ -273,7 +273,7 @@ namespace ProtoMol {
     const Vector3DBlock tempForce = *(intg->getForces());
 
     //define epsilon
-    const Real epsilon = 1e-3;//max *
+    const Real epsilon = 1e-9;//max *
     
     BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
     H.clear();
@@ -297,14 +297,6 @@ namespace ProtoMol {
       (*myPositions)[i/3][i%3] -= epsilon;
     }
     
-    //make symetric
-    for( unsigned j = 0; j < sz * 3; j++ ){
-      for( unsigned i = 0; i < j; i++ ){
-        const Real average = (H(j,i) + H(i,j)) / 2.0;
-        H(j,i) = H(i,j) = average;
-      }
-    }
-
     //mass weight
     for( unsigned j = 0; j < sz * 3; j++ ){
       for( unsigned i = 0; i < sz * 3; i++ ){
