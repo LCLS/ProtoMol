@@ -1279,7 +1279,7 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
     const Real inv_epsilon = 1.0 / epsilon;
 
     //setup vectors
-    Vector3DBlock blockForces, tempPositions, blockInitialForces, tempForces;
+    Vector3DBlock blockForces, tempPositions, blockInitialForces;
 
     blockForces.resize(size);
     blockInitialForces.resize(size);
@@ -1287,11 +1287,10 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
     //copy positions
     tempPositions = *myPositions;
   
-    //clear array
-    for (unsigned int i = 0; i < size; i++){
-      blockInitialForces[i] = Vector3D(0.0, 0.0, 0.0);
-    }
-
+    //##Real forces##get initial forces for all blocks
+    intg->calculateForces();
+    blockInitialForces = *(intg->getForces());
+    
     //for each block
     for(int i=0;i<num_blocks;i++){
 
@@ -1306,13 +1305,6 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
         const unsigned int block_max = blocks_max[i];
 
         //get initial forces for block
-        intg->calculateForces();
-        tempForces = *(intg->getForces());
-      
-        for( unsigned j=block_start; j<block_start + block_max ; j++ ){
-          blockInitialForces[j] = tempForces[j];
-        }
-      
         //evaluateBlockForces( block_start, block_start + block_max - 1,
           //                      myPositions, myTopo, &blockInitialForces);
 
@@ -1325,12 +1317,9 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
                 (*myPositions)[block_start + j][k] += epsilon;
 
                 //coulumn of data force calc
+                //##Real forces##
                 intg->calculateForces();
-                tempForces = *(intg->getForces());
-                
-                for( unsigned l=block_start; l<block_start + block_max ; l++ ){
-                  blockInitialForces[l] = tempForces[l];
-                }
+                blockForces = *(intg->getForces());
                 //evaluateBlockForces( block_start, block_start + block_max - 1,
                   //                      myPositions, myTopo, &blockForces);
 

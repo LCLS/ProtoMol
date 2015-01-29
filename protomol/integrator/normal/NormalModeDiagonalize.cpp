@@ -401,6 +401,9 @@ namespace ProtoMol
                                                        blockCutoffDistance, eigenValueThresh, blockVectorCols,
                                                        geometricfdof, numerichessians);
       
+      //zero any potential energy accumulation
+      app->energies.clear();
+
       //Stats/diagnostics
       rediagCounter++; hessianCounter++;
       memory_Hessian = ( rHsn.memory_base + rHsn.memory_blocks ) * sizeof( Real ) / 1000000;
