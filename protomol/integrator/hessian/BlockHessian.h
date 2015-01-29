@@ -5,6 +5,7 @@
 #include <protomol/integrator/hessian/Hessian.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/type/BlockMatrix.h>
+#include <protomol/integrator/StandardIntegrator.h>
 
 namespace ProtoMol {
   /**
@@ -35,8 +36,8 @@ namespace ProtoMol {
     void evaluateResidues(const Vector3DBlock *myPositions,
                             GenericTopology *myTopo,
                               bool simuMin);
-    void evaluateNumericalResidues(const Vector3DBlock *myPositions,
-                          const GenericTopology *myTopo);
+    void evaluateNumericalResidues(Vector3DBlock *myPositions,
+                          const GenericTopology *myTopo, StandardIntegrator *intg);
     void evaluateBlockForces(const unsigned int blockStart, const unsigned int blockMax,
                                 const Vector3DBlock *myPositions,
                                     const GenericTopology *myTopo, Vector3DBlock *blockForces);
