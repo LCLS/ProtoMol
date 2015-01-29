@@ -248,7 +248,7 @@ namespace ProtoMol {
     EH.transposeProduct(fullEigs, innerDiag);
 
 #else
-    const int n = 3 * sz;
+    /*const int n = 3 * sz;
     
     //get real mass weighted Hessian
     bHess->initialData( n );
@@ -262,26 +262,11 @@ namespace ProtoMol {
     
     for(int i=0; i<n*n; i++){
       Harray[i] = bHess->hessM[i];
-    }
+    }*/
     
     //save positions
     Vector3DBlock tempPos = *myPositions;
     
-    
-    /*//get center of mass
-    const Vector3D com = centerOfMass(myPositions, myTopo);
-    
-    //remove it
-    Real max=0;
-    for(unsigned i = 0; i < sz; i++){
-      (*myPositions)[i] -= com;
-      if(fabs((*myPositions)[i][0]) > max) max = fabs((*myPositions)[i][1]);
-      if(fabs((*myPositions)[i][1]) > max) max = fabs((*myPositions)[i][2]);
-      if(fabs((*myPositions)[i][2]) > max) max = fabs((*myPositions)[i][3]);
-    }
-
-    std::cout << "Size " << sz << " max " << max << std::endl;*/
-
     //get initial force
     intg->calculateForces();
 
@@ -320,18 +305,12 @@ namespace ProtoMol {
       }
     }
 
-    Real maxerror= 0;
-    
     //mass weight
     for( unsigned j = 0; j < sz * 3; j++ ){
       for( unsigned i = 0; i < sz * 3; i++ ){
         H(j,i) /= std::sqrt(myTopo->atoms[j/3].scaledMass) * std::sqrt(myTopo->atoms[i/3].scaledMass);
-        if( fabs(H(j,i) + HA(j,i)) > maxerror) maxerror = fabs(H(j,i) + HA(j,i));
-        //if( fabs(H(j,i) + HA(j,i)) > 0.1) std::cout << "(" << j << "," << i << ") H " << -H(j,i) << " HA " << HA(j,i) << " Error " << H(j,i) + HA(j,i) << std::endl;
       }
     }
-    
-    std::cout << "Max error " << maxerror << std::endl;
     
     BlockMatrix EH( 0, 0, residues_total_eigs, 3 * sz);
     fullEigs.transposeProduct(H, EH);
