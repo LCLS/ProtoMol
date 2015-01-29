@@ -262,8 +262,15 @@ namespace ProtoMol {
     
     for(int i=0; i<n*n; i++){
       Harray[i] = bHess->hessM[i];
-    }*/
+    }
     
+    std::ofstream oFile("HAnum.txt");
+    for( int j = HA.ColumnStart; j < HA.ColumnStart+HA.Columns; j++ ){
+      for( int i = HA.RowStart; i < HA.RowStart+HA.Rows; i++ ){
+        oFile << i + 1 << " " << j + 1 << " " << HA(i, j) << std::endl;
+      }
+    }*/
+
     //save positions
     Vector3DBlock tempPos = *myPositions;
     
@@ -307,7 +314,16 @@ namespace ProtoMol {
     BlockMatrix EH( 0, 0, residues_total_eigs, 3 * sz);
     fullEigs.transposeProduct(H, EH);
     EH.product(fullEigs, innerDiag);
-
+    
+    /*std::ofstream iFile("Hnum.txt");
+    for( int j = H.ColumnStart; j < H.ColumnStart+H.Columns; j++ ){
+      for( int i = H.RowStart; i < H.RowStart+H.Rows; i++ ){
+        iFile << i + 1 << " " << j + 1 << " " << H(i, j) << std::endl;
+      }
+    }
+    
+    exit(0);*/
+    
     //restore positions
     *myPositions = tempPos;
 
