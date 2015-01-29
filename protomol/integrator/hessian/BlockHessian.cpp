@@ -1321,7 +1321,7 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
                 intg->calculateForces();
                 blockForces = *(intg->getForces());
                 //evaluateBlockForces( block_start, block_start + block_max - 1,
-                  //                      myPositions, myTopo, &blockForces);
+                   //                     myPositions, myTopo, &blockForces);
 
                 //un-peturb
                 (*myPositions)[block_start + j][k] -= epsilon;

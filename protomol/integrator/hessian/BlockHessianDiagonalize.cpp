@@ -280,8 +280,9 @@ namespace ProtoMol {
     const Vector3DBlock tempForce = *(intg->getForces());
 
     //define epsilon
-    const Real epsilon = 1e-9;//max *
-    
+    const Real epsilon = 1e-6;//max *
+
+#if 1
     BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
     H.clear();
     
@@ -323,7 +324,51 @@ namespace ProtoMol {
     }
     
     exit(0);*/
+#else
+    //loop over each eigenvector purtubation
+    for(int eg=0; eg<residues_total_eigs; eg++ ){
+      
+      //get purturbed position
+      for( unsigned i=0; i < sz; i++ ){
+        for( unsigned j=0; j<3; j++ ){
+          (*myPositions)[i][j] = tempPos[i][j]
+          + epsilon * ( 1.0 / sqrt(myTopo->atoms[i].scaledMass))
+          * fullEigs( i*3+j, eg );
+          
+        }
+      }
+      
+      //get new forces and find difference
+      intg->calculateForces();
+      
+      Vector3DBlock deltaForce = *(intg->getForces()) - tempForce;
+      
+      //creat row matrix of deltaForce vector
+      BlockMatrix dForce( 0, 0, 1, 3 * sz );
+      
+      for( unsigned i=0; i < 3 * sz; i++ ){
+        dForce[i] = deltaForce[i/3][i%3]
+        * ( 1.0 / sqrt(myTopo->atoms[i/3].scaledMass) )
+        * ( 1.0 / epsilon );
+      }
+      
+      //create output column matrix
+      BlockMatrix opVector( 0, 0, 1, residues_total_eigs );
+      opVector.clear();
+      
+      //get product
+      for(int i=0;i<bHess->num_blocks;i++){
+        dForce.product( blockEigVect[i], opVector );
+      }
+      
+      //copy product
+      for(int i=0;i<residues_total_eigs;i++){
+        innerDiag(i,eg) = opVector[i];
+      }
+      
+    }//~~~~
     
+#endif
     //restore positions
     *myPositions = tempPos;
 
