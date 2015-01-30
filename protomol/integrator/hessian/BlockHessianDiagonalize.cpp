@@ -225,7 +225,7 @@ namespace ProtoMol {
     }
     
     //
-#if 0
+#if 1
     const int n = 3 * sz;
     
     //get real mass weighted Hessian
@@ -280,9 +280,9 @@ namespace ProtoMol {
     const Vector3DBlock tempForce = *(intg->getForces());
 
     //define epsilon
-    const Real epsilon = 1e-6;//max *
+    const Real epsilon = 1e-9;//max *
 
-#if 1
+#if 0
     BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
     H.clear();
     

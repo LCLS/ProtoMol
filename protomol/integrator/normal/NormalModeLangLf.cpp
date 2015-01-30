@@ -51,6 +51,12 @@ namespace ProtoMol {
     app->energies.clear();	//Need this or initial error, due to inner integrator energy?
     initializeForces();
     //
+    
+    //save current PE to next integrator, required for metropolis sub-space sampling
+    if(myNextIntegrator != NULL){
+      *pMetropolisPE = app->energies.potentialEnergy();
+    }
+    
     //take initial C velocites from system and remove non-subspace part
     if(*Q != NULL) subspaceVelocity(&app->velocities, &app->velocities);
     //
@@ -76,12 +82,6 @@ namespace ProtoMol {
     //main loop
     for( int i = 0; i < numTimesteps; i++ ) {
       //****main loop*************************************
-      //save current PE to next integrator, required for metropolis sub-space sampling
-      if(myNextIntegrator != NULL){
-          *pMetropolisPE = app->energies.potentialEnergy();
-          //report <<debug(1)<<"[NormalModeLangLf::run] Testing! pe= "<<app->energies.potentialEnergy()<<endl;
-      }
-      
       preStepModify();
       genProjGauss(&gaussRandCoord1, app->topology);
       doHalfKick();
@@ -101,6 +101,13 @@ namespace ProtoMol {
       //calculate sub space forces
       app->energies.clear();
       calculateForces();
+      
+      //save current PE to next integrator, required for metropolis sub-space sampling
+      if(myNextIntegrator != NULL){
+          *pMetropolisPE = app->energies.potentialEnergy();
+          //report <<debug(1)<<"[NormalModeLangLf::run] Testing! pe= "<<app->energies.potentialEnergy()<<endl;
+      }
+      
       //
       genProjGauss(&gaussRandCoord1, app->topology);
       doHalfKick();
