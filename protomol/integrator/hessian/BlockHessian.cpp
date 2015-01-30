@@ -1278,6 +1278,109 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
 
     const Real inv_epsilon = 1.0 / epsilon;
 
+#if 0
+    //~~~~update to use 'real' forces efficiently~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //setup vectors
+    Vector3DBlock tempPositions, blockInitialForces;
+
+    //get initial forces for all blocks
+    intg->calculateForces();
+    blockInitialForces = *(intg->getForces());
+    
+    //copy positions
+    tempPositions = *myPositions;
+
+    //first get largest block
+    unsigned int largest_block_size = 0;
+    
+    //for each block
+    for(int i=0;i<num_blocks;i++){
+        if(blocks_max[i] > largest_block_size) largest_block_size = blocks_max[i];
+    }
+    
+    //get force for each purtubation within the blocks
+    std::vector<Vector3DBlock> block_force_vector;
+    
+    //loop over the maximum number of forces
+    for(unsigned i=0;i<largest_block_size;i++){
+        
+        //x,y,z
+        for( unsigned k=0; k<3; k++ ){
+            
+            //start from zero atom
+            block_start = 0;
+            
+            //for each block
+            for(unsigned j=0;j<num_blocks;j++){
+                
+                //if there are not enough atoms in this block to add peturb then continue
+                if(blocks_max[j] > i){
+                    //else peturb
+                    (*myPositions)[block_start + i][k] += epsilon;
+                }
+                
+                //end of loop, update for next block
+                block_start += blocks_max[j];
+                
+            }
+            
+            //get peturbed forces
+            intg->calculateForces();
+            block_force_vector.push_back(*(intg->getForces()));
+            
+            //restore positions
+            *myPositions = tempPositions;
+        }
+    }
+    
+    //put result into blocks
+    block_start = 0;
+    
+    //for each block
+    for(int i=0;i<num_blocks;i++){
+        
+        //get position in Hessian
+        const unsigned int rowstart = blocks[i].RowStart;
+        const unsigned int colstart = blocks[i].ColumnStart;
+        
+        //clear block
+        blocks[i].clear();
+        
+        //find atoms in block
+        const unsigned int block_max = blocks_max[i];
+        
+        //calculate Hessian for each atom
+        for( unsigned j=0; j<block_max; j++ ){
+            //x,y,z
+            for( unsigned k=0; k<3; k++ ){
+                
+                //get force vector for each column
+                const Vector3DBlock blockForces = block_force_vector[j*3 + k];
+                
+                //copy force array to column of numerical Hessian
+                for( unsigned l=0; l<block_max; l++ ){
+                    //x,y,z
+                    for( unsigned m=0; m<3; m++ ){
+                        
+                        blocks[i](rowstart + j*3+k, colstart + l*3+m) =
+                            -( blockForces[block_start + l][m]
+                              - blockInitialForces[block_start + l][m])
+                                * inv_epsilon
+                                    * ( 1.0 /
+                                       ( sqrt(myTopo->atoms[block_start+l].scaledMass) * sqrt(myTopo->atoms[block_start+j].scaledMass ) )  );
+                        
+                    }
+                }
+                
+            }
+        }
+        
+        //end of loop, update for next block
+        block_start += blocks_max[i];
+        
+    }
+
+#else
     //setup vectors
     Vector3DBlock blockForces, tempPositions, blockInitialForces;
 
@@ -1326,6 +1429,14 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
                 //un-peturb
                 (*myPositions)[block_start + j][k] -= epsilon;
 
+                /*//remove average forces within block
+                Vector3D averageForce = Vector3D(0,0,0);
+                for(unsigned l=block_start; l<block_start + block_max; l++ ){
+                    averageForce += blockForces[l] - blockInitialForces[l];
+                }
+                
+                averageForce /= block_max;*/
+                
                 //copy force array to column of numerical Hessian
                 for( unsigned l=0; l<block_max; l++ ){
                     //x,y,z
@@ -1333,7 +1444,7 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
 
                         blocks[i](rowstart + j*3+k, colstart + l*3+m) =
                                             -( blockForces[block_start + l][m]
-                                                - blockInitialForces[block_start + l][m])
+                                                - blockInitialForces[block_start + l][m] /*- averageForce[m]*/)
                                                     * inv_epsilon
                                                         * ( 1.0 /
                                                             ( sqrt(myTopo->atoms[block_start+l].scaledMass) * sqrt(myTopo->atoms[block_start+j].scaledMass ) )  );
@@ -1350,5 +1461,5 @@ void BlockHessian::evaluateNumericalResidues(Vector3DBlock *myPositions,
         block_start += block_max;
 
     }
-
+#endif
 }
