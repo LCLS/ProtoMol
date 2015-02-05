@@ -402,7 +402,7 @@ namespace ProtoMol
                                                        geometricfdof, numerichessians);
       
       //zero any potential energy accumulation
-      app->energies.clear();
+      //app->energies.clear();
 
       //Stats/diagnostics
       rediagCounter++; hessianCounter++;
