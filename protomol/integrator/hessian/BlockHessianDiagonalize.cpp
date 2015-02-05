@@ -282,7 +282,7 @@ namespace ProtoMol {
     //define epsilon
     const Real epsilon = 1e-9;//max *
 
-#if 0
+#if 1
     BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
     H.clear();
     
@@ -305,16 +305,28 @@ namespace ProtoMol {
       (*myPositions)[i/3][i%3] -= epsilon;
     }
     
+    /*//make symetric
+    for( unsigned j = 0; j < sz * 3; j++ ){
+      for( unsigned i = 0; i < j; i++ ){
+        const Real average = (H(j,i) + H(i,j)) / 2.0;
+        H(j,i) = H(i,j) = average;
+      }
+    }*/
+
     //mass weight
     for( unsigned j = 0; j < sz * 3; j++ ){
       for( unsigned i = 0; i < sz * 3; i++ ){
         H(j,i) /= std::sqrt(myTopo->atoms[j/3].scaledMass) * std::sqrt(myTopo->atoms[i/3].scaledMass);
       }
     }
+    //get E^THE into innerDiag
+    BlockMatrix EH( 0, 0, 3 * sz, residues_total_eigs);
+    H.product(fullEigs, EH);
+    EH.transposeProduct(fullEigs, innerDiag);
     
-    BlockMatrix EH( 0, 0, residues_total_eigs, 3 * sz);
-    fullEigs.transposeProduct(H, EH);
-    EH.product(fullEigs, innerDiag);
+    //BlockMatrix EH( 0, 0, residues_total_eigs, 3 * sz);
+    //fullEigs.transposeProduct(H, EH);
+    //EH.product(fullEigs, innerDiag);
     
     /*std::ofstream iFile("Hnum.txt");
     for( int j = H.ColumnStart; j < H.ColumnStart+H.Columns; j++ ){
