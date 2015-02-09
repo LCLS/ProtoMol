@@ -4,6 +4,8 @@
 #include <protomol/base/StringUtilities.h>
 #include <protomol/analysis/Analysis.h>
 
+#include <map>
+
 namespace ProtoMol {
 	class Configuration;
 
@@ -15,6 +17,12 @@ namespace ProtoMol {
 			const std::vector<int> mIndex;
 			const Real mPsiMin, mPsiMax;
 			const Real mPhiMin, mPhiMax;
+
+			struct Dihedral {
+				int a, b, c, d;
+				Dihedral() : a(0), b(0), c(0), d(0) {}
+			};
+			std::vector<Dihedral> mPhiDihedral, mPsiDihedral;
 
 			std::vector<int> residues_alpha_c, residues_phi_n, residues_psi_c;
 
@@ -32,7 +40,7 @@ namespace ProtoMol {
 			void doFinalize(long) {}
 			bool isIdDefined (const Configuration *config) const;
 			bool addDoKeyword() const { return false; }
-			const Real computeDihedral(const int a1, const int a2, const int a3, const int a4) const;
+			const Real computeDihedral (const int a1, const int a2, const int a3, const int a4) const;
 
 		public:
 			std::string getIdNoAlias() const { return keyword; }

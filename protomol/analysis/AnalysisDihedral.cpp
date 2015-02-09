@@ -43,6 +43,12 @@ void AnalysisDihedral::doInitialize() {
 
 	const int num_residues = residue_id.size();
 
+	for( int i = 0; i < mIndex.size(); i++ ) {
+		if( mIndex[i] > num_residues ) {
+			report << error << getId() + "Index Invalid. Value " << mIndex[i] << " is out of range. Must be betwen 0 and " << num_residues << endr;
+		}
+	}
+
 	residues_alpha_c.resize(num_residues);
 	residues_phi_n.resize(num_residues);
 	residues_psi_c.resize(num_residues);
@@ -98,6 +104,39 @@ void AnalysisDihedral::doInitialize() {
 			}
 		}
 	}
+
+	for( int i = 0; i < mIndex.size(); i++ ) {
+		const int alpha_c = residues_alpha_c[mIndex[i]];
+		const int phi_n = residues_phi_n[mIndex[i]];
+		const int psi_c = residues_psi_c[mIndex[i]];
+
+		Dihedral phi, psi;
+		for( int dihedral = 0; dihedral < app->topology->rb_dihedrals.size(); dihedral++ ) {
+			const int a1 = app->topology->rb_dihedrals[dihedral].atom1;
+			const int a2 = app->topology->rb_dihedrals[dihedral].atom2;
+			const int a3 = app->topology->rb_dihedrals[dihedral].atom3;
+			const int a4 = app->topology->rb_dihedrals[dihedral].atom4;
+
+			if( a1 == phi_n && a2 == alpha_c && a3 == psi_c ) {
+				phi.a = a1; phi.b = a2; phi.c = a3; phi.d = a4;
+			}
+
+			if( a2 == phi_n && a3 == alpha_c && a4 == psi_c ) {
+				psi.a = a1; psi.b = a2; psi.c = a3; psi.d = a4;
+			}
+		}
+
+		if( phi.a == 0 && phi.b == 0 && phi.c == 0 && phi.d == 0 ) {
+			report << error << "[" << getId() << "] Unable to find phi dihedral for residue " << mIndex[i] << endr;
+		}
+
+		if( psi.a == 0 && psi.b == 0 && psi.c == 0 && psi.d == 0 ) {
+			report << error << "[" << getId() << "] Unable to find psi dihedral for residue " << mIndex[i] << endr;
+		}
+
+		mPhiDihedral.push_back(phi);
+		mPsiDihedral.push_back(psi);
+	}
 }
 
 void AnalysisDihedral::doIt(long step) {}
@@ -121,24 +160,11 @@ void AnalysisDihedral::doRun(long step) {
 	std::vector<Real> phiAngle(mIndex.size()), psiAngle(mIndex.size());
 
 	for( int i = 0; i < mIndex.size(); i++ ) {
-		const int alpha_c = residues_alpha_c[mIndex[i]];
-		const int phi_n = residues_phi_n[mIndex[i]];
-		const int psi_c = residues_psi_c[mIndex[i]];
+		const Dihedral phiDihedral = mPhiDihedral[i];
+		phiAngle[i] = rtod(computeDihedral(phiDihedral.a, phiDihedral.b, phiDihedral.c, phiDihedral.d));
 
-		for( int dihedral = 0; dihedral < app->topology->rb_dihedrals.size(); dihedral++ ) {
-			const int a1 = app->topology->rb_dihedrals[dihedral].atom1;
-			const int a2 = app->topology->rb_dihedrals[dihedral].atom2;
-			const int a3 = app->topology->rb_dihedrals[dihedral].atom3;
-			const int a4 = app->topology->rb_dihedrals[dihedral].atom4;
-
-			if( a1 == phi_n && a2 == alpha_c && a3 == psi_c ) {
-				phiAngle[i] = rtod(computeDihedral(a1, a2, a3, a4));
-			}
-
-			if( a2 == phi_n && a3 == alpha_c && a4 == psi_c ) {
-				psiAngle[i] = rtod(computeDihedral(a1, a2, a3, a4));
-			}
-		}
+		const Dihedral psiDihedral = mPsiDihedral[i];
+		psiAngle[i] = rtod(computeDihedral(psiDihedral.a, psiDihedral.b, psiDihedral.c, psiDihedral.d));
 	}
 
 	report.setf( std::ios::fixed );
@@ -187,30 +213,34 @@ Analysis *AnalysisDihedral::doMake(const vector<Value> &values) const {
 
 	std::vector<int> index;
 	while( !sStream.eof()) {
-		int value = -1;
+		int value = -99999;
 		sStream >> value;
 		sStream.ignore(std::numeric_limits<std::streamsize>::max(), ',');
 
-		if( value != -1 ) {
+		if( value < 0 ){
+			report << error << getId() + "Index Invalid. Residue number must not be negative" << endr;
+		}else{
 			index.push_back(value);
 		}
 	}
 
 	// Parse Psi
-	Real psiMin, psiMax;
+	std::string sPsi = values[2];
+	Real psiMin = 0.0, psiMax = 0.0;
+	sscanf(sPsi.c_str(), "%lf,%lf", &psiMin, &psiMax);
 
-	sStream.str(values[2]);
-	sStream >> psiMin;
-	sStream.ignore(std::numeric_limits<std::streamsize>::max(), ',');
-	sStream >> psiMax;
+	if( psiMin < -180.0 || psiMax > 180.0 || psiMax <= psiMin ) {
+		report << error << getId() + "PsiRange Invalid: (" << psiMin << " to " << psiMax << ") should be between (-180.0 to 180.0)" << endr;
+	}
 
 	// Parse Phi
-	Real phiMin, phiMax;
+	std::string sPhi = values[3];
+	Real phiMin = 0.0, phiMax = 0.0;
+	sscanf(sPhi.c_str(), "%lf,%lf", &phiMin, &phiMax);
 
-	sStream.str(values[3]);
-	sStream >> phiMin;
-	sStream.ignore(std::numeric_limits<std::streamsize>::max(), ',');
-	sStream >> phiMax;
+	if( phiMin < -180.0 || phiMax > 180.0 || phiMax <= phiMin ) {
+		report << error << getId() + "PhiRange Invalid: (" << phiMin << " to " << phiMax << ") should be between (-180.0 to 180.0)" << endr;
+	}
 
 	return new AnalysisDihedral(index, psiMin, psiMax, phiMin, phiMax);
 }
