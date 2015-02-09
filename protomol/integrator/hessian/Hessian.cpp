@@ -350,6 +350,64 @@ void Hessian::findForces(ForceGroup *overloadedForces) {
   cutOff = max(cutOff, tempCoff);
 }
 
+void Hessian::evaluatenumerically(Vector3DBlock *myPositions,
+                         GenericTopology *myTopo,
+                         bool mrw, StandardIntegrator *intg) {
+  //save current time (calculate forces updates!)
+  Real actTime = myTopo->time;
+  
+  //get size
+  unsigned int szr = myPositions->size();
+  
+  //get initial force
+  intg->calculateForces();
+  
+  const Vector3DBlock tempForce = *(intg->getForces());
+  
+  //define epsilon
+  const Real epsilon = 1e-9;//max *
+  
+  //do numeric here
+  //loop over each degree of freedom
+  for( unsigned i=0; i < szr * 3; i++ ){
+    
+    //add purturbed position
+    (*myPositions)[i/3][i%3] += epsilon;
+    
+    //get new forces and find difference
+    intg->calculateForces();
+    Vector3DBlock deltaForce =  *(intg->getForces()) - tempForce;
+    
+    //create E matrix
+    for( unsigned j = 0; j < 3 * szr; j++ ){
+      hessM[i * szr * 3 + j] = deltaForce[j/3][j%3] * ( -1.0 / epsilon );
+    }
+    
+    //remove purturbed position
+    (*myPositions)[i/3][i%3] -= epsilon;
+  }
+  
+  /*//make symetric
+   for( unsigned j = 0; j < sz * 3; j++ ){
+   for( unsigned i = 0; i < j; i++ ){
+   const Real average = (H(j,i) + H(i,j)) / 2.0;
+   H(j,i) = H(i,j) = average;
+   }
+   }*/
+  
+  //mass weight
+  for( unsigned j = 0; j < szr * 3; j++ ){
+    for( unsigned i = 0; i < szr * 3; i++ ){
+      hessM[i * szr * 3 + j] /= std::sqrt(myTopo->atoms[j/3].scaledMass) * std::sqrt(myTopo->atoms[i/3].scaledMass);
+    }
+  }
+  
+  std::cout << "Hn " << hessM[0] << "," << hessM[1] << std::endl;
+  //reset time
+  myTopo->time = actTime;
+  
+}
+
 void Hessian::evaluate(const Vector3DBlock *myPositions,
                        GenericTopology *myTopo,
                        bool mrw) {
@@ -557,6 +615,7 @@ void Hessian::evaluate(const Vector3DBlock *myPositions,
     }
   }
   //
+  std::cout << "Ha " << hessM[0] << "," << hessM[1] << std::endl;
 
 }
 

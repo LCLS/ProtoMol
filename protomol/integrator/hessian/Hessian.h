@@ -5,6 +5,7 @@
 #include <protomol/force/Force.h>
 #include <protomol/type/Vector3DBlock.h>
 #include <protomol/type/Matrix3By3.h>
+#include <protomol/integrator/StandardIntegrator.h>
 
 namespace ProtoMol {
   /**
@@ -42,6 +43,9 @@ namespace ProtoMol {
     void evaluate(const Vector3DBlock *myPositions,   //positions
                   GenericTopology *myTopo,      //topology
                   const bool mrw);                    //mass re-weighted
+    void evaluatenumerically(Vector3DBlock *myPositions,   //positions
+                  GenericTopology *myTopo,      //topology
+                  const bool mrw, StandardIntegrator *intg);                    //mass re-weighted
 
     Matrix3By3 evaluatePairsMatrix(int i, int j, int pairType, const Vector3DBlock *myPositions,
                        const GenericTopology *myTopo, bool mrw);
