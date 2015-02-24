@@ -347,8 +347,8 @@ namespace ProtoMol
       //Find Hessians
       blockDiag.hessianTime.start(); //time Hessian
       rHsn.clear();
-      //rHsn.evaluate( &app->positions, app->topology, true ); //mass re-weighted hessian
-      rHsn.evaluatenumerically( &app->positions, app->topology, true, (StandardIntegrator *)this ); //mass re-weighted hessian
+      rHsn.evaluate( &app->positions, app->topology, true ); //mass re-weighted hessian
+      //rHsn.evaluatenumerically( &app->positions, app->topology, true, (StandardIntegrator *)this ); //mass re-weighted hessian
       report << debug(2) << "Hessian found." << endr;
       
       //stop timer
