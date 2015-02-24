@@ -225,7 +225,7 @@ namespace ProtoMol {
     }
     
     //
-#if 1
+#if 0
     const int n = 3 * sz;
     
     //get real mass weighted Hessian
@@ -248,9 +248,9 @@ namespace ProtoMol {
     EH.transposeProduct(fullEigs, innerDiag);
 
 #else
-    /*const int n = 3 * sz;
+    const int n = 3 * sz;
     
-    //get real mass weighted Hessian
+    /*//get real mass weighted Hessian
     bHess->initialData( n );
     bHess->clear();
     bHess->evaluate( myPositions, myTopo, true );
@@ -282,7 +282,7 @@ namespace ProtoMol {
     //define epsilon
     const Real epsilon = 1e-9;//max *
 
-#if 1
+#if 0
     BlockMatrix H( 0, 0, 3 * sz, 3 * sz );
     H.clear();
     
@@ -298,7 +298,7 @@ namespace ProtoMol {
       
       //create E matrix
       for( unsigned j = 0; j < 3 * sz; j++ ){
-        H(j,i) = deltaForce[j/3][j%3] * ( 1.0 / epsilon );
+        H(j,i) = deltaForce[j/3][j%3] * ( -1.0 / epsilon );
       }
       
       //remove purturbed position
@@ -361,7 +361,7 @@ namespace ProtoMol {
       for( unsigned i=0; i < 3 * sz; i++ ){
         dForce[i] = deltaForce[i/3][i%3]
         * ( 1.0 / sqrt(myTopo->atoms[i/3].scaledMass) )
-        * ( 1.0 / epsilon );
+        * ( -1.0 / epsilon );
       }
       
       //create output column matrix
@@ -387,6 +387,15 @@ namespace ProtoMol {
     //reset time
     myTopo->time = actTime;
 #endif
+    /*std::ofstream iFile("Snum.txt");
+    for( int j = innerDiag.ColumnStart; j < innerDiag.ColumnStart+innerDiag.Columns; j++ ){
+      for( int i = innerDiag.RowStart; i < innerDiag.RowStart+innerDiag.Rows; i++ ){
+        iFile << i + 1 << " " << j + 1 << " " << innerDiag(i, j) << std::endl;
+      }
+    }
+    
+    exit(0);*/
+
   }
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -614,7 +623,7 @@ namespace ProtoMol {
 
           // Extra Modes
           size_t eVector = 6;
-
+#if 1
           const int start_residue = ii * bHess->rpb;
           int end_residue = (ii+1) * bHess->rpb;
           if( end_residue > bHess->num_residues ){
@@ -698,7 +707,7 @@ namespace ProtoMol {
                   eVector += 1;
               }
           }
-
+#endif
           // Normalize All Vectors (Skipping the translations)
           for( size_t v = 3; v < eVector; v++ ) {
               Real sum = 0.0;
@@ -804,7 +813,7 @@ namespace ProtoMol {
               }
 
           }
-
+#if 1
           // Calculate Quotients
           BlockMatrix TtH( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
           tmpEigs.transposeProduct(bH, TtH);
@@ -830,7 +839,7 @@ namespace ProtoMol {
                 tmpEigs(j, quotients.ColumnStart+i+ignoredVectors) = sorted(j,quotients.ColumnStart+column+ignoredVectors);
             }
           }
-
+#endif
           //copy across
           blockEigVect[ii] = tmpEigs;
 
