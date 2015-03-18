@@ -510,7 +510,7 @@ namespace ProtoMol {
           // Extra Modes
           size_t eVector = 6;
 
-          const int start_residue = ii * bHess->rpb;
+          /*const int start_residue = ii * bHess->rpb;
           int end_residue = (ii+1) * bHess->rpb;
           if( end_residue > bHess->num_residues ){
             end_residue = bHess->num_residues;
@@ -592,7 +592,7 @@ namespace ProtoMol {
                   }
                   eVector += 1;
               }
-          }
+          }*/
 
           // Normalize All Vectors (Skipping the translations)
           for( size_t v = 3; v < eVector; v++ ) {
