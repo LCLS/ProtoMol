@@ -701,7 +701,7 @@ namespace ProtoMol {
           }
 
           // Calculate Quotients
-          BlockMatrix TtH( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
+          /*BlockMatrix TtH( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
           tmpEigs.transposeProduct(bH, TtH);
 
           BlockMatrix quotients( blockEigVect[ii].RowStart, blockEigVect[ii].ColumnStart, blockEigVect[ii].Rows, blockEigVect[ii].Columns );
@@ -724,7 +724,7 @@ namespace ProtoMol {
             for( int j = quotients.RowStart; j < quotients.RowStart+quotients.Rows; j++ ){
                 tmpEigs(j, quotients.ColumnStart+i+ignoredVectors) = sorted(j,quotients.ColumnStart+column+ignoredVectors);
             }
-          }
+          }*/
 
           //copy across
           blockEigVect[ii] = tmpEigs;
