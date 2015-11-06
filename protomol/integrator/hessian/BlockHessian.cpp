@@ -1273,8 +1273,8 @@ void BlockHessian::evaluateNumericalResidues(const Vector3DBlock *myPositions,
     unsigned int block_start = 0;
 
     const unsigned int size = myPositions->size();
-    
-    const Real epsilon = 1e-12;
+
+    const Real epsilon = 1e-6;
 
     const Real inv_epsilon = 1.0 / epsilon;
 

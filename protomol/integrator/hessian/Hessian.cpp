@@ -351,7 +351,6 @@ void Hessian::findForces(ForceGroup *overloadedForces) {
             }
           }
         } else if (equalStartNocase("LennardJones Coulomb", ListForces[i]->getId())) {
-            std::cout << "LJ Test" << std::endl;
             myLennardJones = true; myCoulomb = true;
             vector<Parameter> Fparam;
             //lSwitch = cSwitch = 1;

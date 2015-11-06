@@ -66,8 +66,9 @@ def run_test(protomol_path, conf_file, pwd, parallel):
     cmd.append(protomol_path)
     cmd.append(conf_file)
 
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (stdout, stderr) = p.communicate()
+    DEVNULL = open(os.devnull, 'w')
+    p = subprocess.Popen(cmd, stdout=None, stderr=None)
+    p.communicate()
     if p.returncode > 0:
         s = 'Not able to execute Protomol!\n'
         s += 'cmd: ' + str(cmd) + '\n'

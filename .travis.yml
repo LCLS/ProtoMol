@@ -22,4 +22,4 @@ script:
   - make install
   - cd test
   - cp $HOME/ProtoMol/bin/ProtoMol .
-  - python test.py --serial --parallel --errorfailure
+  - go run test.go --verbose --parallel --errorfailure

@@ -231,7 +231,7 @@ namespace ProtoMol {
     Vector3DBlock tempForce = *(intg->getForces());
 
     //define epsilon
-    Real epsilon = 1e-9;
+    Real epsilon = 1e-6;
 
     //loop over each eigenvector purtubation
     for(int eg=0; eg<residues_total_eigs; eg++ ){
