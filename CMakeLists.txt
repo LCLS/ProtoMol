@@ -167,11 +167,9 @@ option( CODE_COVERAGE "Build library with code coverage instrumentation" Off )
 if( CODE_COVERAGE )
 	set( COVERAGE_COMMAND "gcov" )
 
-	set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage" )
-	set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
-	set( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage" )
-
-	set( CMAKE_CXX_STANDARD_LIBRARIES "-lgcov" )
+	set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage" )
+	set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage" )
+	set( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage" )
 endif( CODE_COVERAGE )
 
 # Warnings

@@ -8,18 +8,31 @@ sudo: false
 
 addons:
   apt:
+    sources:
+      - llvm-toolchain-precise
+      - ubuntu-toolchain-r-test
     packages:
+      - g++-4.8
+      - clang-3.8
       - libblas-dev
       - liblapack-dev
       - gromacs-dev
       - openmpi-bin
       - libopenmpi-dev
 
+before_install:
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.8" CC="clang-3.8"; fi
+
 script:
-  - cmake -DCMAKE_INSTALL_PREFIX=$HOME/ProtoMol -DBUILD_LAPACK_TYPE=lapack -DBUILD_GROMACS=ON -DBUILD_PARALLEL=ON
+  - cmake -DCMAKE_INSTALL_PREFIX=$HOME/ProtoMol -DBUILD_LAPACK_TYPE=lapack -DBUILD_GROMACS=ON -DBUILD_PARALLEL=ON -DCODE_COVERAGE=ON
   - cmake -DMPI_C_LINK_FLAGS="" -DMPI_CXX_LINK_FLAGS=""
   - make
   - make install
   - cd test
   - cp $HOME/ProtoMol/bin/ProtoMol .
   - python test.py --serial --parallel --errorfailure
+
+after_success:
+  - if [ "$CXX" = "g++-4.8" ]; then bash <(curl -s https://raw.githubusercontent.com/Omegaice/codecov-bash/travis_ci_fix/codecov) -x /usr/bin/gcov-4.8; fi
+  - if [ "$CXX" = "clang++-3.8" ]; then bash <(curl -s https://raw.githubusercontent.com/Omegaice/codecov-bash/travis_ci_fix/codecov); fi
