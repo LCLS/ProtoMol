@@ -1,1 +1,1 @@
-# ProtoMol [![Build Status](https://travis-ci.org/LCLS/ProtoMol.svg?branch=master)](https://travis-ci.org/LCLS/ProtoMol)
+# ProtoMol [![Build Status](https://travis-ci.org/LCLS/ProtoMol.svg?branch=master)](https://travis-ci.org/LCLS/ProtoMol) [![codecov.io](https://codecov.io/github/LCLS/ProtoMol/coverage.svg?branch=master)](https://codecov.io/github/LCLS/ProtoMol?branch=master)
