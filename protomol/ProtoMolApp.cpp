@@ -342,7 +342,7 @@ void ProtoMolApp::build() {
     if( strncmp(sUnit, "s", 1) == 0 ) SimTime = rTime * 1e15;
 
 	// Update number of steps
-    config[InputNumsteps::keyword] = int(integrator->getTimestep() * SimTime);
+    config[InputNumsteps::keyword] = int(SimTime / integrator->getTimestep());
   }
 
   // Update number of steps between outputs based on a provided output step time
@@ -371,7 +371,7 @@ void ProtoMolApp::build() {
     if( strncmp(sUnit, "s", 1) == 0 ) SimTime = rTime * 1e15;
 
 	// Update number of steps
-    config[InputOutputfreq::keyword] = int(integrator->getTimestep() * SimTime);
+    config[InputOutputfreq::keyword] = int(SimTime / integrator->getTimestep());
   }
 
   // Setup run parameters (used for GUI so required here)
