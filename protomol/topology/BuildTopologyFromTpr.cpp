@@ -159,7 +159,7 @@ bool ProtoMol::parse_iparams(function &func, void *ft, void *ip,
 
     // if not found
   default:
-    status = false;
+    status = true;
     break;
   }
 
@@ -218,6 +218,13 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
                  tpx.bTop ? &mtop: 0);
 
   // ----------------------------------------------------------------------
+  // Check for invalid configuration
+  // ----------------------------------------------------------------------
+  /*if (ir.implicit_solvent == eisGBSA && ir.gb_algorithm != egbOBC  ) {
+    THROWS("Unable to use GB Algorith other than OBC");
+  }*/
+
+  // ----------------------------------------------------------------------
   // Load positions and velocities from TPR/Gromacs topology
   // ----------------------------------------------------------------------
 
@@ -240,8 +247,7 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
     // loop over each atom
     for (unsigned i = 0; i < num_atoms * 3; i++) {
       pos.c[i] = state.x[i/3][i%3] * Constant::NM_ANGSTROM; // nm to A; // tpx.bX?
-      vel.c[i] = state.v[i/3][i%3] * Constant::NM_ANGSTROM *
-        Constant::TIMEFACTOR * Constant::FS_PS; // nm/ps to A/fs?; // tpx.bV?
+      vel.c[i] = state.v[i/3][i%3] * Constant::NM_ANGSTROM * Constant::TIMEFACTOR * Constant::FS_PS; // nm/ps to A/fs?; // tpx.bV?
     }
   }
 
@@ -278,7 +284,7 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
   const unsigned atypesize = atomtypes->nr;
 
   // loop and print data
-  for (unsigned i = 0; i < atypesize; i++) {
+  /*for (unsigned i = 0; i < atypesize; i++) {
     report << debug(810) << "atomtype[" << i << "]={radius="
            << atomtypes->radius[i]
            << ", volume=" << atomtypes->vol[i]
@@ -286,7 +292,7 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
            << ", surftens=" << atomtypes->surftens[i]
            << ", atomnumber=" << atomtypes->atomnumber[i]
            << ", S_hct=" << atomtypes->S_hct[i] << ")}" << endr;
-  }
+  }*/
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atoms
@@ -429,11 +435,9 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
        << interaction_function[ffparams->functype[i]].name << ", ";
 
     // parameters, if successful then save
-    if (parse_iparams(tempfunc, (void*)&ffparams->functype[i],
-                      (void*)&ffparams->iparams[i], os))
-      // save function
+    if (parse_iparams(tempfunc, (void*)&ffparams->functype[i], (void*)&ffparams->iparams[i], os)){
       functions.push_back(tempfunc);
-    else THROWS("No matching parms. for " << tempfunc.name << ".");
+    }
 
     // end line
     report << debug(800) << os.str() << endr;
@@ -483,20 +487,21 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
           // function
           ffd.function = type;// ftyp;
 
+          // number of atoms associated with force type
+          const unsigned nratoms = interaction_function[ftyp].nratoms;
+
           // find 'enum' type for testing
           if (!ffd.name.compare("BONDS")) ffd.type = BOND;
           else if (!ffd.name.compare("ANGLES")) ffd.type = ANGLE;
-          else if (!ffd.name.compare("PDIHS") ||
-                   !ffd.name.compare("PIDIHS")) ffd.type = PROPERDIH;
+          else if (!ffd.name.compare("PDIHS") || !ffd.name.compare("PIDIHS")) ffd.type = PROPERDIH;
           else if (!ffd.name.compare("RBDIHS")) ffd.type = RYCKAERTBELL;
           else if (!ffd.name.compare("LJ14")) ffd.type = LJ14;
           else if (!ffd.name.compare("CONSTR")) ffd.type = CONSTRAINT;
           // throw exception and flag if force not identified
-          else THROWS("Unknown GROMAC force type '" << ffd.name << "', '"
-                      << ffd.longname << "'.");
-
-          // number of atoms associated with force type
-          const unsigned nratoms = interaction_function[ftyp].nratoms;
+          else {
+            i += 1 + nratoms;
+            continue;
+          }
 
           // atom list
           for (unsigned k = 0; k < nratoms; k++) {
@@ -888,51 +893,56 @@ void ProtoMol::buildTopologyFromTpr(GenericTopology *topo, Vector3DBlock &pos,
            << ", dielec offset " << topo->dielecOffset
            << "." << endr;
 
-    // setup atom structs
-    unsigned atomsSize = topo->atoms.size();
-    // string hname("H"), cname("C"),
-    for (unsigned i = 0; i < atomsSize; i++) {
+    for (int mt = 0; mt < mtop.nmoltype; mt++) {
+      gmx_moltype_t *molt = &mtop.moltype[mt];
+      t_atoms *atoms = &(molt->atoms);
+      t_atom *atom = atoms->atom;
 
-      Atom *tempatom = &(topo->atoms[i]);
-      tempatom->myGBSA_T = new GBSAAtomParameters();
+      for (int i = 0; i < atoms->nr; i++) {
+        Atom *tempatom = &(topo->atoms[i]);
+        tempatom->myGBSA_T = new GBSAAtomParameters();
 
-      int type = tempatom->type;
-      string name = topo->atomTypes[type].name;
+        int type = tempatom->type;
+        string name = topo->atomTypes[type].name;
 
-      tempatom->myGBSA_T->vanDerWaalRadius =
-        atom_radius(atomTypeNames[i], RADIUS_TABLE);
+        if( atom[i].atomnumber == -1 ){
+          tempatom->myGBSA_T->vanDerWaalRadius = atom_radius(atomTypeNames[i], RADIUS_TABLE);
+          if (tempatom->myGBSA_T->vanDerWaalRadius < 0.0){
+            THROWS("Radius not found for Atom type " << atomTypeNames[i]);
+          }
+        }else{
+          tempatom->myGBSA_T->vanDerWaalRadius = mtop.atomtypes.gb_radius[atom[i].type] * 10.0;
+        }
 
-      if (tempatom->myGBSA_T->vanDerWaalRadius < 0.0)
-        THROWS("Radius not found for Atom type " << atomTypeNames[i]);
+        tempatom->myGBSA_T->offsetRadius = 0.09;
+        // tempatom->myGBSA_T->scalingFactor
+        switch (name[0]) {
+        case 'H': tempatom->myGBSA_T->scalingFactor = 0.85; break;
+        case 'C': tempatom->myGBSA_T->scalingFactor = 0.72; break;
+        case 'N': tempatom->myGBSA_T->scalingFactor = 0.79; break;
+        case 'O': tempatom->myGBSA_T->scalingFactor = 0.85; break;
+        case 'P': tempatom->myGBSA_T->scalingFactor = 0.86; break;
+        case 'S': tempatom->myGBSA_T->scalingFactor = 0.96; break;
+        default:  tempatom->myGBSA_T->scalingFactor = 0.80; break;
+        }
 
-      tempatom->myGBSA_T->offsetRadius = 0.09;
-      // tempatom->myGBSA_T->scalingFactor
-      switch (name[0]) {
-      case 'H': tempatom->myGBSA_T->scalingFactor = 0.85; break;
-      case 'C': tempatom->myGBSA_T->scalingFactor = 0.72; break;
-      case 'N': tempatom->myGBSA_T->scalingFactor = 0.79; break;
-      case 'O': tempatom->myGBSA_T->scalingFactor = 0.85; break;
-      case 'P': tempatom->myGBSA_T->scalingFactor = 0.86; break;
-      case 'S': tempatom->myGBSA_T->scalingFactor = 0.96; break;
-      default:  tempatom->myGBSA_T->scalingFactor = 0.80; break;
+        // allocate the array to store derivatives of born radius w.r.t. r_{ij}'s
+        if (!tempatom->myGBSA_T->bornRadiusDerivatives)
+          tempatom->myGBSA_T->SetSpaceForBornRadiusDerivatives(atoms->nr);
+
+        if (!tempatom->myGBSA_T->Lvalues)
+          tempatom->myGBSA_T->SetSpaceLvalues(atoms->nr);
+
+        if (!tempatom->myGBSA_T->Uvalues)
+          tempatom->myGBSA_T->SetSpaceUvalues(atoms->nr);
+
+        if (!tempatom->myGBSA_T->distij)
+          tempatom->myGBSA_T->SetSpaceDistij(atoms->nr);
+
+        tempatom->myGBSA_T->expTerm.resize( atoms->nr );
+        tempatom->myGBSA_T->filTerm.resize( atoms->nr );
+        tempatom->myGBSA_T->partialTerm.resize( atoms->nr );
       }
-
-      // allocate the array to store derivatives of born radius w.r.t. r_{ij}'s
-      if (!tempatom->myGBSA_T->bornRadiusDerivatives)
-        tempatom->myGBSA_T->SetSpaceForBornRadiusDerivatives(atomsSize);
-
-      if (!tempatom->myGBSA_T->Lvalues)
-        tempatom->myGBSA_T->SetSpaceLvalues(atomsSize);
-
-      if (!tempatom->myGBSA_T->Uvalues)
-        tempatom->myGBSA_T->SetSpaceUvalues(atomsSize);
-
-      if (!tempatom->myGBSA_T->distij)
-        tempatom->myGBSA_T->SetSpaceDistij(atomsSize);
-
-      tempatom->myGBSA_T->expTerm.resize( atomsSize );
-      tempatom->myGBSA_T->filTerm.resize( atomsSize );
-      tempatom->myGBSA_T->partialTerm.resize( atomsSize );
     }
   }
 
