@@ -276,6 +276,7 @@ void OpenMMIntegrator::initialize( ProtoMolApp *app ) {
 
 	// Add GBSA if needed.
 	if( app->topology->implicitSolvent  == GBSA && isUsingGBForce ) {
+		mForceList.push_back( "GBSA" );
 		OpenMM::GBSAOBCForce *gbsa = new OpenMM::GBSAOBCForce();
 		system->addForce( gbsa );
 
