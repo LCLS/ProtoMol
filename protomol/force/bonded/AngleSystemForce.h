@@ -5,6 +5,7 @@
 #include <protomol/force/system/SystemForce.h>
 #include <protomol/type/ScalarStructure.h>
 #include <protomol/parallel/Parallel.h>
+#include <protomol/topology/SemiGenericTopology.h>
 
 namespace ProtoMol {
   //____ AngleSystemForce

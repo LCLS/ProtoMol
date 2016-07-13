@@ -1,21 +1,50 @@
-#include <protomol/integrator/openMM/OpenMMIntegrator.h>
-#include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/topology/TopologyUtilities.h>
+#include <math.h>
+#include <openmm/LocalEnergyMinimizer.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/PMConstants.h>
+#include <protomol/base/Report.h>
 #include <protomol/base/Zap.h>
+#include <protomol/integrator/openMM/OpenMMIntegrator.h>
+#include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/LennardJonesParameters.h>
-
-#include <openmm/LocalEnergyMinimizer.h>
-
-#include <vector>
-#include <algorithm>
-
+#include <protomol/type/ScalarStructure.h>
+#include <protomol/type/Vector3DBlock.h>
 #include <iostream>
+#include <vector>
+
+#include "LTMD/Integrator.h"
+#include "LTMD/Parameters.h"
+#include "openmm/CMMotionRemover.h"
+#include "openmm/Context.h"
+#include "openmm/CustomBondForce.h"
+#include "openmm/CustomGBForce.h"
+#include "openmm/CustomNonbondedForce.h"
+#include "openmm/CustomTorsionForce.h"
+#include "openmm/GBSAOBCForce.h"
+#include "openmm/HarmonicAngleForce.h"
+#include "openmm/HarmonicBondForce.h"
+#include "openmm/Integrator.h"
+#include "openmm/LangevinIntegrator.h"
+#include "openmm/NonbondedForce.h"
+#include "openmm/PeriodicTorsionForce.h"
+#include "openmm/Platform.h"
+#include "openmm/RBTorsionForce.h"
+#include "openmm/State.h"
+#include "openmm/System.h"
+#include "openmm/Vec3.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/STSIntegrator.h"
+#include "protomol/topology/Angle.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/LennardJonesParameterTable.h"
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/topology/Torsion.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

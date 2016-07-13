@@ -1,7 +1,14 @@
-#include <protomol/topology/ArrayCellListStructure.h>
-#include <protomol/base/Exception.h>
 #include <protomol/base/Report.h>
-#include <exception>
+#include <protomol/topology/ArrayCellListStructure.h>
+#include <stddef.h>
+#include <algorithm>
+#include <cmath>
+#include <new>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/base/PMConstants.h"
+#include "protomol/topology/CubicCellLocation.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

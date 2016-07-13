@@ -1,6 +1,12 @@
-#include <protomol/switch/C2SwitchingFunction.h>
-#include <protomol/base/MathUtilities.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/MathUtilities.h>
+#include <protomol/switch/C2SwitchingFunction.h>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/Matrix3By3.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 using namespace ProtoMol;

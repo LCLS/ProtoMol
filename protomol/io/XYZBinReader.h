@@ -4,12 +4,15 @@
 
 #include <protomol/io/Reader.h>
 #include <protomol/type/XYZ.h>
+#include <string>
 
 namespace ProtoMol {
   //________________________________________________________________XYZBinReader
   /**
    * Reads a XYZ binary file.
    */
+class Vector3DBlock;
+
   class XYZBinReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

@@ -1,25 +1,20 @@
-#include <protomol/module/OutputModule.h>
-
 #include <protomol/ProtoMolApp.h>
-#include <protomol/config/Configuration.h>
 #include <protomol/factory/OutputFactory.h>
-
+#include <protomol/module/OutputModule.h>
 #include <protomol/output/OutputDCDTrajectory.h>
-#include <protomol/output/OutputDCDTrajectoryVel.h>
 #include <protomol/output/OutputDCDTrajectoryForces.h>
+#include <protomol/output/OutputDCDTrajectoryVel.h>
+#include <protomol/output/OutputDihedrals.h>
+#include <protomol/output/OutputEnergies.h>
+#include <protomol/output/OutputFAHFile.h>
 #include <protomol/output/OutputFinalPDBPos.h>
 #include <protomol/output/OutputFinalXYZPos.h>
 #include <protomol/output/OutputFinalXYZVel.h>
 #include <protomol/output/OutputScreen.h>
+#include <protomol/output/OutputXTCTrajectory.h>
 #include <protomol/output/OutputXYZTrajectoryForce.h>
 #include <protomol/output/OutputXYZTrajectoryPos.h>
 #include <protomol/output/OutputXYZTrajectoryVel.h>
-#include <protomol/output/OutputEnergies.h>
-#include <protomol/output/OutputFAHGUI.h>
-#include <protomol/output/OutputFAHFile.h>
-#include <protomol/output/OutputScreen.h>
-#include <protomol/output/OutputXTCTrajectory.h>
-#include <protomol/output/OutputDihedrals.h>
 
 using namespace std;
 using namespace ProtoMol;

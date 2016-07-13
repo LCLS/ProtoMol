@@ -4,6 +4,7 @@
 
 #include <protomol/io/Reader.h>
 #include <protomol/type/PAR.h>
+#include <string>
 
 namespace ProtoMol {
   //_________________________________________________________________PARReader

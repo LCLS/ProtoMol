@@ -1,12 +1,14 @@
-#include <protomol/base/ModuleManager.h>
-#include <protomol/base/Module.h>
-
-#include <protomol/base/Exception.h>
 #include <protomol/ProtoMolApp.h>
-#include <protomol/config/CommandLine.h>
+#include <protomol/base/Exception.h>
+#include <protomol/base/Module.h>
+#include <protomol/base/ModuleManager.h>
 #include <protomol/base/StringUtilities.h>
-
+#include <protomol/config/CommandLine.h>
 #include <iostream>
+#include <vector>
+
+#include "protomol/base/SmartPointer.h"
+#include "protomol/config/CommandLineOption.h"
 
 using namespace ProtoMol;
 using namespace std;

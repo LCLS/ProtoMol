@@ -3,9 +3,13 @@
 #define HELPTEXTFACTORY_H
 
 #include <protomol/config/Parameter.h>
-#include <vector>
 #include <map>
 #include <set>
+#include <string>
+#include <vector>
+
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/Value.h"
 
 namespace ProtoMol {
   class Configuration;

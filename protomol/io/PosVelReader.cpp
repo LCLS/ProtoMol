@@ -1,11 +1,16 @@
-#include <protomol/io/PosVelReader.h>
-
-#include <protomol/type/Vector.h>
 #include <protomol/base/SystemUtilities.h>
-
+#include <protomol/io/PDBReader.h>
+#include <protomol/io/PosVelReader.h>
 #include <protomol/io/XYZBinReader.h>
 #include <protomol/io/XYZReader.h>
-#include <protomol/io/PDBReader.h>
+
+#include "protomol/io/PosVelReaderType.h"
+
+namespace ProtoMol {
+class Vector3DBlock;
+struct PDB;
+struct XYZ;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol;

@@ -2,20 +2,25 @@
 #ifndef FORCE_H
 #define FORCE_H
 
+#include <protomol/base/Exception.h>
 #include <protomol/base/Makeable.h>
 #include <protomol/base/MakeableDefinition.h>
-#include <protomol/base/Exception.h>
-
+#include <stddef.h>
+#include <string>
 #include <vector>
 
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+
 namespace ProtoMol {
-  class ForceGroup;
-  class ScalarStructure;
-  class GenericTopology;
-  class Vector3DBlock;
   class CompareForce;
-  class TimeForce;
   class ForceGroup;
+  class ForceGroup;
+  class GenericTopology;
+  class ScalarStructure;
+  class TimeForce;
+  class Vector3DBlock;
   //________________________________________ Force
 
   class Force : public Makeable<Force> {

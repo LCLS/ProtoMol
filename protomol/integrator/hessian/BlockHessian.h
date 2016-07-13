@@ -5,6 +5,10 @@
 #include <protomol/integrator/hessian/Hessian.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/type/BlockMatrix.h>
+#include <vector>
+
+#include "protomol/type/Matrix3By3.h"
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   /**
@@ -13,6 +17,10 @@ namespace ProtoMol {
    * for the current force field.
    *
    */
+class GenericTopology;
+class Torsion;
+class Vector3DBlock;
+
   class BlockHessian : public Hessian {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Types and Enums

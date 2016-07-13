@@ -1,12 +1,22 @@
-#include <protomol/factory/ForceFactory.h>
-#include <protomol/base/StringUtilities.h>
+#include <ctype.h>
 #include <protomol/base/Report.h>
-#include <protomol/type/SimpleTypes.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/factory/ForceFactory.h>
 #include <protomol/force/CompareForce.h>
 #include <protomol/force/TimeForce.h>
 #include <protomol/parallel/Parallel.h>
+#include <protomol/type/SimpleTypes.h>
+#include <stddef.h>
 #include <algorithm>
 #include <sstream>
+#include <utility>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Factory.h"
+#include "protomol/base/PMConstants.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/force/Force.h"
 
 using namespace std;
 using namespace ProtoMol;

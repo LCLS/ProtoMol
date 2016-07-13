@@ -4,12 +4,15 @@
 
 #include <protomol/io/Reader.h>
 #include <protomol/type/PSF.h>
+#include <string>
 
 namespace ProtoMol {
   //_________________________________________________________________PSFReader
   /**
    * Reads a PSD file (ASCII)
    */
+
+class PSF;
 
   class PSFReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

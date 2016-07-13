@@ -3,13 +3,14 @@
 #define MATHUTILITIES_H
 
 #include <protomol/base/PMConstants.h>
-#include <protomol/type/SimpleTypes.h>
 #include <protomol/base/Random.h>
-
-#include <cmath>
+#include <protomol/type/SimpleTypes.h>
 #include <algorithm>
+#include <cmath>
 #include <queue>
 #include <vector>
+
+#include "protomol/type/Real.h"
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846

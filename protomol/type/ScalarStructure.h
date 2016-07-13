@@ -2,11 +2,13 @@
 #ifndef ENERGYSTRUCTURE_H
 #define ENERGYSTRUCTURE_H
 
+#include <protomol/base/PMConstants.h>
 #include <protomol/base/Proxy.h>
 #include <protomol/type/Vector3D.h>
-#include <protomol/base/PMConstants.h>
-
 #include <iostream>
+
+#include "protomol/type/Real.h"
+
 using namespace std;
 
 namespace ProtoMol {

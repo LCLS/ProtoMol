@@ -1,7 +1,19 @@
-#include <protomol/force/GB/GBBornRadii.h>
-
+#include <math.h>
 #include <protomol/base/Report.h>
+#include <protomol/force/GB/GBBornRadii.h>
 #include <protomol/parallel/Parallel.h>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/topology/Molecule.h"
+
+namespace ProtoMol {
+class ScalarStructure;
+class Value;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace ProtoMol;
 using namespace ProtoMol::Report;

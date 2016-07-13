@@ -1,6 +1,12 @@
-#include <protomol/topology/CoulombSCPISMParameters.h>
-#include <protomol/topology/CoulombSCPISMParameterTable.h>
 #include <protomol/base/Report.h>
+#include <protomol/topology/CoulombSCPISMParameterTable.h>
+#include <protomol/topology/CoulombSCPISMParameters.h>
+#include <map>
+#include <ostream>
+#include <string>
+#include <utility>
+
+#include "protomol/topology/AtomType.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

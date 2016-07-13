@@ -4,6 +4,10 @@
 
 #include <protomol/base/Factory.h>
 #include <protomol/integrator/Integrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/config/Value.h"
 
 namespace ProtoMol {
   class ForceFactory;

@@ -1,7 +1,10 @@
 #include <protomol/io/XYZTrajectoryReader.h>
+#include <istream>
+#include <vector>
 
-#include <protomol/type/String.h>
-#include <protomol/base/StringUtilities.h>
+#include "protomol/base/Exception.h"
+#include "protomol/io/XYZReader.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol;

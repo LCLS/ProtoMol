@@ -1,7 +1,10 @@
-#include <protomol/config/Parameter.h>
 #include <protomol/base/StringUtilities.h>
-
+#include <protomol/config/Parameter.h>
 #include <iomanip>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 using namespace ProtoMol;

@@ -1,38 +1,43 @@
-#include <protomol/module/NonbondedCutoffForceModule.h>
-
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/StringUtilities.h>
-#include <protomol/module/TopologyModule.h>
-#include <protomol/topology/PeriodicBoundaryConditions.h>
-#include <protomol/topology/VacuumBoundaryConditions.h>
-
-#include <protomol/force/OneAtomPair.h>
-#include <protomol/force/OneAtomPairTwo.h>
-#include <protomol/force/OneAtomPairThree.h>
-#include <protomol/force/OneAtomPairNoExclusion.h>
 #include <protomol/force/CoulombForce.h>
+#include <protomol/force/GB/GBACEForce.h>
+#include <protomol/force/GB/GBBornRadii.h>
+#include <protomol/force/GB/GBForce.h>
+#include <protomol/force/GB/GBPartialSum.h>
 #include <protomol/force/LennardJonesForce.h>
-#include <protomol/force/coulomb/CoulombSCPISMForce.h>
+#include <protomol/force/OneAtomPair.h>
+#include <protomol/force/OneAtomPairNoExclusion.h>
+#include <protomol/force/OneAtomPairThree.h>
+#include <protomol/force/OneAtomPairTwo.h>
 #include <protomol/force/born/BornRadii.h>
 #include <protomol/force/born/BornSelfForce.h>
+#include <protomol/force/coulomb/CoulombSCPISMForce.h>
 #include <protomol/force/nonbonded/NonbondedCutoffSystemForce.h>
 #include <protomol/force/table/LennardJonesTableForce.h>
-
+#include <protomol/module/NonbondedCutoffForceModule.h>
+#include <protomol/module/TopologyModule.h>
 #include <protomol/switch/C1SwitchingFunction.h>
 #include <protomol/switch/C2SwitchingFunction.h>
 #include <protomol/switch/CmpCnCnSwitchingFunction.h>
 #include <protomol/switch/CnSwitchingFunction.h>
-#include <protomol/switch/UniversalSwitchingFunction.h>
 #include <protomol/switch/CutoffSwitchingFunction.h>
+#include <protomol/switch/UniversalSwitchingFunction.h>
+#include <protomol/topology/PeriodicBoundaryConditions.h>
+#include <protomol/topology/VacuumBoundaryConditions.h>
+#include <vector>
 
 #include <protomol/topology/CellListEnumeratorPeriodicBoundaries.h>
 #include <protomol/topology/CellListEnumeratorStandard.h>
 
-//GB
-#include <protomol/force/GB/GBForce.h>
-#include <protomol/force/GB/GBACEForce.h>
-#include <protomol/force/GB/GBBornRadii.h>
-#include <protomol/force/GB/GBPartialSum.h>
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/force/Force.h"
+#include "protomol/topology/CubicCellManager.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Real.h"
 
 using namespace std;
 using namespace ProtoMol;
@@ -59,7 +64,7 @@ void NonbondedCutoffForceModule::registerForces(ProtoMolApp *app) {
     f.reg(new CutoffSystem<CCM, OneAtomPair<PBC, C2, CoulombForce> >());
     f.reg(new CutoffSystem<CCM, OneAtomPair<PBC, Cn, CoulombForce> >());
     f.reg(new CutoffSystem<CCM, OneAtomPair<PBC, CmpCnCn, CoulombForce> >());
-    
+
     // NonbondedCutoffSystemForce LennardJonesForce
     f.reg(new CutoffSystem<CCM, OneAtomPair<PBC, C1, LennardJonesForce> >());
     f.reg(new CutoffSystem<CCM, OneAtomPair<PBC, C2, LennardJonesForce> >());
@@ -72,7 +77,7 @@ void NonbondedCutoffForceModule::registerForces(ProtoMolApp *app) {
           LennardJonesTableForce<Cn, 7 ,Real> > >());
     f.reg(new CutoffSystem<CCM, OneAtomPair<PBC, Universal,
           LennardJonesTableForce<CmpCnCn, 7 ,Real> > >());
-    
+
     // NonbondedCutoffSystemForce LennardJonesForce CoulombForce
     f.reg(new CutoffSystem<CCM, OneAtomPairTwo<PBC, C2, LennardJonesForce,
           C1, CoulombForce> >());
@@ -126,7 +131,7 @@ void NonbondedCutoffForceModule::registerForces(ProtoMolApp *app) {
           LennardJonesTableForce<Cn, 7 ,Real> > >());
     f.reg(new CutoffSystem<CCM, OneAtomPair<VBC, Universal,
           LennardJonesTableForce<CmpCnCn, 7 ,Real> > >());
-    
+
     // NonbondedCutoffSystemForce LennardJonesForce CoulombForce
     f.reg(new CutoffSystem<CCM, OneAtomPairTwo<VBC, C2, LennardJonesForce, C1,
           CoulombForce> >());
@@ -153,7 +158,7 @@ void NonbondedCutoffForceModule::registerForces(ProtoMolApp *app) {
     f.reg(new CutoffSystem<CCM, OneAtomPair<VBC, Cn, CoulombSCPISMForce> >());
     f.reg(new CutoffSystem<CCM, OneAtomPair<VBC, CmpCnCn,
           CoulombSCPISMForce> >());
-    
+
     // GB
     f.reg(new CutoffSystem<CCM, OneAtomPairNoExclusion<VBC, Universal, GBForce> >());
     f.reg(new CutoffSystem<CCM, OneAtomPairNoExclusion<VBC, Universal, GBACEForce> >());
@@ -163,7 +168,7 @@ void NonbondedCutoffForceModule::registerForces(ProtoMolApp *app) {
     f.reg(new CutoffSystem<CCM, OneAtomPairNoExclusion<VBC, Cn, GBACEForce> >());
     f.reg(new CutoffSystem<CCM, OneAtomPairNoExclusion<VBC, Universal, GBBornRadii> >());
     f.reg(new CutoffSystem<CCM, OneAtomPairNoExclusion<VBC, Universal, GBPartialSum> >());
-    
+
     // OneAtomPairThree (forces): LennardJonesForce CoulombSCPISMForce BornRadii
 
     f.reg(new CutoffSystem<CCM, OneAtomPairThree<VBC, C2, LennardJonesForce, C1,

@@ -4,14 +4,22 @@
 
 #include <protomol/integrator/MTSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
-
 #include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 
 namespace ProtoMol {
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class StandardIntegrator;
+class Value;
+class Vector3DBlock;
+struct Parameter;
 
   //__________________________________________________ NormalModeMori
   class NormalModeMori : public MTSIntegrator, public NormalModeUtilities {

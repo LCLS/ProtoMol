@@ -1,8 +1,14 @@
-#include <protomol/io/PDBReader.h>
-
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/PDBReader.h>
+#include <stddef.h>
+#include <istream>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/PDB.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+#include "protomol/type/XYZ.h"
 
 //____#define DEBUG_PDB
 

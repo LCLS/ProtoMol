@@ -1,13 +1,23 @@
-#include <protomol/factory/IntegratorFactory.h>
-
-#include <protomol/integrator/STSIntegrator.h>
-#include <protomol/integrator/MTSIntegrator.h>
-#include <protomol/integrator/NonStandardIntegrator.h>
 #include <protomol/base/StringUtilities.h>
 #include <protomol/factory/ForceFactory.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/base/Report.h>
 #include <protomol/factory/HelpTextFactory.h>
+#include <protomol/factory/IntegratorFactory.h>
+#include <protomol/force/ForceGroup.h>
+#include <protomol/integrator/MTSIntegrator.h>
+#include <protomol/integrator/NonStandardIntegrator.h>
+#include <protomol/integrator/STSIntegrator.h>
+#include <stddef.h>
+#include <istream>
+#include <map>
+#include <utility>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Factory.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/ValueType.h"
+#include "protomol/force/Force.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/integrator/StandardIntegrator.h"
 
 using namespace std;
 using namespace ProtoMol;

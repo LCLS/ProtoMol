@@ -1,14 +1,16 @@
-#include <protomol/module/TopologyModule.h>
-
-#include <protomol/topology/Topology.h>
-#include <protomol/factory/TopologyFactory.h>
-#include <protomol/topology/CubicCellManager.h>
-#include <protomol/topology/VacuumBoundaryConditions.h>
-#include <protomol/topology/PeriodicBoundaryConditions.h>
-
 #include <protomol/ProtoMolApp.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/base/Exception.h>
+#include <protomol/factory/TopologyFactory.h>
+#include <protomol/module/TopologyModule.h>
+#include <protomol/topology/CubicCellManager.h>
+#include <protomol/topology/PeriodicBoundaryConditions.h>
+#include <protomol/topology/Topology.h>
+#include <protomol/topology/VacuumBoundaryConditions.h>
+#include <vector>
+
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector.h"
 
 using namespace std;
 using namespace ProtoMol;

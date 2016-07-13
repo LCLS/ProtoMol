@@ -2,16 +2,28 @@
 #ifndef COULOMBSCPISMFORCE_H
 #define COULOMBSCPISMFORCE_H
 
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/ExclusionTable.h>
-#include <protomol/config/Parameter.h>
+#include <math.h>
 #include <protomol/base/PMConstants.h>
 #include <protomol/base/Report.h>
-#include <string>
-#include <math.h>
-
+#include <protomol/config/Parameter.h>
+#include <protomol/topology/ExclusionTable.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/type/ScalarStructure.h>
 #include <iostream>
+#include <string>
+#include <vector>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Molecule.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
+
+namespace ProtoMol {
+class Value;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
+
 using namespace std;
 
 using namespace ProtoMol::Report;

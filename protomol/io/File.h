@@ -2,9 +2,9 @@
 #ifndef FILE_H
 #define FILE_H
 
+#include <protomol/base/Exception.h>
 #include <string>
 #include <vector>
-#include <protomol/base/Exception.h>
 
 #ifdef HAVE_LIBFAH
 #include <cbang/os/File.h>

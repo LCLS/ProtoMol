@@ -1,7 +1,11 @@
-#include <protomol/config/Configuration.h>
-
-#include <protomol/base/Report.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/Report.h>
+#include <protomol/config/Configuration.h>
+#include <utility>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/Parameter.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

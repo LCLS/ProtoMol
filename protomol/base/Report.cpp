@@ -1,8 +1,7 @@
 #include <protomol/base/Report.h>
-
-#include <iomanip>
-
 #include <protomol/base/SystemUtilities.h>
+#include <stddef.h>
+#include <algorithm>
 
 using namespace std;
 

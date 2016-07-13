@@ -1,18 +1,24 @@
-#include <protomol/analysis/AnalysisDihedral.h>
-
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/module/MainModule.h>
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
-
+#include <protomol/analysis/AnalysisDihedral.h>
 #include <protomol/base/MathUtilities.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/base/SystemUtilities.h>
-
-#include <protomol/io/XYZWriter.h>
-#include <protomol/io/CheckpointConfigWriter.h>
-
-#include <sstream>
+#include <stdio.h>
 #include <iostream>
+#include <limits>
+#include <map>
+
+#include "protomol/analysis/Analysis.h"
+#include "protomol/base/Report.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

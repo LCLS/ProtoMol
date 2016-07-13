@@ -3,14 +3,22 @@
 #define LEAPFROGDATAACQUISITION_H
 
 
-#include <string>
 #include <protomol/integrator/leapfrog/LeapfrogIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 
 namespace ProtoMol {
-  class ScalarStructure;
-  class ForceGroup;
   class DCDTrajectoryWriter;
+  class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class STSIntegrator;
+class Value;
+class Vector3DBlock;
+struct Parameter;
 
   class LeapfrogDataAcquisition : public LeapfrogIntegrator {
 

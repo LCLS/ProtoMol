@@ -1,45 +1,37 @@
-#include <protomol/integrator/hessian/BlockHessian.h>
-
 #include <protomol/base/Report.h>
-#include <protomol/force/hessian/HessDihedral.h>
-#include <protomol/force/hessian/ReducedHessBond.h>
-#include <protomol/force/hessian/ReducedHessAngle.h>
-
-#include <protomol/force/LennardJonesForce.h>
 #include <protomol/force/CoulombForce.h>
-#include <protomol/switch/CnSwitchingFunction.h>
-#include <protomol/switch/C2SwitchingFunction.h>
-#include <protomol/switch/C1SwitchingFunction.h>
-
+#include <protomol/force/LennardJonesForce.h>
+#include <protomol/force/bonded/AngleSystemForce.h>
+#include <protomol/force/bonded/BondSystemForce.h>
+#include <protomol/force/bonded/DihedralSystemForce.h>
+#include <protomol/force/bonded/ImproperSystemForce.h>
+#include <protomol/force/bonded/RBDihedralSystemForce.h>
 #include <protomol/force/hessian/HessDihedral.h>
+#include <protomol/force/hessian/ReducedHessAngle.h>
 #include <protomol/force/hessian/ReducedHessBond.h>
-#include <protomol/force/hessian/ReducedHessCoulomb.h>
-#include <protomol/force/hessian/ReducedHessCoulombDiElec.h>
-#include <protomol/force/hessian/ReducedHessCoulombSCPISM.h>
-#include <protomol/force/hessian/ReducedHessLennardJones.h>
-#include <protomol/force/coulomb/CoulombForceDiElec.h>
-#include <protomol/force/coulomb/CoulombSCPISMForce.h>
-
-//GB
-#include <protomol/force/GB/GBBornRadii.h>
-#include <protomol/force/GB/GBACEForce.h>
-#include <protomol/force/hessian/ReducedHessGBACE.h>
-#include <protomol/force/GB/GBForce.h>
-#include <protomol/force/hessian/ReducedHessGB.h>
-
+#include <protomol/integrator/hessian/BlockHessian.h>
 #include <protomol/topology/SemiGenericTopology.h>
 #include <protomol/topology/VacuumBoundaryConditions.h>
 #include <protomol/type/BlockMatrix.h>
-
-#include <protomol/force/bonded/BondSystemForce.h>
-#include <protomol/force/bonded/AngleSystemForce.h>
-#include <protomol/force/bonded/ImproperSystemForce.h>
-#include <protomol/force/bonded/DihedralSystemForce.h>
-#include <protomol/force/bonded/RBDihedralSystemForce.h>
-
-#include <iostream>
-#include <stdio.h>
+#include <stdlib.h>
+#include <algorithm>
+#include <cmath>
 #include <fstream>
+#include <new>
+#include <string>
+
+#include "protomol/force/Force.h"
+#include "protomol/integrator/hessian/Hessian.h"
+#include "protomol/topology/Angle.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/topology/Torsion.h"
+#include "protomol/type/ScalarStructure.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 //defines for including SCPISM and GB and
 //adding paiwise forces to evaluateResidues()

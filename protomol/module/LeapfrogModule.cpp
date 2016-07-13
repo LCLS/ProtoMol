@@ -1,15 +1,14 @@
-#include <protomol/module/LeapfrogModule.h>
-
 #include <protomol/ProtoMolApp.h>
-
+#include <protomol/integrator/leapfrog/DMDLeapfrogIntegrator.h>
+#include <protomol/integrator/leapfrog/GPU.h>
+#include <protomol/integrator/leapfrog/LeapfrogDataAcquisition.h>
 #include <protomol/integrator/leapfrog/LeapfrogIntegrator.h>
 #include <protomol/integrator/leapfrog/LeapfrogTruncatedShadow.h>
-#include <protomol/integrator/leapfrog/DMDLeapfrogIntegrator.h>
-#include <protomol/integrator/leapfrog/PLeapfrogIntegrator.h>
 #include <protomol/integrator/leapfrog/NoseNVTLeapfrogIntegrator.h>
+#include <protomol/integrator/leapfrog/PLeapfrogIntegrator.h>
+#include <protomol/module/LeapfrogModule.h>
 
-#include <protomol/integrator/leapfrog/LeapfrogDataAcquisition.h>
-#include <protomol/integrator/leapfrog/GPU.h>
+#include "protomol/factory/IntegratorFactory.h"
 
 using namespace std;
 using namespace ProtoMol;

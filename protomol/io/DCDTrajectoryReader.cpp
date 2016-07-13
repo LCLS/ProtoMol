@@ -1,8 +1,15 @@
-#include <protomol/io/DCDTrajectoryReader.h>
-
+#include <protomol/base/Exception.h>
 #include <protomol/base/Report.h>
 #include <protomol/base/SystemUtilities.h>
-#include <protomol/base/Exception.h>
+#include <protomol/io/DCDTrajectoryReader.h>
+#include <cstring>
+#include <istream>
+#include <vector>
+
+#include "protomol/io/File.h"
+#include "protomol/io/Reader.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

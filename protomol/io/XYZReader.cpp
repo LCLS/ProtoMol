@@ -1,7 +1,13 @@
 #include <protomol/io/XYZReader.h>
-
 #include <protomol/type/String.h>
-#include <protomol/base/StringUtilities.h>
+#include <stddef.h>
+#include <istream>
+
+#include "protomol/base/Exception.h"
+#include "protomol/io/Reader.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+#include "protomol/type/XYZ.h"
 
 using namespace std;
 using namespace ProtoMol;

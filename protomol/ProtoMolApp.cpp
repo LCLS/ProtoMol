@@ -1,39 +1,53 @@
+#include <ctype.h>
 #include <protomol/ProtoMolApp.h>
-
+#include <protomol/analysis/AnalysisCollection.h>
 #include <protomol/base/ModuleManager.h>
-#include <protomol/base/SystemUtilities.h>
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/PMConstants.h>
+#include <protomol/base/Report.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/base/SystemUtilities.h>
 #include <protomol/base/TimerStatistic.h>
 #include <protomol/base/Zap.h>
-#include <protomol/base/Report.h>
-
-#include <protomol/module/MainModule.h>
-#include <protomol/module/IOModule.h>
-#include <protomol/module/ConfigurationModule.h>
-#include <protomol/module/AnalysisModule.h>
-
-#include <protomol/type/String.h>
-
 #include <protomol/config/CommandLine.h>
 #include <protomol/config/Configuration.h>
-
-#include <protomol/io/ConfigurationReader.h>
-
-#include <protomol/factory/TopologyFactory.h>
 #include <protomol/factory/OutputFactory.h>
-
-#include <protomol/topology/GenericTopology.h>
+#include <protomol/factory/TopologyFactory.h>
+#include <protomol/module/AnalysisModule.h>
+#include <protomol/module/ConfigurationModule.h>
+#include <protomol/module/IOModule.h>
+#include <protomol/module/MainModule.h>
+#include <protomol/output/OutputCollection.h>
+#include <protomol/parallel/Parallel.h>
 #include <protomol/topology/BuildTopology.h>
 #include <protomol/topology/BuildTopologyFromTpr.h>
+#include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/TopologyUtilities.h>
-
-#include <protomol/output/OutputCollection.h>
-#include <protomol/analysis/AnalysisCollection.h>
-
-#include <protomol/parallel/Parallel.h>
-
+#include <stdio.h>
+#include <string.h>
+#include <algorithm>
 #include <iomanip>
+#include <iostream>
+#include <list>
+#include <map>
+
+#include "protomol/analysis/Analysis.h"
+#include "protomol/base/Exception.h"
+#include "protomol/base/Factory.h"
+#include "protomol/base/Timer.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/AnalysisFactory.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/factory/IntegratorFactory.h"
+#include "protomol/force/Force.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/integrator/IntegratorDefinition.h"
+#include "protomol/output/Output.h"
+#include "protomol/output/OutputCache.h"
+#include "protomol/topology/CoulombSCPISMParameterTable.h"
+#include "protomol/topology/CoulombSCPISMParameters.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/ScalarStructure.h"
 #ifdef HAVE_PACKAGE_H
 #include <protomol/package.h>
 #endif

@@ -5,6 +5,9 @@
 #include <protomol/modifier/Modifier.h>
 #include <protomol/topology/Bond.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   //____ ModifierMetaRattleShake
@@ -18,6 +21,8 @@ namespace ProtoMol {
       getEpsilonVel() and getEtaVel() must be accessible). myListOfConstraints
       is pointer to the actual list.
    */
+struct Parameter;
+
   class ModifierMetaRattleShake : public Modifier {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors, assignment

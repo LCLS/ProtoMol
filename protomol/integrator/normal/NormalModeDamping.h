@@ -4,15 +4,24 @@
 
 #include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
-
 #include <protomol/io/DCDTrajectoryReader.h>
 #include <protomol/io/XYZTrajectoryWriter.h>
+#include <iosfwd>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3DBlock.h"
 
 
 namespace ProtoMol {
 
-    class ScalarStructure;
     class ForceGroup;
+    class ScalarStructure;
+class ProtoMolApp;
+class Value;
+class XYZTrajectoryWriter;
+struct Parameter;
 
     //__________________________________________________ NormalModeDamping
     class NormalModeDamping : public STSIntegrator, public NormalModeUtilities {

@@ -1,16 +1,18 @@
 #include "OutputDihedrals.h"
 
-#include <protomol/config/Configuration.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/output/OutputCache.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/base/SystemUtilities.h>
 #include <protomol/ProtoMolApp.h>
-
+#include <protomol/output/OutputCache.h>
+#include <protomol/topology/GenericTopology.h>
 #include <iomanip>
-#include <algorithm>
+#include <set>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Report.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
+#include "protomol/type/Real.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

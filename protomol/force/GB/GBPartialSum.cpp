@@ -1,6 +1,17 @@
 #include <protomol/force/GB/GBPartialSum.h>
-
 #include <protomol/parallel/Parallel.h>
+#include <cmath>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/GenericTopology.h"
+
+namespace ProtoMol {
+class ScalarStructure;
+class Value;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace ProtoMol;
 

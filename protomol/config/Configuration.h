@@ -2,11 +2,14 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
-#include <protomol/config/Parameter.h>
 #include <protomol/base/StringUtilities.h>
-#include <ostream>
-#include <vector>
+#include <protomol/config/Parameter.h>
 #include <map>
+#include <ostream>
+#include <string>
+#include <vector>
+
+#include "protomol/config/Value.h"
 
 namespace ProtoMol {
   
@@ -16,6 +19,8 @@ namespace ProtoMol {
    * with the value and an optional help text.  The value uses Value, which
    * comes with additional information about the type and constraints.
    */
+struct Parameter;
+
   class Configuration {
     typedef std::map<std::string, Value, ltstrNocase>       ValueMapType;
     typedef std::map<std::string, std::string, ltstrNocase> AliasMapType;

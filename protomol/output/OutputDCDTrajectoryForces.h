@@ -3,9 +3,14 @@
 #define PROTOMOL_OUTPUT_DCD_TRAJECTORY_FORCE_H
 
 #include <protomol/output/Output.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class DCDTrajectoryWriter;
+class Configuration;
+class Value;
+struct Parameter;
 
   class OutputDCDTrajectoryForces : public Output {
   public:

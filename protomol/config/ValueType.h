@@ -2,10 +2,15 @@
 #ifndef VALUETYPE_H
 #define VALUETYPE_H
 
+#include <protomol/config/ConstraintValueType.h>
 #include <protomol/type/AbstractEnumType.h>
 #include <protomol/type/Vector3D.h>
+#include <istream>
+#include <string>
+#include <vector>
 
-#include <protomol/config/ConstraintValueType.h>
+#include "protomol/base/StringUtilities.h"
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   //_____________________________________________________ ValueEnum
@@ -64,14 +69,6 @@ protected:
   //_____________________________________________________ ValueType
   typedef AbstractEnumType<ValueEnum> ValueType;
 
-  //_____________________________________________ ValueTraits & Enum2ValueTraits
-  /**
-   * ValueTraits and Enum2ValueTraits define mapping and type implementation
-   * behavior used by Value.
-   */
-  template<typename T>
-  struct ValueTraits;
-
   /**
    * Trait class defining the actual type, enum value, the representation type,
    * possible constraints, and implements the conversions.@n
@@ -81,6 +78,13 @@ protected:
    */
   template<ValueType::Enum e>
   struct Enum2ValueTraits;
+  //_____________________________________________ ValueTraits & Enum2ValueTraits
+  /**
+   * ValueTraits and Enum2ValueTraits define mapping and type implementation
+   * behavior used by Value.
+   */
+  template<typename T>
+  struct ValueTraits;
 
   /// STRING
   template<>

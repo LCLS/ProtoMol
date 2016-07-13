@@ -1,4 +1,9 @@
 #include <protomol/io/CheckpointConfigWriter.h>
+#include <ostream>
+
+#include "protomol/base/Random.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/io/Writer.h"
 
 using namespace ProtoMol;
 

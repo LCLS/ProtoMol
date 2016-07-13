@@ -5,6 +5,9 @@
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/type/Matrix3By3.h>
 
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
+
 namespace ProtoMol {
   /**
    *
@@ -14,6 +17,9 @@ namespace ProtoMol {
    *  the results back again.
    *  Extended to Rykart-Bellman Dihedrals
    */
+class RBTorsion;
+class Torsion;
+
   class HessDihedral {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors, assignment

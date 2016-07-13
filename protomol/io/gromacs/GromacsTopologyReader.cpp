@@ -1,8 +1,12 @@
-#include <protomol/io/gromacs/GromacsTopologyReader.h>
-
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/gromacs/GromacsTopologyReader.h>
+#include <stddef.h>
+#include <iostream>
+#include <map>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/GromacsTopology.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

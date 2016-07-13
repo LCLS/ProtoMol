@@ -1,11 +1,27 @@
-#include <protomol/module/CommandLineModule.h>
-
+#include <protomol/ProtoMolApp.h>
 #include <protomol/base/ModuleManager.h>
 #include <protomol/config/CommandLine.h>
+#include <protomol/module/CommandLineModule.h>
+#include <protomol/module/TopologyModule.h>
 #include <protomol/topology/PeriodicBoundaryConditions.h>
 #include <protomol/topology/VacuumBoundaryConditions.h>
-#include <protomol/module/TopologyModule.h>
-#include <protomol/ProtoMolApp.h>
+#include <iostream>
+
+#include "protomol/analysis/Analysis.h"
+#include "protomol/base/Factory.h"
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/CommandLineOption.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/AnalysisFactory.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/factory/IntegratorFactory.h"
+#include "protomol/factory/OutputFactory.h"
+#include "protomol/factory/TopologyFactory.h"
+#include "protomol/force/Force.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/output/Output.h"
+#include "protomol/topology/GenericTopology.h"
 
 using namespace std;
 using namespace ProtoMol;

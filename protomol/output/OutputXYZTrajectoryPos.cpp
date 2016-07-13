@@ -1,12 +1,23 @@
-#include <protomol/output/OutputXYZTrajectoryPos.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/Exception.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/io/XYZTrajectoryWriter.h>
 #include <protomol/module/MainModule.h>
 #include <protomol/output/OutputCache.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/base/StringUtilities.h>
+#include <protomol/output/OutputXYZTrajectoryPos.h>
 #include <protomol/topology/GenericTopology.h>
-#include <protomol/base/Exception.h>
-#include <protomol/ProtoMolApp.h>
-#include <protomol/io/XYZTrajectoryWriter.h>
+#include <stddef.h>
+#include <ostream>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
+#include "protomol/type/SimpleTypes.h"
+
+namespace ProtoMol {
+class Vector3DBlock;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -1,21 +1,37 @@
-#include <protomol/integrator/hessian/HessianInt.h>
-#include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/SystemUtilities.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
 #include <protomol/base/PMConstants.h>
+#include <protomol/base/Report.h>
+#include <protomol/base/SystemUtilities.h>
+#include <protomol/integrator/hessian/HessianInt.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/topology/TopologyUtilities.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <algorithm>
+#include <cmath>
 #include <iostream>
-#include <stdio.h>
+#include <new>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/base/Timer.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/STSIntegrator.h"
+#include "protomol/integrator/hessian/BlockHessian.h"
+#include "protomol/integrator/hessian/BlockHessianDiagonalize.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/type/BlockMatrix.h"
+#include "protomol/type/SimpleTypes.h"
+#include "protomol/type/Vector3D.h"
+
+namespace ProtoMol {
+class StandardIntegrator;
+}  // namespace ProtoMol
 
 #ifdef HAVE_LIBFAH
     #include <cbang/os/File.h>
 #else
-    #include <fstream>
 #endif
 
 #include <protomol/base/Lapack.h>

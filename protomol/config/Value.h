@@ -2,9 +2,16 @@
 #ifndef VALUE_H
 #define VALUE_H
 
-#include <protomol/config/ValueType.h>
 #include <protomol/config/ConstraintValueType.h>
+#include <protomol/config/ValueType.h>
+#include <stddef.h>
+#include <iosfwd>
+#include <string>
 #include <typeinfo>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //________________________________________________________ Value
@@ -23,6 +30,11 @@ namespace ProtoMol {
    * - Special, extended types; acts like string with a type (ValueType),
    *   i.e., integrator, force etc.
    */
+namespace Report {
+class MyStreamer;
+}  // namespace Report
+template <typename T> struct ValueTraits;
+
   class Value {
     //________________________________________________________ PlaceHolder
     /**

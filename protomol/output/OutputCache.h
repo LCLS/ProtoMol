@@ -2,23 +2,24 @@
 #ifndef PROTOMOL_OUTPUT_CACHE_H
 #define PROTOMOL_OUTPUT_CACHE_H
 
-#include <protomol/type/Real.h>
-#include <protomol/type/PDB.h>
 #include <protomol/type/PAR.h>
+#include <protomol/type/PDB.h>
 #include <protomol/type/PSF.h>
+#include <protomol/type/Real.h>
 #include <protomol/type/Vector3D.h>
+#include <vector>
 
 namespace ProtoMol {
-  class ProtoMolApp;
-  class Output;
   class Configuration;
   class GenericTopology;
+  class Integrator;
+  class Output;
+  class OutputFactory;
+  class ProtoMolApp;
   class ScalarStructure;
   class Vector3DBlock;
-  class OutputFactory;
-  class Integrator;
-  struct PDB;
   struct Atom;
+  struct PDB;
 
   /**
      OutputCache caches all kind of values, which may be needed

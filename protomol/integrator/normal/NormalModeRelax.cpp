@@ -1,12 +1,17 @@
-#include <protomol/integrator/normal/NormalModeRelax.h>
+#include <protomol/ProtoMolApp.h>
 #include <protomol/base/Report.h>
+#include <protomol/integrator/normal/NormalModeRelax.h>
 #include <protomol/type/ScalarStructure.h>
 #include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/ProtoMolApp.h>
+#include <stddef.h>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/MTSIntegrator.h"
+#include "protomol/integrator/StandardIntegrator.h"
+#include "protomol/integrator/normal/NormalModeUtilities.h"
+#include "protomol/type/SimpleTypes.h"
 
 
 using namespace std;

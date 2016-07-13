@@ -1,12 +1,26 @@
-#include <protomol/output/OutputDCDTrajectory.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/output/OutputCache.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/io/DCDTrajectoryWriter.h>
+#include <ctype.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/io/DCDTrajectoryWriter.h>
+#include <protomol/module/MainModule.h>
+#include <protomol/output/OutputCache.h>
+#include <protomol/output/OutputDCDTrajectory.h>
+#include <protomol/topology/GenericTopology.h>
+#include <stddef.h>
+#include <algorithm>
+#include <iostream>
+
+#include "protomol/base/Report.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/type/SimpleTypes.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -3,8 +3,10 @@
 #define HESSIAN_H
 
 #include <protomol/force/Force.h>
-#include <protomol/type/Vector3DBlock.h>
 #include <protomol/type/Matrix3By3.h>
+#include <protomol/type/Vector3DBlock.h>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   /**
@@ -13,6 +15,10 @@ namespace ProtoMol {
    * for the current force field.
    *
    */
+class ForceGroup;
+class GenericTopology;
+class Vector3DBlock;
+
   class Hessian {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Types and Enums

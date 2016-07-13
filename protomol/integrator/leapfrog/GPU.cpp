@@ -1,17 +1,33 @@
-#include <protomol/integrator/leapfrog/GPU.h>
+#include <math.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/PMConstants.h>
 #include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
 #include <protomol/force/ForceGroup.h>
+#include <protomol/force/LennardJonesForce.h>
+#include <protomol/integrator/leapfrog/GPU.h>
+#include <protomol/switch/CnSwitchingFunction.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/PeriodicBoundaryConditions.h>
 #include <protomol/topology/SemiGenericTopology.h>
 #include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/ProtoMolApp.h>
+#include <protomol/type/ScalarStructure.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <stddef.h>
+#include <ostream>
 
-#include <protomol/force/LennardJonesForce.h>
-#include <protomol/switch/CnSwitchingFunction.h>
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/force/Force.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/integrator/STSIntegrator.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/LennardJonesParameterTable.h"
+#include "protomol/topology/LennardJonesParameters.h"
+#include "protomol/type/SimpleTypes.h"
+#include "protomol/type/Vector3D.h"
 //#include <protomol/switch/C2SwitchingFunction.h>
 
 using namespace std;

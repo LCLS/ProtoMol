@@ -1,5 +1,9 @@
-#include <protomol/integrator/IntegratorDefinition.h>
 #include <protomol/force/Force.h>
+#include <protomol/integrator/IntegratorDefinition.h>
+
+#include "protomol/base/MakeableDefinition.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
 
 using namespace std;
 using namespace ProtoMol;

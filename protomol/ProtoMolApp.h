@@ -1,23 +1,22 @@
 #ifndef PROTOMOLAPP_H
 #define PROTOMOLAPP_H
 
-#include <protomol/factory/TopologyFactory.h>
-#include <protomol/factory/ForceFactory.h>
-#include <protomol/factory/IntegratorFactory.h>
-#include <protomol/factory/OutputFactory.h>
-#include <protomol/factory/AnalysisFactory.h>
-
-#include <protomol/config/Configuration.h>
-#include <protomol/config/CommandLine.h>
-#include <protomol/output/OutputCache.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/type/EigenvectorInfo.h>
-#include <protomol/type/PSF.h>
-#include <protomol/type/PAR.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/CoulombSCPISMParameterTable.h>
-
-#include <ostream>
+#include <protomol/config/CommandLine.h>         // for CommandLine
+#include <protomol/config/Configuration.h>       // for Configuration
+#include <protomol/factory/AnalysisFactory.h>    // for AnalysisFactory
+#include <protomol/factory/ForceFactory.h>       // for ForceFactory
+#include <protomol/factory/IntegratorFactory.h>  // for IntegratorFactory
+#include <protomol/factory/OutputFactory.h>      // for OutputFactory
+#include <protomol/factory/TopologyFactory.h>    // for TopologyFactory
+#include <protomol/output/OutputCache.h>         // for OutputCache
+#include <protomol/type/EigenvectorInfo.h>       // for EigenvectorInfo
+#include <protomol/type/PAR.h>                   // for PAR
+#include <protomol/type/PSF.h>                   // for PSF
+#include <protomol/type/ScalarStructure.h>       // for ScalarStructure
+#include <protomol/type/Vector3DBlock.h>         // for Vector3DBlock
+#include <ostream>                               // for ostream
+#include <string>                                // for string
+#include <vector>                                // for vector
 
 namespace ProtoMol {
   class OutputCollection;
@@ -25,6 +24,7 @@ namespace ProtoMol {
   class Integrator;
   class GenericTopology;
   class ModuleManager;
+  struct CoulombSCPISMParameterTable;
 
   class ProtoMolApp {
   public:

@@ -4,13 +4,19 @@
 
 #include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
-
 #include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   //__________________________________________________ NormalModeCompLang
   class NormalModeCompLang : public STSIntegrator, public NormalModeUtilities {

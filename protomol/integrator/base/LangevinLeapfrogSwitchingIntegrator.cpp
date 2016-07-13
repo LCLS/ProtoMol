@@ -1,12 +1,17 @@
-#include <protomol/integrator/base/LangevinLeapfrogSwitchingIntegrator.h>
-#include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/topology/TopologyUtilities.h>
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/PMConstants.h>
+#include <protomol/integrator/base/LangevinLeapfrogSwitchingIntegrator.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/topology/TopologyUtilities.h>
+#include <protomol/type/Vector3DBlock.h>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/STSIntegrator.h"
+#include "protomol/topology/Atom.h"
 
 using namespace std; 
 using namespace ProtoMol::Report;

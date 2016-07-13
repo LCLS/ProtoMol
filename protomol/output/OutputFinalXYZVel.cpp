@@ -1,11 +1,16 @@
-#include <protomol/output/OutputFinalXYZVel.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/output/OutputCache.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/io/XYZWriter.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/XYZWriter.h>
+#include <protomol/output/OutputCache.h>
+#include <protomol/output/OutputFinalXYZVel.h>
+#include <protomol/topology/GenericTopology.h>
+#include <ostream>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

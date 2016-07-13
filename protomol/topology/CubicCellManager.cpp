@@ -1,7 +1,13 @@
-#include <protomol/topology/CubicCellManager.h>
-
+#include <math.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/Exception.h>
+#include <protomol/topology/CubicCellManager.h>
+#include <algorithm>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/SimpleTypes.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
 	using namespace ProtoMol::Report;

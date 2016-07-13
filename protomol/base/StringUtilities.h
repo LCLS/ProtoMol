@@ -2,8 +2,8 @@
 #ifndef STRINGUTILITIES_H
 #define STRINGUTILITIES_H
 
-#include <string>
 #include <cstring>
+#include <string>
 
 #ifdef HAVE_NO_SSTREAM
 #include <protomol/base/sstream_local.h>
@@ -12,8 +12,10 @@
 #endif
 
 #include <protomol/type/Vector3D.h>
-#include <vector>
 #include <ostream>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   //__________________________________________________________________ uppercase

@@ -1,4 +1,8 @@
 #include <protomol/base/TimerStatistic.h>
+#include <iostream>
+
+#include "protomol/base/Report.h"
+#include "protomol/base/Timer.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

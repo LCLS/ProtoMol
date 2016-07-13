@@ -4,8 +4,8 @@
 
 #include <protomol/config/Value.h>
 #include <protomol/type/SimpleTypes.h>
-
 #include <ostream>
+#include <string>
 
 namespace ProtoMol {
   //________________________________________________________ Parameter

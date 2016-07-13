@@ -1,5 +1,11 @@
+#include <math.h>
 #include <protomol/force/hessian/ReducedHessCoulomb.h>
 #include <protomol/topology/GenericTopology.h>
+#include <vector>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/type/Matrix3By3.h"
 
 using namespace ProtoMol;
 //____ ReducedHessCoulomb

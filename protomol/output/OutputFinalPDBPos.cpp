@@ -1,12 +1,21 @@
-#include <protomol/output/OutputFinalPDBPos.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/output/OutputCache.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/io/PDBWriter.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/io/PDBWriter.h>
+#include <protomol/module/MainModule.h>
+#include <protomol/output/OutputCache.h>
+#include <protomol/output/OutputFinalPDBPos.h>
+#include <ostream>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/SimpleTypes.h"
+
+namespace ProtoMol {
+class Vector3DBlock;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -5,16 +5,16 @@
 #include <protomol/base/Makeable.h>
 #include <protomol/integrator/IntegratorDefinition.h>
 #include <protomol/type/Real.h>
-
 #include <iostream>
-#include <string>
 #include <set>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
-  class ProtoMolApp;
   class ForceGroup;
   class MTSIntegrator;
   class Modifier;
+  class ProtoMolApp;
   class Vector3DBlock;
 
   //________________________________________ Integrator

@@ -3,13 +3,14 @@
 
 #include <protomol/topology/ExclusionType.h>
 #include <protomol/type/Vector3DBlock.h>
-
-#include <vector>
+#include <iosfwd>
 #include <string>
+#include <vector>
 
 
 namespace ProtoMol {
   class GenericTopology;
+class Vector3DBlock;
 
   //build topo from TPR file
   void buildTopologyFromTpr(GenericTopology *topo,

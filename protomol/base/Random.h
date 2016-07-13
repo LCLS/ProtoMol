@@ -1,12 +1,11 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 
-#include <protomol/type/Real.h>
 #include <protomol/base/Singleton.h>
-
-#include <vector>
+#include <protomol/type/Real.h>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 namespace ProtoMol {
 

@@ -1,10 +1,14 @@
 #include <protomol/integrator/MTSIntegrator.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/base/Exception.h>
+#include <stddef.h>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/StandardIntegrator.h"
+
+namespace ProtoMol {
+class ProtoMolApp;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol;

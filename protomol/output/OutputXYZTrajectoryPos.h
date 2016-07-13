@@ -3,9 +3,14 @@
 #define PROTOMOL_OUTPUT_XYZ_TRAJECTORY_POS_H
 
 #include <protomol/output/Output.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class XYZTrajectoryWriter;
+class Configuration;
+class Value;
+struct Parameter;
 
   class OutputXYZTrajectoryPos : public Output {
   public:

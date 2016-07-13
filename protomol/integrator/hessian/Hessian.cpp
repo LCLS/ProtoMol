@@ -1,38 +1,51 @@
-#include <protomol/integrator/hessian/Hessian.h>
-
+#include <math.h>
 #include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/force/hessian/ReducedHessAngle.h>
-#include <protomol/force/LennardJonesForce.h>
 #include <protomol/force/CoulombForce.h>
-#include <protomol/switch/CnSwitchingFunction.h>
-#include <protomol/switch/C2SwitchingFunction.h>
-#include <protomol/switch/C1SwitchingFunction.h>
-
+#include <protomol/force/ForceGroup.h>
+#include <protomol/force/GB/GBBornRadii.h>
+#include <protomol/force/GB/GBPartialSum.h>
+#include <protomol/force/LennardJonesForce.h>
+#include <protomol/force/born/BornRadii.h>
+#include <protomol/force/coulomb/CoulombForceDiElec.h>
+#include <protomol/force/coulomb/CoulombSCPISMForce.h>
 #include <protomol/force/hessian/HessDihedral.h>
+#include <protomol/force/hessian/ReducedHessAngle.h>
 #include <protomol/force/hessian/ReducedHessBond.h>
+#include <protomol/force/hessian/ReducedHessBornSelf.h>
 #include <protomol/force/hessian/ReducedHessCoulomb.h>
 #include <protomol/force/hessian/ReducedHessCoulombDiElec.h>
 #include <protomol/force/hessian/ReducedHessCoulombSCPISM.h>
-#include <protomol/force/hessian/ReducedHessLennardJones.h>
-#include <protomol/force/hessian/ReducedHessBornSelf.h>
-#include <protomol/force/coulomb/CoulombForceDiElec.h>
-#include <protomol/force/coulomb/CoulombSCPISMForce.h>
-#include <protomol/force/born/BornRadii.h>
-
-#include <protomol/force/GB/GBBornRadii.h>
-#include <protomol/force/GB/GBPartialSum.h>
-#include <protomol/force/GB/GBACEForce.h>
 #include <protomol/force/hessian/ReducedHessGBACE.h>
+#include <protomol/force/hessian/ReducedHessLennardJones.h>
+#include <protomol/integrator/hessian/Hessian.h>
+#include <protomol/switch/C1SwitchingFunction.h>
+#include <protomol/switch/C2SwitchingFunction.h>
+#include <protomol/switch/CnSwitchingFunction.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <stddef.h>
 //#include <protomol/force/hessian/GB/ReducedHessGBForce.h>
 
-#include <protomol/force/GB/GBForce.h>
 #include <protomol/force/hessian/ReducedHessGB.h>
+#include <algorithm>
+#include <iostream>
+#include <new>
+#include <string>
+#include <vector>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/force/Force.h"
+#include "protomol/topology/Angle.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/topology/Torsion.h"
+#include "protomol/type/Matrix3By3.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

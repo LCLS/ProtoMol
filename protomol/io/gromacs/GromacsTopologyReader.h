@@ -5,13 +5,16 @@
 
 #include <protomol/io/Reader.h>
 #include <protomol/type/GromacsTopology.h>
-
 #include <iostream>
 #include <map>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
 
   //___________________________________________ GromacsTopologyReader
+
+class GromacsTopology;
 
   class GromacsTopologyReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

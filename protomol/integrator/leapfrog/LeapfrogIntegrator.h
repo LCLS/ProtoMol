@@ -3,10 +3,16 @@
 #define LEAPFROGINTEGRATOR_H
 
 #include <protomol/integrator/STSIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
 
   //____ LeapfrogIntegrator
   class LeapfrogIntegrator : public STSIntegrator {

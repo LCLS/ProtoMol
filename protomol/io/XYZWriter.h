@@ -3,9 +3,11 @@
 #define XYZWRITER_H
 
 #include <protomol/io/Writer.h>
-#include <protomol/type/XYZ.h>
 #include <protomol/topology/Atom.h>
 #include <protomol/topology/AtomType.h>
+#include <protomol/type/XYZ.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   //____XYZWriter
@@ -22,6 +24,10 @@ namespace ProtoMol {
    * C        2.16940       -4.22350        2.03080@n
    * ...
    */
+class Vector3DBlock;
+struct Atom;
+struct AtomType;
+
   class XYZWriter : public Writer {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

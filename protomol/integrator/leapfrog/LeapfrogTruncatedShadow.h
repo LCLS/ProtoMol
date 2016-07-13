@@ -2,15 +2,27 @@
 #ifndef LEAPFROGTRUNCATEDSHADOW_H
 #define LEAPFROGTRUNCATEDSHADOW_H
 
-#include <protomol/integrator/STSIntegrator.h>
 #include <protomol/force/Force.h>
+#include <protomol/integrator/STSIntegrator.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+
+namespace ProtoMol {
+class ProtoMolApp;
+class Torsion;
+class Value;
+}  // namespace ProtoMol
+
 using namespace std;
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
   class ReducedHessAngle;
+  class ScalarStructure;
 
   //____ LeapfrogTruncatedShadow
   class LeapfrogTruncatedShadow : public STSIntegrator {

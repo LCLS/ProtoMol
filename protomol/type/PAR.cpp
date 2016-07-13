@@ -1,6 +1,7 @@
+#include <math.h>
 #include <protomol/type/PAR.h>
 
-#include <protomol/base/MathUtilities.h>
+#include "protomol/type/Real.h"
 
 using namespace ProtoMol;
 //____ PAR

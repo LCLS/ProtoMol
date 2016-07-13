@@ -1,7 +1,21 @@
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/SystemUtilities.h>
 #include <protomol/integrator/leapfrog/LeapfrogDataAcquisition.h>
 #include <protomol/io/DCDTrajectoryWriter.h>
-#include <protomol/base/SystemUtilities.h>
-#include <protomol/ProtoMolApp.h>
+#include <stddef.h>
+
+#include "protomol/base/Zap.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/STSIntegrator.h"
+#include "protomol/integrator/leapfrog/LeapfrogIntegrator.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/topology/Molecule.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+
 using namespace ProtoMol;
 
 const string LeapfrogDataAcquisition::keyword("LeapfrogDataAcquisition");

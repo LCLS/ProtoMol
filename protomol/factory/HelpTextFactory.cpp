@@ -1,5 +1,11 @@
-#include <protomol/factory/HelpTextFactory.h>
 #include <protomol/config/Configuration.h>
+#include <protomol/factory/HelpTextFactory.h>
+#include <stdlib.h>
+#include <utility>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -2,6 +2,9 @@
 
 #include <protomol/base/StringUtilities.h>
 #include <protomol/base/Exception.h>
+#include <iostream>
+
+#include "protomol/base/MakeableDefinition.h"
 
 using namespace std;
 using namespace ProtoMol;

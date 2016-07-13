@@ -1,7 +1,5 @@
 #include <protomol/config/CommandLineOption.h>
 
-#include <ctype.h>
-
 using namespace ProtoMol;
 using namespace std;
 

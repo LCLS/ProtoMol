@@ -1,7 +1,13 @@
 #include <protomol/config/Value.h>
+#include <algorithm>
 
-#include <protomol/base/StringUtilities.h>
-#include <protomol/base/MathUtilities.h>
+#include "protomol/base/Report.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/ValueType.h"
+
+namespace ProtoMol {
+template <typename T> struct ValueTraits;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

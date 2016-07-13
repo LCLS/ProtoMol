@@ -1,6 +1,18 @@
 #include <protomol/topology/GenericTopology.h>
 
-#include <protomol/base/Exception.h>
+#include "protomol/base/PMConstants.h"
+#include "protomol/topology/Angle.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/ExclusionType.h"
+#include "protomol/topology/Molecule.h"
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/topology/Torsion.h"
+
+namespace ProtoMol {
+class Value;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol;

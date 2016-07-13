@@ -1,9 +1,20 @@
+#include <protomol/base/StringUtilities.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/factory/HelpTextFactory.h>
 #include <protomol/factory/OutputFactory.h>
 #include <protomol/output/OutputCollection.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/factory/HelpTextFactory.h>
-#include <algorithm>
+#include <stddef.h>
+#include <map>
+#include <ostream>
+#include <set>
+#include <utility>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Factory.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

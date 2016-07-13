@@ -4,10 +4,17 @@
 
 #include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/hessian/Hessian.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   //____ NumericallyDifferentiatedHessian
   class NumericallyDifferentiatedHessian : public STSIntegrator {

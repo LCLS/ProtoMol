@@ -1,19 +1,24 @@
-#include <protomol/io/gromacs/PortGromacsParameters.h>
-
-#include <protomol/type/PSF.h>
-#include <protomol/type/PAR.h>
-#include <protomol/type/GromacsTopology.h>
-#include <protomol/type/GromacsParameters.h>
-#include <protomol/io/gromacs/GromacsTopologyReader.h>
-#include <protomol/io/gromacs/GromacsParameterFileReader.h>
-#include <protomol/io/gromacs/GromacsBondedParameterFileReader.h>
-#include <protomol/io/gromacs/GromacsNonbondedParameterFileReader.h>
-#include <protomol/io/gromacs/GromacsGBParameterFileReader.h>
-
 #include <protomol/base/PMConstants.h>
-
-#include <iterator>
+#include <protomol/io/gromacs/GromacsBondedParameterFileReader.h>
+#include <protomol/io/gromacs/GromacsGBParameterFileReader.h>
+#include <protomol/io/gromacs/GromacsNonbondedParameterFileReader.h>
+#include <protomol/io/gromacs/GromacsParameterFileReader.h>
+#include <protomol/io/gromacs/GromacsTopologyReader.h>
+#include <protomol/io/gromacs/PortGromacsParameters.h>
+#include <protomol/type/GromacsParameters.h>
+#include <protomol/type/GromacsTopology.h>
+#include <protomol/type/PAR.h>
+#include <protomol/type/PSF.h>
+#include <stddef.h>
 #include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <map>
+#include <utility>
+#include <vector>
+
+#include "protomol/base/Report.h"
+#include "protomol/type/Real.h"
 
 using namespace std;
 using namespace ProtoMol;

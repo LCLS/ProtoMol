@@ -1,7 +1,12 @@
-#include <protomol/io/ConfigurationReader.h>
-
 #include <protomol/base/Report.h>
 #include <protomol/base/StringUtilities.h>
+#include <protomol/io/ConfigurationReader.h>
+#include <algorithm>
+#include <istream>
+
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/io/Reader.h"
 
 using namespace std; 
 using namespace ProtoMol::Report;

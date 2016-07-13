@@ -1,8 +1,18 @@
-#include <protomol/output/OutputFAHFile.h>
 #include <protomol/ProtoMolApp.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/module/OutputModule.h>
+#include <protomol/output/OutputFAHFile.h>
 #include <protomol/type/String.h>
+#include <iostream>
+
+#include "protomol/config/Configuration.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -3,6 +3,11 @@
 
 #include <protomol/modifier/Modifier.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <deque>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
 

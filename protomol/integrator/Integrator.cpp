@@ -1,13 +1,16 @@
-#include <protomol/integrator/Integrator.h>
+#include <protomol/ProtoMolApp.h>
 #include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
+#include <protomol/base/Zap.h>
 #include <protomol/force/ForceGroup.h>
+#include <protomol/integrator/Integrator.h>
+#include <protomol/modifier/Modifier.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/TopologyUtilities.h>
-#include <protomol/modifier/Modifier.h>
-#include <protomol/ProtoMolApp.h>
-#include <protomol/base/Zap.h>
+#include <protomol/type/Vector3DBlock.h>
+
+#include "protomol/base/MakeableDefinition.h"
+#include "protomol/integrator/IntegratorDefinition.h"
+#include "protomol/type/Real.h"
 
 using namespace std;
 using namespace ProtoMol;

@@ -1,4 +1,8 @@
+#include <math.h>
 #include <protomol/force/hessian/ReducedHessBond.h>
+
+#include "protomol/type/Matrix3By3.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace ProtoMol;
 Matrix3By3 ProtoMol::reducedHessBond(const Vector3D &atom_i,

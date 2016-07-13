@@ -3,6 +3,8 @@
 #define WRITER_H
 
 #include <protomol/io/File.h>
+#include <iosfwd>
+#include <string>
 
 namespace ProtoMol {
   //_________________________________________________________________ Writer

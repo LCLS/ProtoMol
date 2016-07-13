@@ -1,9 +1,8 @@
 #include <protomol/analysis/Analysis.h>
 #include <protomol/config/Configuration.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/ProtoMolApp.h>
+
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
 
 using namespace std;
 using namespace ProtoMol;

@@ -3,6 +3,8 @@
 #define INTEGRATORDEFINITION_H
 
 #include <protomol/base/MakeableDefinition.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   //________________________________________ IntegratorDefinition

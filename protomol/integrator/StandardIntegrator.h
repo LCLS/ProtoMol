@@ -5,11 +5,11 @@
 #include <protomol/integrator/Integrator.h>
 
 namespace ProtoMol {
+  class ForceGroup;
   //________________________________________ StandardIntegrator
   class GenericTopology;
   class ScalarStructure;
   class Vector3DBlock;
-  class ForceGroup;
 
   class StandardIntegrator : public Integrator {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

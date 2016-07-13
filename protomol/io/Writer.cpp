@@ -1,4 +1,7 @@
 #include <protomol/io/Writer.h>
+#include <iostream>
+
+#include "protomol/io/File.h"
 
 using namespace std;
 using namespace ProtoMol;

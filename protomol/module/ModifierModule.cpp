@@ -1,15 +1,24 @@
-#include <protomol/module/ModifierModule.h>
-
-#include <protomol/modifier/ModifierIncrementTimestep.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/Report.h>
 #include <protomol/modifier/ModifierRattle.h>
-#include <protomol/modifier/ModifierShake.h>
-#include <protomol/modifier/ModifierShadow.h>
 #include <protomol/modifier/ModifierRemoveAngularMomentum.h>
 #include <protomol/modifier/ModifierRemoveLinearMomentum.h>
-
-#include <protomol/base/Report.h>
-#include <protomol/ProtoMolApp.h>
+#include <protomol/modifier/ModifierShadow.h>
+#include <protomol/modifier/ModifierShake.h>
+#include <protomol/module/ModifierModule.h>
 #include <protomol/topology/TopologyUtilities.h>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector.h"
+#include "protomol/type/Vector3D.h"
+
+namespace ProtoMol {
+class Modifier;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

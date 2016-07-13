@@ -2,12 +2,15 @@
 #ifndef BLOCKHESSIANDIAGONALIZE_H
 #define BLOCKHESSIANDIAGONALIZE_H
 
-#include <protomol/integrator/normal/NormalModeUtilities.h>
-#include <protomol/integrator/hessian/BlockHessian.h>
-#include <protomol/type/BlockMatrix.h>
-#include <protomol/base/Timer.h>
 #include <protomol/ProtoMolApp.h>
+#include <protomol/base/Timer.h>
 #include <protomol/integrator/StandardIntegrator.h>
+#include <protomol/integrator/hessian/BlockHessian.h>
+#include <protomol/integrator/normal/NormalModeUtilities.h>
+#include <protomol/type/BlockMatrix.h>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   /**
@@ -16,6 +19,11 @@ namespace ProtoMol {
    * for the current force field.
    *
    */
+class BlockHessian;
+class GenericTopology;
+class StandardIntegrator;
+class Vector3DBlock;
+
   class BlockHessianDiagonalize {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Types and Enums

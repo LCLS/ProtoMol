@@ -26,6 +26,7 @@
 #ifndef FILELOCATION_H
 #define FILELOCATION_H
 
+#include <iosfwd>
 #include <string>
 
 namespace ProtoMol {

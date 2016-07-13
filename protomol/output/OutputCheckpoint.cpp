@@ -1,24 +1,32 @@
-#include <protomol/output/OutputCheckpoint.h>
-
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/module/MainModule.h>
 #include <protomol/ProtoMolApp.h>
-
-#include <protomol/base/MathUtilities.h>
 #include <protomol/base/StringUtilities.h>
 #include <protomol/base/SystemUtilities.h>
-
-#include <protomol/io/XYZWriter.h>
 #include <protomol/io/CheckpointConfigWriter.h>
-
-#include <sstream>
+#include <protomol/io/XYZWriter.h>
+#include <protomol/module/MainModule.h>
+#include <protomol/output/OutputCheckpoint.h>
 #include <iostream>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Random.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
+#include "protomol/output/OutputCache.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/SimpleTypes.h"
+
+namespace ProtoMol {
+class Vector3DBlock;
+}  // namespace ProtoMol
 
 #ifdef HAVE_LIBFAH
 #include <cbang/os/File.h>
+
 typedef cb::File fileStream;
 #else
-#include <fstream>
 typedef std::fstream fileStream;
 #endif
 

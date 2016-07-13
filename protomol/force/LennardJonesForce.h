@@ -2,13 +2,26 @@
 #ifndef LENNARDJONESFORCE_H
 #define LENNARDJONESFORCE_H
 
+#include <protomol/base/Report.h>
+#include <protomol/config/Parameter.h>
+#include <protomol/topology/ExclusionTable.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/LennardJonesParameters.h>
 #include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/ExclusionTable.h>
-#include <protomol/config/Parameter.h>
 #include <string>
-#include <protomol/base/Report.h>
+#include <vector>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/LennardJonesParameterTable.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
+
+namespace ProtoMol {
+class Value;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
+
 using namespace ProtoMol::Report;
 
 namespace ProtoMol {

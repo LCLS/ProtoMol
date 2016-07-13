@@ -4,6 +4,7 @@
 
 #include <protomol/io/XYZReader.h>
 #include <protomol/type/XYZ.h>
+#include <string>
 
 namespace ProtoMol {
   //____XYZTrajectoryReader
@@ -11,6 +12,8 @@ namespace ProtoMol {
   /**
    * Reads a XYY trajectory files (ASCII).
    */
+class Vector3DBlock;
+
   class XYZTrajectoryReader : public XYZReader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

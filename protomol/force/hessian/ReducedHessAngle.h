@@ -3,6 +3,10 @@
 #define REDUCEDHESSANGLE_H
 
 #include <protomol/type/Matrix3By3.h>
+#include <iosfwd>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 
 namespace ProtoMol {

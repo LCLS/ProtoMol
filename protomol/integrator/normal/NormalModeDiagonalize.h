@@ -2,21 +2,31 @@
 #ifndef NORMALMODEDIAGONALIZE_H
 #define NORMALMODEDIAGONALIZE_H
 
+#include <protomol/base/Timer.h>
 #include <protomol/integrator/MTSIntegrator.h>
-#include <protomol/integrator/normal/NormalModeUtilities.h>
 #include <protomol/integrator/hessian/BlockHessian.h>
 #include <protomol/integrator/hessian/BlockHessianDiagonalize.h>
-
-#include <protomol/type/Vector3DBlock.h>
+#include <protomol/integrator/normal/NormalModeUtilities.h>
 #include <protomol/type/BlockMatrix.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <iosfwd>
+#include <string>
+#include <vector>
 
-#include <protomol/base/Timer.h>
+#include "protomol/type/Real.h"
+
+namespace ProtoMol {
+class ProtoMolApp;
+class StandardIntegrator;
+class Value;
+struct Parameter;
+}  // namespace ProtoMol
 
 namespace ProtoMol
 {
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
 
   //__________________________________________________ NormalModeDiagonalize
   class NormalModeDiagonalize :

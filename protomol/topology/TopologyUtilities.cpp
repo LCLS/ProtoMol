@@ -1,17 +1,27 @@
-#include <protomol/topology/TopologyUtilities.h>
-
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/base/Report.h>
-#include <protomol/topology/Topology.h>
+#include <math.h>
 #include <protomol/base/MathUtilities.h>
 #include <protomol/base/PMConstants.h>
+#include <protomol/base/Report.h>
 #include <protomol/base/StringUtilities.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/topology/TopologyUtilities.h>
 #include <protomol/type/ScalarStructure.h>
-
-#include <vector>
+#include <protomol/type/Vector3DBlock.h>
 #include <algorithm>
+#include <functional>
 #include <set>
+#include <vector>
+
+#include "protomol/topology/Angle.h"
+#include "protomol/topology/AngleInfo.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/Molecule.h"
+#include "protomol/topology/Torsion.h"
+#include "protomol/type/Matrix3By3.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Stack.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace ProtoMol::Report;
 using namespace std;

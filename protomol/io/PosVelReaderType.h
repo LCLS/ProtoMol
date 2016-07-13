@@ -3,6 +3,7 @@
 #define POS_VEL_READERTYPE_H
 
 #include <protomol/type/AbstractEnumType.h>
+#include <string>
 
 namespace ProtoMol {
   //_____________________________________________________ PosVelReaderEnum

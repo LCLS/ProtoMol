@@ -1,7 +1,16 @@
-#include <protomol/factory/TopologyFactory.h>
-
 #include <protomol/config/Configuration.h>
 #include <protomol/factory/HelpTextFactory.h>
+#include <protomol/factory/TopologyFactory.h>
+#include <map>
+#include <ostream>
+#include <utility>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Factory.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/topology/GenericTopology.h"
 
 using namespace std;
 using namespace ProtoMol;

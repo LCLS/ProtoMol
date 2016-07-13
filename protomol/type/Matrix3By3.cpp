@@ -1,6 +1,11 @@
-#include <protomol/type/Matrix3By3.h>
+#include <math.h>
 #include <protomol/base/MathUtilities.h>
 #include <protomol/base/Report.h>
+#include <protomol/type/Matrix3By3.h>
+#include <algorithm>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

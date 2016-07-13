@@ -1,39 +1,37 @@
-#include <protomol/module/NonbondedSimpleFullForceModule.h>
-
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/StringUtilities.h>
-#include <protomol/module/TopologyModule.h>
-#include <protomol/topology/PeriodicBoundaryConditions.h>
-#include <protomol/topology/VacuumBoundaryConditions.h>
-
+#include <protomol/force/CoulombForce.h>
+#include <protomol/force/GB/GBACEForce.h>
+//GB
+#include <protomol/force/GB/GBBornRadii.h>
+#include <protomol/force/GB/GBForce.h>
+#include <protomol/force/GB/GBPartialSum.h>
+#include <protomol/force/HarmonicRestraintForce.h>
+#include <protomol/force/LennardJonesForce.h>
+#include <protomol/force/LennardJonesVDWForce.h>
 #include <protomol/force/OneAtomPair.h>
 #include <protomol/force/OneAtomPairNoExclusion.h>
 #include <protomol/force/OneAtomPairTwo.h>
-#include <protomol/force/CoulombForce.h>
-#include <protomol/force/LennardJonesForce.h>
-#include <protomol/force/LennardJonesVDWForce.h>
-#include <protomol/force/HarmonicRestraintForce.h>
 #include <protomol/force/ProteinRestraintForce.h>
-#include <protomol/force/coulomb/CoulombSCPISMForce.h>
 #include <protomol/force/coulomb/CoulombForceDiElec.h>
-
+#include <protomol/force/coulomb/CoulombSCPISMForce.h>
+#include <protomol/force/nonbonded/NonbondedSimpleFullSystemForce.h>
+#include <protomol/module/NonbondedSimpleFullForceModule.h>
+#include <protomol/module/TopologyModule.h>
 #include <protomol/switch/C1SwitchingFunction.h>
 #include <protomol/switch/C2SwitchingFunction.h>
 #include <protomol/switch/CmpCnCnSwitchingFunction.h>
 #include <protomol/switch/CnSwitchingFunction.h>
 #include <protomol/switch/ComplementSwitchingFunction.h>
 #include <protomol/switch/UniversalSwitchingFunction.h>
+#include <protomol/topology/PeriodicBoundaryConditions.h>
+#include <protomol/topology/VacuumBoundaryConditions.h>
+#include <vector>
 
-#include <protomol/force/nonbonded/NonbondedSimpleFullSystemForce.h>
-
-#include <protomol/topology/CellListEnumeratorPeriodicBoundaries.h>
-#include <protomol/topology/CellListEnumeratorStandard.h>
-
-//GB
-#include <protomol/force/GB/GBBornRadii.h>
-#include <protomol/force/GB/GBForce.h>
-#include <protomol/force/GB/GBACEForce.h>
-#include <protomol/force/GB/GBPartialSum.h>
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/force/Force.h"
 
 
 using namespace std;

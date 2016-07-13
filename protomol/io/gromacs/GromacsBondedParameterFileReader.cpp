@@ -1,7 +1,14 @@
-#include <protomol/io/gromacs/GromacsBondedParameterFileReader.h>
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/gromacs/GromacsBondedParameterFileReader.h>
+#include <stddef.h>
+#include <iostream>
+#include <map>
+#include <vector>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/GromacsParameters.h"
+#include "protomol/type/Real.h"
 
 using namespace ProtoMol::Report;
 using namespace ProtoMol;

@@ -1,9 +1,22 @@
-#include <protomol/force/CompareForce.h>
-#include <protomol/type/ScalarStructure.h>
+#include <math.h>
 #include <protomol/base/MathUtilities.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
+#include <protomol/force/CompareForce.h>
 #include <protomol/parallel/Parallel.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/type/ScalarStructure.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <stddef.h>
+
+#include "protomol/base/Report.h"
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/Value.h"
+#include "protomol/force/Force.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/type/Vector3D.h"
+
+namespace ProtoMol {
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

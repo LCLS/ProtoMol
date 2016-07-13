@@ -1,11 +1,14 @@
 #include "CheckpointModule.h"
 
-#include "IOModule.h"
-
 #include <protomol/ProtoMolApp.h>
+#include <protomol/factory/OutputFactory.h>
 #include <protomol/io/CheckpointConfigReader.h>
 #include <protomol/output/OutputCheckpoint.h>
-#include <protomol/factory/OutputFactory.h>
+#include <iostream>
+
+#include "protomol/base/Random.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
 
 using namespace std;
 using namespace ProtoMol;

@@ -4,15 +4,22 @@
 
 #include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
-
 //####diagnostics
 #include <protomol/io/XYZTrajectoryWriter.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 
 namespace ProtoMol {
 
-	class ScalarStructure;
 	class ForceGroup;
+	class ScalarStructure;
+class ProtoMolApp;
+class Value;
+class XYZTrajectoryWriter;
+struct Parameter;
 
 	//__________________________________________________ NormalModeBrownian
 	class NormalModeBrownian : public STSIntegrator, public NormalModeUtilities {

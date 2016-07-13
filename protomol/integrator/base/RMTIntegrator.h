@@ -3,17 +3,24 @@
 #define RMTINTEGRATOR_H
 
 #include <protomol/integrator/STSIntegrator.h>
-#include <iostream>
 #include <stdio.h>
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
 
 
   //_________________________________________________________________ RMTIntegrator
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
   class Vector3DBlock;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   class RMTIntegrator : public STSIntegrator {
 

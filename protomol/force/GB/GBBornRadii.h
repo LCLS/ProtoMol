@@ -2,13 +2,22 @@
 #ifndef GBBORNRADII_H
 #define GBBORNRADII_H
 
-#include <string>
-
-#include <protomol/type/ScalarStructure.h>
 #include <protomol/topology/ExclusionTable.h>
 #include <protomol/topology/GenericTopology.h>
+#include <protomol/type/ScalarStructure.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
+class GenericTopology;
+class ScalarStructure;
+class Value;
+class Vector3DBlock;
+struct Parameter;
+
   class GBBornRadii {
     public:
       enum {DIST_R2 = 1};

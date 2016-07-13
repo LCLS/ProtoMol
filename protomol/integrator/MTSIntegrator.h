@@ -3,12 +3,20 @@
 #define MTSINTEGRATOR_H
 
 #include <protomol/integrator/StandardIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
+  class ForceGroup;
   class GenericTopology;
   class ScalarStructure;
   class Vector3DBlock;
-  class ForceGroup;
+class Integrator;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   //________________________________________ MTSIntegrator
 

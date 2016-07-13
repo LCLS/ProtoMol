@@ -8,6 +8,11 @@
 namespace ProtoMol {
   //________________________________________ SystemTimeForce
 
+class Force;
+class GenericTopology;
+class ScalarStructure;
+class Vector3DBlock;
+
   class SystemTimeForce : public TimeForce, public SystemForce {
     // This class contains the definition of one force
 

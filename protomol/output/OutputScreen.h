@@ -3,9 +3,15 @@
 #define PROTOMOL_OUTPUT_SCREEN_H
 
 #include <protomol/output/Output.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   class Configuration;
+class Value;
+struct Parameter;
 
   class OutputScreen : public Output {
   public:

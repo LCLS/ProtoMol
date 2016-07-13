@@ -1,10 +1,7 @@
-#include <protomol/module/AnalysisModule.h>
-
 #include <protomol/ProtoMolApp.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/factory/AnalysisFactory.h>
-
 #include <protomol/analysis/AnalysisDihedral.h>
+#include <protomol/factory/AnalysisFactory.h>
+#include <protomol/module/AnalysisModule.h>
 
 using namespace ProtoMol;
 

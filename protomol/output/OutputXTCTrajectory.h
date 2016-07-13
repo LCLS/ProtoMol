@@ -1,9 +1,17 @@
 #ifndef PROTOMOL_OUTPUT_XTC_TRAJECTORY_H
 #define PROTOMOL_OUTPUT_XTC_TRAJECTORY_H
 
+#include <string>
+#include <vector>
+
 #include "Output.h"
+#include "protomol/output/Output.h"
 
 namespace ProtoMol {
+class Configuration;
+class Value;
+struct Parameter;
+
   class OutputXTCTrajectory : public Output {
     void *fxtc;
     bool minimalImage;

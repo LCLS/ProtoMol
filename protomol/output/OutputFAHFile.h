@@ -2,12 +2,15 @@
 #ifndef PROTOMOL_OUTPUT_FAH_FILE_H
 #define PROTOMOL_OUTPUT_FAH_FILE_H
 
-#include <protomol/output/Output.h>
 #include <protomol/io/File.h>
+#include <protomol/output/Output.h>
 #include <string>
+#include <vector>
 
 namespace ProtoMol {
   class Configuration;
+class Value;
+struct Parameter;
 
   class OutputFAHFile : public Output, public File {
   public:

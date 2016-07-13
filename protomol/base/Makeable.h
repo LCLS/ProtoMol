@@ -3,8 +3,14 @@
 #define PROTOMOL_MAKEABLE_H
 
 #include <protomol/base/MakeableDefinition.h>
-
+#include <stddef.h>
 #include <iostream>
+#include <string>
+#include <vector>
+
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+
 using namespace std;
 
 namespace ProtoMol {

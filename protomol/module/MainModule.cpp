@@ -1,12 +1,17 @@
-#include <protomol/module/MainModule.h>
-
-#include <protomol/module/IOModule.h>
 #include <protomol/ProtoMolApp.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/base/Report.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/Report.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/module/IOModule.h>
+#include <protomol/module/MainModule.h>
 #include <protomol/parallel/Parallel.h>
+#include <protomol/topology/TopologyUtilities.h>
+#include <ostream>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/config/Value.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol;

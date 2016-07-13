@@ -1,10 +1,10 @@
 #ifndef COMMAND_LINE_OPTION_H
 #define COMMAND_LINE_OPTION_H
 
-#include <string>
-#include <set>
-#include <vector>
 #include <ostream>
+#include <set>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class CommandLineOption {

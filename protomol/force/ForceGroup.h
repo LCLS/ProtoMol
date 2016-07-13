@@ -2,21 +2,22 @@
 #ifndef FORCEGROUP_H
 #define FORCEGROUP_H
 
+#include <protomol/base/MakeableDefinition.h>
 #include <list>
 #include <vector>
 
-#include <protomol/base/MakeableDefinition.h>
 namespace ProtoMol {
+  class ExtendedForce;
   class Force;
+  class GenericTopology;
   class MetaForce;
   class MollyForce;
-  class SystemForce;
-  class ExtendedForce;
-  class GenericTopology;
-  class Vector3DBlock;
-  class ScalarStructure;
-  class ReducedHessAngle;
   class ProtoMolApp;
+  class ReducedHessAngle;
+  class ScalarStructure;
+  class SystemForce;
+  class Vector3DBlock;
+struct MakeableDefinition;
 
   //________________________________________ ForceGroup
 

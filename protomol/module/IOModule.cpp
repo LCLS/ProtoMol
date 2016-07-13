@@ -1,23 +1,35 @@
-#include <protomol/module/IOModule.h>
-
-#include <protomol/io/PosVelReader.h>
-#include <protomol/io/PSFReader.h>
-#include <protomol/io/PARReader.h>
-
-//for GROMACS
-#include <protomol/io/gromacs/PortGromacsParameters.h>
-#include <protomol/type/GromacsTopology.h>
-#include <protomol/type/GromacsParameters.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/Exception.h>
+#include <protomol/base/PMConstants.h>
 //
 #include <protomol/config/Configuration.h>
-#include <protomol/base/Exception.h>
-#include <protomol/ProtoMolApp.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/type/String.h>
-#include <protomol/type/PDB.h>
-#include <protomol/module/MainModule.h>
+#include <protomol/io/PARReader.h>
+#include <protomol/io/PSFReader.h>
+#include <protomol/io/PosVelReader.h>
 #include <protomol/io/SCPISMReader.h>
+//for GROMACS
+#include <protomol/io/gromacs/PortGromacsParameters.h>
+#include <protomol/module/IOModule.h>
+#include <protomol/module/MainModule.h>
 #include <protomol/topology/CoulombSCPISMParameterTable.h>
+#include <protomol/type/GromacsParameters.h>
+#include <protomol/type/GromacsTopology.h>
+#include <protomol/type/PDB.h>
+#include <ostream>
+#include <vector>
+
+#include "protomol/base/Report.h"
+#include "protomol/config/Value.h"
+#include "protomol/io/File.h"
+#include "protomol/io/PosVelReaderType.h"
+#include "protomol/output/OutputCache.h"
+#include "protomol/type/AbstractEnumType.h"
+#include "protomol/type/PAR.h"
+#include "protomol/type/PSF.h"
+#include "protomol/type/Vector.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+#include "protomol/type/XYZ.h"
 
 using namespace std;
 using namespace ProtoMol;

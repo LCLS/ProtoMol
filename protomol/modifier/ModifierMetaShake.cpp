@@ -1,6 +1,13 @@
-#include <protomol/modifier/ModifierMetaShake.h>
-#include <protomol/topology/Topology.h>
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
+#include <protomol/modifier/ModifierMetaShake.h>
+#include <vector>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/modifier/ModifierMetaRattleShake.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace ProtoMol;
 

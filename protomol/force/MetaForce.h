@@ -3,6 +3,7 @@
 #define METAFORCE_H
 
 #include <protomol/force/Force.h>
+#include <vector>
 
 namespace ProtoMol {
   class ForceGroup;

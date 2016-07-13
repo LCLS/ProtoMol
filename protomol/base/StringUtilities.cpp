@@ -1,11 +1,14 @@
+#include <ctype.h>
+#include <math.h>
 #include <protomol/base/StringUtilities.h>
-#include <protomol/base/MathUtilities.h>
-
-#include <algorithm>
 #include <stdlib.h>
-#include <errno.h>
+#include <sys/errno.h>
+#include <algorithm>
+#include <cstring>
+#include <ostream>
 
-#include <protomol/base/Report.h>
+#include "protomol/base/PMConstants.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

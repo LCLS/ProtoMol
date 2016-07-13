@@ -1,7 +1,21 @@
-#include <protomol/force/GB/GBForce.h>
-
 #include <protomol/base/Report.h>
+#include <protomol/force/GB/GBForce.h>
 #include <protomol/parallel/Parallel.h>
+#include <cmath>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/ScalarStructure.h"
+#include "protomol/type/SimpleTypes.h"
+
+namespace ProtoMol {
+class Vector3DBlock;
+}  // namespace ProtoMol
 
 using namespace ProtoMol;
 using namespace ProtoMol::Report;

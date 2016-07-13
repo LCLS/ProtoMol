@@ -1,7 +1,14 @@
 #include <protomol/force/system/SystemCompareForce.h>
-#include <protomol/type/ScalarStructure.h>
 #include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
+
+#include "protomol/force/CompareForce.h"
+#include "protomol/force/Force.h"
+#include "protomol/force/system/SystemForce.h"
+
+namespace ProtoMol {
+class GenericTopology;
+class ScalarStructure;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -3,9 +3,11 @@
 #define XYZTRAJECTORYWRITER_H
 
 #include <protomol/io/Writer.h>
-#include <protomol/type/XYZ.h>
 #include <protomol/topology/Atom.h>
 #include <protomol/topology/AtomType.h>
+#include <protomol/type/XYZ.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   //____XYZTrajectoryWriter
@@ -14,6 +16,10 @@ namespace ProtoMol {
    * Writes XYZ trajectories (ASCII) and updates the number of coordinate sets
    * after each write, no need to know the final number of sets.
    */
+class Vector3DBlock;
+struct Atom;
+struct AtomType;
+
   class XYZTrajectoryWriter : public Writer {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

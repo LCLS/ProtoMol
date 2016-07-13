@@ -4,12 +4,23 @@
 
 #include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+
+namespace ProtoMol {
+class ProtoMolApp;
+class Value;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
 
 namespace ProtoMol
 {
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
 
   //__________________________________________________ NormalModeQuadratic
   class NormalModeQuadratic : public STSIntegrator, public NormalModeUtilities

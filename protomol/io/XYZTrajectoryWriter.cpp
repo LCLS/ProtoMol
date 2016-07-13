@@ -1,9 +1,16 @@
-#include <protomol/io/XYZTrajectoryWriter.h>
-
-#include <iomanip>
-
 #include <protomol/base/Report.h>
 #include <protomol/base/StringUtilities.h>
+#include <protomol/io/XYZTrajectoryWriter.h>
+#include <stddef.h>
+#include <iomanip>
+#include <istream>
+
+#include "protomol/io/Writer.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+#include "protomol/type/XYZ.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

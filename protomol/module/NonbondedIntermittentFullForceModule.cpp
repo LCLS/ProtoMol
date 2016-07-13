@@ -1,28 +1,25 @@
-#include <protomol/module/NonbondedIntermittentFullForceModule.h>
-
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/StringUtilities.h>
-#include <protomol/module/TopologyModule.h>
-#include <protomol/topology/PeriodicBoundaryConditions.h>
-#include <protomol/topology/VacuumBoundaryConditions.h>
-
-#include <protomol/force/OneAtomPairNoExclusion.h>
-
-#include <protomol/switch/UniversalSwitchingFunction.h>
-#include <protomol/switch/CutoffSwitchingFunction.h>
-
-#include <protomol/force/nonbonded/NonbondedIntermittentFullSystemForce.h>
-
-#include <protomol/topology/CellListEnumeratorPeriodicBoundaries.h>
-#include <protomol/topology/CellListEnumeratorStandard.h>
-
-//SCPISM
-#include <protomol/force/born/BornRadii.h>
-#include <protomol/force/born/BornSelfForce.h>
-
 //GB
 #include <protomol/force/GB/GBBornRadii.h>
 #include <protomol/force/GB/GBPartialSum.h>
+#include <protomol/force/OneAtomPairNoExclusion.h>
+//SCPISM
+#include <protomol/force/born/BornRadii.h>
+#include <protomol/force/born/BornSelfForce.h>
+#include <protomol/force/nonbonded/NonbondedIntermittentFullSystemForce.h>
+#include <protomol/module/NonbondedIntermittentFullForceModule.h>
+#include <protomol/module/TopologyModule.h>
+#include <protomol/switch/CutoffSwitchingFunction.h>
+#include <protomol/switch/UniversalSwitchingFunction.h>
+#include <protomol/topology/PeriodicBoundaryConditions.h>
+#include <protomol/topology/VacuumBoundaryConditions.h>
+#include <vector>
+
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/force/Force.h"
 
 using namespace std;
 using namespace ProtoMol;

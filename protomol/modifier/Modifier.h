@@ -1,16 +1,17 @@
 /*  -*- c++ -*-  */
 #ifndef MODIFIER_H
 #define MODIFIER_H
+#include <protomol/base/Makeable.h>
+#include <ostream>
+#include <string>
 #include <vector>
 
-#include <protomol/base/Makeable.h>
-
-#include <ostream>
-
 namespace ProtoMol {
+  class Integrator;
   class ProtoMolApp;
   class Vector3DBlock;
-  class Integrator;
+class Value;
+struct Parameter;
 
   //________________________________________ Modifier
   /**

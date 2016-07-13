@@ -1,13 +1,17 @@
-#include <protomol/io/CheckpointConfigReader.h>
-
 #include <protomol/base/Report.h>
 #include <protomol/base/StringUtilities.h>
-
+#include <protomol/io/CheckpointConfigReader.h>
+#include <protomol/io/DCDTrajectoryReader.h>
 #include <protomol/module/IOModule.h>
 #include <protomol/module/MainModule.h>
 #include <protomol/module/ModifierModule.h>
+#include <iostream>
 
-#include <protomol/io/DCDTrajectoryReader.h>
+#include "protomol/base/Random.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/io/Reader.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

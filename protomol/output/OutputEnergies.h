@@ -2,7 +2,16 @@
 #ifndef PROTOMOL_OUTPUT_ENERGIES_H
 #define PROTOMOL_OUTPUT_ENERGIES_H
 
+#include <string>
+#include <vector>
+
 #include "Output.h"
+#include "protomol/output/Output.h"
+
+namespace ProtoMol {
+class Value;
+struct Parameter;
+}  // namespace ProtoMol
 
 #ifdef HAVE_LIBFAH
 #include <cbang/os/File.h>

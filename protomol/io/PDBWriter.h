@@ -4,6 +4,8 @@
 
 #include <protomol/io/Writer.h>
 #include <protomol/type/PDB.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   //____PDBWriter
@@ -11,6 +13,8 @@ namespace ProtoMol {
   /**
    * Writes a PDB (ASCII) file, ATOM record only.
    */
+class Vector3DBlock;
+
   class PDBWriter : public Writer {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

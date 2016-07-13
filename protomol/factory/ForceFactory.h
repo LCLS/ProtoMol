@@ -3,11 +3,20 @@
 #define FORCE_FACTORY_H
 
 #include <protomol/base/Factory.h>
-#include <protomol/force/Force.h>
 #include <protomol/config/Value.h>
+#include <protomol/force/Force.h>
+#include <iosfwd>
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
+
+#include "protomol/base/StringUtilities.h"
 
 namespace ProtoMol {
   //________________________________________ ForceFactory
+class CompareForce;
+
   class ForceFactory : public Factory<Force> {
     typedef std::set<std::string, ltstrNocase> policy_t;
     typedef std::map<std::string, std::string, ltstrNocase> policiesSorted_t;

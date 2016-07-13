@@ -1,15 +1,15 @@
-#include <protomol/module/IntegratorBaseModule.h>
-
+#include <protomol/ProtoMolApp.h>
+#include <protomol/integrator/base/CGMinimizerIntegrator.h>
 #include <protomol/integrator/base/LangevinImpulseIntegrator.h>
 #include <protomol/integrator/base/LangevinLeapfrogIntegrator.h>
 #include <protomol/integrator/base/LangevinLeapfrogSwitchingIntegrator.h>
 #include <protomol/integrator/base/LangevinVVVRIntegrator.h>
-#include <protomol/integrator/base/CGMinimizerIntegrator.h>
 #include <protomol/integrator/base/NumericalDifferentiation.h>
 #include <protomol/integrator/base/NumericallyDifferentiatedHessian.h>
 #include <protomol/integrator/base/RMTIntegrator.h>
+#include <protomol/module/IntegratorBaseModule.h>
 
-#include <protomol/ProtoMolApp.h>
+#include "protomol/factory/IntegratorFactory.h"
 
 using namespace std;
 using namespace ProtoMol;

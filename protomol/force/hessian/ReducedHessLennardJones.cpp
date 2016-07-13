@@ -1,5 +1,12 @@
 #include <protomol/force/hessian/ReducedHessLennardJones.h>
 #include <protomol/topology/GenericTopology.h>
+#include <vector>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/LennardJonesParameterTable.h"
+#include "protomol/topology/LennardJonesParameters.h"
+#include "protomol/type/Matrix3By3.h"
 
 using namespace ProtoMol;
 

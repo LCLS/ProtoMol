@@ -2,14 +2,13 @@
 #define MODULE_H
 
 #include <protomol/base/Exception.h>
-
-#include <string>
 #include <set>
+#include <string>
 
 namespace ProtoMol {
-  class ProtoMolApp;
-  class GenericTopology;
   class ForceFactory;
+  class GenericTopology;
+  class ProtoMolApp;
 
   class Module {
   public:

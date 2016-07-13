@@ -19,22 +19,24 @@
  */
 
 #ifdef SVR4
-#include <unistd.h>
+#include <sys/param.h>
 #include <sys/time.h>
 #include <sys/times.h>
-#include <sys/param.h>
+#include <unistd.h>
 #elif defined (_WIN32)
+#include <mmsystem.h> // timeGetTime()
 #include <time.h>
 #include <windows.h>  // mmsystem.h cannot exist without this.
-#include <mmsystem.h> // timeGetTime()
 #else
-#include <unistd.h>
-#include <sys/time.h>
 #include <sys/resource.h>
+#include <sys/time.h>
 #endif
 
 #include <protomol/base/Timer.h>
+#include <stddef.h>
 #include <iostream>
+
+#include "protomol/base/Report.h"
 
 using namespace ProtoMol::Report;
 using namespace ProtoMol;
@@ -229,4 +231,3 @@ TimeRep Timer::getCurrentTime() {
 
   return TimeRep(realTime, userTime, sysTime);
 }
-

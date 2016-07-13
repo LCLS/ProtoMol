@@ -2,11 +2,13 @@
 #ifndef CnSWITCHINGFUNCTION_H
 #define CnSWITCHINGFUNCTION_H
 
-#include <vector>
-#include <string>
-
 #include <protomol/config/Parameter.h>
 #include <protomol/type/Matrix3By3.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //____ CnSwitchingFunction
@@ -14,6 +16,9 @@ namespace ProtoMol {
   /**
    * The switching function provide C2, 3, 4 0r 6 continuous
    */
+class Value;
+struct Parameter;
+
   class CnSwitchingFunction {
 
   public:

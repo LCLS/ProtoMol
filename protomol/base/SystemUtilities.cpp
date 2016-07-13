@@ -1,21 +1,23 @@
 #include <protomol/base/SystemUtilities.h>
-
-#include <protomol/base/StringUtilities.h>
-#include <protomol/base/Exception.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/errno.h>
+#include <sys/unistd.h>
 
 #ifdef _WIN32
 
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h> // for GetFullPathName
-
 //____ Define the missing symbols from <unistd.h> for M$ ....
 #include <direct.h>
+#include <windows.h> // for GetFullPathName
+
 #define CHDIR _chdir
 #define PATHSEP '\\'
 #define PATHSEPSTR "\\"
 #define access _access
 #include <fcntl.h>
 #include <io.h>
+
 #define F_OK 0
 #define W_OK 2
 #define R_OK 4
@@ -26,15 +28,17 @@
 
 #include <libgen.h>
 #include <unistd.h>
+
 #define CHDIR chdir
 #define PATHSEP '/'
 #define PATHSEPSTR "/"
 #endif
 
-#include <fstream>
-#include <sys/stat.h>
 #include <string.h>
-#include <errno.h>
+#include <sys/stat.h>
+#include <fstream>
+
+#include "protomol/base/Exception.h"
 
 #ifdef HAVE_LIBFAH
 #include <fah/checksum/overrides.h>

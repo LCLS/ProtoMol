@@ -1,11 +1,13 @@
-#include <protomol/io/PDBWriter.h>
-
-#include <protomol/type/PDB.h>
 #include <protomol/base/Report.h>
 #include <protomol/base/StringUtilities.h>
-
-#include <iomanip>
+#include <protomol/io/PDBWriter.h>
+#include <protomol/type/PDB.h>
 #include <map>
+#include <ostream>
+
+#include "protomol/io/Writer.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -1,8 +1,9 @@
 #include <protomol/io/SCPISMReader.h>
+#include <sstream>
 
-#include <protomol/base/StringUtilities.h>
-#include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include "protomol/io/Reader.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/CoulombSCPISMParameters.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

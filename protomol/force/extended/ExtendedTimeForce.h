@@ -8,6 +8,11 @@
 namespace ProtoMol {
   //________________________________________ ExtendedTimeForce
 
+class Force;
+class GenericTopology;
+class ScalarStructure;
+class Vector3DBlock;
+
   class ExtendedTimeForce : public TimeForce, public ExtendedForce {
     // This class contains the definition of one force
 

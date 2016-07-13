@@ -1,9 +1,22 @@
-#include <protomol/force/TimeForce.h>
-#include <protomol/type/ScalarStructure.h>
+#include <math.h>
 #include <protomol/base/MathUtilities.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
+#include <protomol/force/TimeForce.h>
 #include <protomol/parallel/Parallel.h>
+#include <stddef.h>
+#include <iostream>
+
+#include "protomol/base/Report.h"
+#include "protomol/base/StringUtilities.h"
+#include "protomol/base/Timer.h"
+#include "protomol/config/Value.h"
+#include "protomol/force/Force.h"
+
+namespace ProtoMol {
+class GenericTopology;
+class ScalarStructure;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

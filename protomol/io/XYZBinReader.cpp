@@ -1,8 +1,17 @@
-#include <protomol/io/XYZBinReader.h>
-
 #include <protomol/base/Report.h>
 #include <protomol/base/SystemUtilities.h>
+#include <protomol/io/XYZBinReader.h>
 #include <protomol/type/TypeSelection.h>
+#include <stddef.h>
+#include <iostream>
+#include <vector>
+
+#include "protomol/io/File.h"
+#include "protomol/io/Reader.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+#include "protomol/type/XYZ.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

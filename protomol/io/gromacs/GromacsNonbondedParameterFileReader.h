@@ -4,11 +4,13 @@
 
 #include <protomol/io/Reader.h>
 #include <protomol/type/GromacsParameters.h>
-
 #include <iostream>
 #include <map>
+#include <string>
 
 namespace ProtoMol {
+
+class GromacsParameters;
 
   class GromacsNonbondedParameterFileReader : public Reader {
 

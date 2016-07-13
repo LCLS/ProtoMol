@@ -3,11 +3,11 @@
 #define DCDTRAJECTORYREADER_H
 
 #include <protomol/io/Reader.h>
-#include <protomol/type/XYZ.h>
 #include <protomol/type/TypeSelection.h>
-
-#include <vector>
+#include <protomol/type/XYZ.h>
 #include <cstring>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   //____DCDTrajectoryReader
@@ -16,6 +16,8 @@ namespace ProtoMol {
    * Reads a DCD trajectory file, frame by frame. Automatic endianess
    * detection.
    */
+class Vector3DBlock;
+
   class DCDTrajectoryReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Typedef

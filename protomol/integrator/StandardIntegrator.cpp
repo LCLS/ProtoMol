@@ -1,13 +1,19 @@
-#include <protomol/integrator/StandardIntegrator.h>
-#include <protomol/base/Report.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/PMConstants.h>
 #include <protomol/force/ForceGroup.h>
+#include <protomol/integrator/StandardIntegrator.h>
+#include <protomol/parallel/Parallel.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/ProtoMolApp.h>
-#include <protomol/parallel/Parallel.h>
+#include <protomol/type/ScalarStructure.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <stddef.h>
+#include <vector>
+
+#include "protomol/integrator/Integrator.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 #ifdef HAVE_LIBFAH
 #include <fah/core/Core.h>

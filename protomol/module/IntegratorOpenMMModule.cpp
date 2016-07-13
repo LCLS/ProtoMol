@@ -15,6 +15,8 @@
 
 #include <protomol/ProtoMolApp.h>
 
+#include "protomol/factory/IntegratorFactory.h"
+
 using namespace std;
 using namespace ProtoMol;
 

@@ -1,17 +1,22 @@
-#include <protomol/module/BondedForcesModule.h>
-
-#include <protomol/force/bonded/RBDihedralSystemForce.h>
-#include <protomol/force/bonded/DihedralSystemForce.h>
-#include <protomol/force/bonded/BondSystemForce.h>
-#include <protomol/force/bonded/AngleSystemForce.h>
-#include <protomol/force/bonded/ImproperSystemForce.h>
-#include <protomol/force/bonded/HarmDihedralSystemForce.h>
-
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/StringUtilities.h>
+#include <protomol/force/bonded/AngleSystemForce.h>
+#include <protomol/force/bonded/BondSystemForce.h>
+#include <protomol/force/bonded/DihedralSystemForce.h>
+#include <protomol/force/bonded/HarmDihedralSystemForce.h>
+#include <protomol/force/bonded/ImproperSystemForce.h>
+#include <protomol/force/bonded/RBDihedralSystemForce.h>
+#include <protomol/module/BondedForcesModule.h>
 #include <protomol/module/TopologyModule.h>
 #include <protomol/topology/PeriodicBoundaryConditions.h>
 #include <protomol/topology/VacuumBoundaryConditions.h>
+#include <algorithm>
+
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/force/Force.h"
 
 using namespace std;
 using namespace ProtoMol;

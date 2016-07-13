@@ -1,6 +1,9 @@
-#include <protomol/type/BlockMatrix.h>
-
 #include <protomol/base/Lapack.h>
+#include <protomol/type/BlockMatrix.h>
+#include <algorithm>
+
+#include "protomol/base/Report.h"
+#include "protomol/type/Real.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

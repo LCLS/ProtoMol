@@ -1,13 +1,18 @@
 #ifndef PROTOMOL_ANALYSIS_DIHEDRAL_H
 #define PROTOMOL_ANALYSIS_DIHEDRAL_H
 
-#include <protomol/base/StringUtilities.h>
 #include <protomol/analysis/Analysis.h>
-
+#include <protomol/base/StringUtilities.h>
 #include <map>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
 	class Configuration;
+class Value;
+struct Parameter;
 
 	class AnalysisDihedral : public Analysis {
 		public:

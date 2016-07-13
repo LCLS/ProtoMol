@@ -2,11 +2,14 @@
 #ifndef VECTOR3DBLOCK_H
 #define VECTOR3DBLOCK_H
 
-#include <vector>
 #include <iostream>
+#include <vector>
+
+#include "protomol/type/Real.h"
+
 using namespace std;
-#include <protomol/type/Vector3D.h>
 #include <protomol/base/Proxy.h>
+#include <protomol/type/Vector3D.h>
 
 
 namespace ProtoMol {

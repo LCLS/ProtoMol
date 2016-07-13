@@ -4,11 +4,18 @@
 
 #include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   //__________________________________________________ NormalModeMinimizer
   class NormalModeMinimizer : public STSIntegrator, public NormalModeUtilities {

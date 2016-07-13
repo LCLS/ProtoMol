@@ -1,14 +1,17 @@
-#include <protomol/config/CommandLine.h>
-
-#include <protomol/base/Exception.h>
-#include <protomol/type/String.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/module/ConfigurationModule.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/base/SystemUtilities.h>
 #include <protomol/ProtoMolApp.h>
+#include <protomol/base/Exception.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/config/CommandLine.h>
+#include <protomol/config/Configuration.h>
+#include <iostream>
+#include <set>
+#include <utility>
 
-#include <stdlib.h>
+#include "protomol/base/Report.h"
+#include "protomol/base/SmartPointer.h"
+#include "protomol/config/CommandLineOption.h"
+#include "protomol/config/Value.h"
+#include "protomol/config/ValueType.h"
 
 using namespace std;
 using namespace ProtoMol;

@@ -4,13 +4,21 @@
 
 #include <protomol/integrator/MTSIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
-
 #include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
 
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class StandardIntegrator;
+class Value;
+struct Parameter;
 
   //__________________________________________________ NormalModeLangevinLeapfrogSwitchingSwitching
   class NormalModeLangevinLeapfrogSwitching : public MTSIntegrator, public NormalModeUtilities {

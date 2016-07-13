@@ -1,8 +1,14 @@
-#include <protomol/io/PARReader.h>
-
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/PARReader.h>
+#include <stddef.h>
 #include <algorithm>
+#include <istream>
+#include <vector>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/PAR.h"
+#include "protomol/type/Real.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

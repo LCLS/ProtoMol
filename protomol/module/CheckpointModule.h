@@ -3,10 +3,11 @@
 
 #include <protomol/base/Module.h>
 #include <protomol/config/InputValue.h>
-
 #include <string>
 
 namespace ProtoMol {
+class ProtoMolApp;
+
   class CheckpointModule : public Module {
     bool enabled;
 

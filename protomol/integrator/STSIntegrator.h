@@ -4,10 +4,18 @@
 
 #include <protomol/integrator/StandardIntegrator.h>
 #include <protomol/topology/GenericTopology.h>
+#include <stddef.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class Integrator;
+class Value;
+struct Parameter;
 
   //________________________________________ STSIntegrator
 

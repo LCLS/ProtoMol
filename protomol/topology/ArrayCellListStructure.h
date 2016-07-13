@@ -3,8 +3,11 @@
 
 #include <protomol/base/StringUtilities.h>
 #include <protomol/topology/CubicCellLocation.h>
-#include <protomol/type/Vector3D.h>
 #include <protomol/type/Array.h>
+#include <protomol/type/Vector3D.h>
+#include <utility>
+
+#include "protomol/type/ArrayFastest.h"
 
 namespace ProtoMol {
 	/**

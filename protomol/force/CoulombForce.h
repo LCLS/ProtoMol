@@ -2,14 +2,24 @@
 #ifndef COULOMBFORCE_H
 #define COULOMBFORCE_H
 
+#include <math.h>
+#include <protomol/config/Parameter.h>
+#include <protomol/topology/ExclusionTable.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/ExclusionTable.h>
-#include <protomol/config/Parameter.h>
 #include <string>
+#include <vector>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //____ CoulombForce
+class Value;
+class Vector3DBlock;
+struct Parameter;
+
   class CoulombForce {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // This uses the weighted charges on each atom, so the Coulomb

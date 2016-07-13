@@ -1,7 +1,11 @@
-#include <protomol/force/system/SystemForce.h>
 #include <protomol/force/ForceGroup.h>
 #include <protomol/force/system/SystemCompareForce.h>
+#include <protomol/force/system/SystemForce.h>
 #include <protomol/force/system/SystemTimeForce.h>
+
+namespace ProtoMol {
+class Force;
+}  // namespace ProtoMol
 
 using namespace std;
 using namespace ProtoMol::Report;

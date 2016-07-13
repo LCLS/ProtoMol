@@ -3,10 +3,19 @@
 #define COMPAREFORCE_H
 
 #include <protomol/force/Force.h>
+#include <string>
 #include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   //________________________________________ CompareForce
+
+class GenericTopology;
+class ScalarStructure;
+class Value;
+class Vector3DBlock;
+struct Parameter;
 
   class CompareForce : virtual public Force {
     // This class contains the definition of one force

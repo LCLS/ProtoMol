@@ -10,6 +10,8 @@
 
 #include <protomol/base/StringUtilities.h>
 
+#include "protomol/type/Real.h"
+
 using namespace std;
 
 namespace ProtoMol {

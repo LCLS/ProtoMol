@@ -1,24 +1,21 @@
 #include "GUIServer.h"
 
+#include <netinet/in.h>
 #include <protomol/base/Exception.h>
-
-#include <iostream>
-
-#include <errno.h>
-#include <stdlib.h>
-#include <string.h>
+#include <pthread.h>
 #include <stdio.h>
+#include <string.h>
+#include <sys/errno.h>
+#include <sys/fcntl.h>
 #include <time.h>
+#include <iostream>
+#include <string>
+
+#include "protomol/base/Report.h"
 
 #ifndef _WIN32
-#include <sched.h>
-#include <unistd.h>
-#include <netdb.h>
-#include <sys/types.h>
 #include <sys/socket.h>
-#include <arpa/inet.h>
-// #include <errno.h>
-#include <fcntl.h>
+#include <unistd.h>
 #endif
 
 //  Redefine some types and constants based on OS

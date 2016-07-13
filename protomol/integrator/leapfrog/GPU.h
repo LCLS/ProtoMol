@@ -2,13 +2,20 @@
 #ifndef GPU_H
 #define GPU_H
 
-#include <protomol/integrator/STSIntegrator.h>
-
 #include <protomol/base/TimerStatistic.h>
+#include <protomol/integrator/STSIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/base/Timer.h"
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   //____ GPU
   class GPU : public STSIntegrator {

@@ -4,6 +4,12 @@
 
 #include <protomol/io/Reader.h>
 #include <protomol/type/XYZ.h>
+#include <string>
+#include <vector>
+
+namespace ProtoMol {
+class Vector3DBlock;
+}  // namespace ProtoMol
 
 #ifdef HAVE_LIBFAH
 namespace FAH {

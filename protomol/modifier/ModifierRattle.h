@@ -4,9 +4,16 @@
 
 #include <protomol/modifier/ModifierMetaRattle.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   class Integrator;
+class Modifier;
 
   //____ ModifierRattle
   class ModifierRattle : public ModifierMetaRattle {

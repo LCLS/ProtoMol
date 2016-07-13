@@ -1,7 +1,13 @@
-#include <protomol/modifier/ModifierMetaRattleShake.h>
-#include <protomol/topology/Topology.h>
-#include <protomol/topology/TopologyUtilities.h>
 #include <protomol/ProtoMolApp.h>
+#include <protomol/modifier/ModifierMetaRattleShake.h>
+#include <protomol/topology/TopologyUtilities.h>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/modifier/Modifier.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol;

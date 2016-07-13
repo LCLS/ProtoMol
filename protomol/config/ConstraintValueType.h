@@ -3,6 +3,7 @@
 #define CONSTRAINTVALUETYPE_H
 
 #include <protomol/type/AbstractEnumType.h>
+#include <string>
 
 namespace ProtoMol {
   //_____________________________________________________ ConstraintValueEnum

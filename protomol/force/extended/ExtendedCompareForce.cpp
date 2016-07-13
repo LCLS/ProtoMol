@@ -1,7 +1,14 @@
 #include <protomol/force/extended/ExtendedCompareForce.h>
-#include <protomol/type/ScalarStructure.h>
 #include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
+
+#include "protomol/force/CompareForce.h"
+#include "protomol/force/Force.h"
+#include "protomol/force/extended/ExtendedForce.h"
+
+namespace ProtoMol {
+class GenericTopology;
+class ScalarStructure;
+}  // namespace ProtoMol
 
 using namespace ProtoMol;
 //____ ExtendedCompareForce

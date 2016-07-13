@@ -1,9 +1,20 @@
-#include <protomol/factory/AnalysisFactory.h>
 #include <protomol/analysis/AnalysisCollection.h>
-#include <protomol/config/Configuration.h>
 #include <protomol/base/StringUtilities.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/factory/AnalysisFactory.h>
 #include <protomol/factory/HelpTextFactory.h>
-#include <algorithm>
+#include <stddef.h>
+#include <map>
+#include <ostream>
+#include <set>
+#include <utility>
+
+#include "protomol/analysis/Analysis.h"
+#include "protomol/base/Exception.h"
+#include "protomol/base/Factory.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

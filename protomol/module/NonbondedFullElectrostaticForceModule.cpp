@@ -1,18 +1,20 @@
-#include <protomol/module/NonbondedFullElectrostaticForceModule.h>
-
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/StringUtilities.h>
+#include <protomol/force/nonbonded/NonbondedFullEwaldSystemForce.h>
+#include <protomol/module/NonbondedFullElectrostaticForceModule.h>
 #include <protomol/module/TopologyModule.h>
+#include <protomol/switch/CutoffSwitchingFunction.h>
+#include <protomol/topology/CubicCellManager.h>
 #include <protomol/topology/PeriodicBoundaryConditions.h>
 
-#include <protomol/force/nonbonded/NonbondedFullEwaldSystemForce.h>
-
-#include <protomol/switch/CutoffSwitchingFunction.h>
-
-#include <protomol/topology/CellListEnumeratorPeriodicBoundaries.h>
-#include <protomol/topology/CellListEnumeratorStandard.h>
-#include <protomol/topology/CellListEnumerator.h>
-#include <protomol/topology/CubicCellManager.h>
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/force/Force.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol;

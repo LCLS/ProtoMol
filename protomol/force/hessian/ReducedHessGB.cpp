@@ -1,10 +1,12 @@
+#include <math.h>
 #include <protomol/force/hessian/ReducedHessGB.h>
 #include <protomol/topology/GenericTopology.h>
+#include <vector>
 
-#include <protomol/base/Report.h>
-
-#include <iomanip>
-#include <iostream>
+#include "protomol/base/MathUtilities.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/type/Matrix3By3.h"
 
 using namespace ProtoMol;
 using namespace ProtoMol::Report;

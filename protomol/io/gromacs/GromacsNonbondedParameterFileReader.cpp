@@ -1,7 +1,12 @@
-#include <protomol/io/gromacs/GromacsNonbondedParameterFileReader.h>
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/gromacs/GromacsNonbondedParameterFileReader.h>
+#include <stddef.h>
+#include <iostream>
+#include <utility>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/GromacsParameters.h"
 
 
 using namespace ProtoMol::Report;

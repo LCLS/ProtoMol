@@ -1,9 +1,16 @@
-#include <protomol/modifier/ModifierRattle.h>
-#include <protomol/integrator/Integrator.h>
-#include <protomol/topology/Topology.h>
-#include <protomol/type/ScalarStructure.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/PMConstants.h>
+#include <protomol/integrator/Integrator.h>
+#include <protomol/modifier/ModifierRattle.h>
+#include <protomol/type/ScalarStructure.h>
+
+#include "protomol/base/Report.h"
+#include "protomol/modifier/ModifierMetaRattle.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

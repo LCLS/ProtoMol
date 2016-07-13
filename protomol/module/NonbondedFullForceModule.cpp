@@ -1,24 +1,23 @@
-#include <protomol/module/NonbondedFullForceModule.h>
-
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/StringUtilities.h>
-#include <protomol/module/TopologyModule.h>
-#include <protomol/topology/PeriodicBoundaryConditions.h>
-#include <protomol/topology/VacuumBoundaryConditions.h>
-
-#include <protomol/force/OneAtomPairFull.h>
 #include <protomol/force/CoulombForce.h>
 #include <protomol/force/LennardJonesForce.h>
-
+#include <protomol/force/OneAtomPairFull.h>
+#include <protomol/force/nonbonded/NonbondedFullSystemForce.h>
+#include <protomol/module/NonbondedFullForceModule.h>
+#include <protomol/module/TopologyModule.h>
 #include <protomol/switch/C1SwitchingFunction.h>
 #include <protomol/switch/C2SwitchingFunction.h>
 #include <protomol/switch/CmpCnCnSwitchingFunction.h>
 #include <protomol/switch/CnSwitchingFunction.h>
+#include <protomol/topology/PeriodicBoundaryConditions.h>
+#include <protomol/topology/VacuumBoundaryConditions.h>
+#include <vector>
 
-#include <protomol/force/nonbonded/NonbondedFullSystemForce.h>
-
-#include <protomol/topology/CellListEnumeratorPeriodicBoundaries.h>
-#include <protomol/topology/CellListEnumeratorStandard.h>
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/ForceFactory.h"
+#include "protomol/force/Force.h"
 
 using namespace std;
 using namespace ProtoMol;

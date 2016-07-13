@@ -3,11 +3,18 @@
 #define LANGEVINVVVRINTEGRATOR_H
 
 #include <protomol/integrator/STSIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
   class Vector3DBlock;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   //____ LangevinVVVRIntegrator
 

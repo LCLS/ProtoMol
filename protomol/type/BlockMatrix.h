@@ -2,10 +2,10 @@
 #ifndef BLOCKMATRIX_H
 #define BLOCKMATRIX_H
 
-#include <vector>
-#include <algorithm>
 #include <protomol/base/Report.h>
 #include <protomol/type/Real.h>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 

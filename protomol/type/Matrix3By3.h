@@ -2,8 +2,10 @@
 #ifndef MATRIX3BY3_H
 #define MATRIX3BY3_H
 
-#include <iostream>
 #include <protomol/type/Vector3D.h>
+#include <iostream>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   /*________________________________________ Matrix3By3

@@ -1,13 +1,18 @@
-#include <protomol/module/ConfigurationModule.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/config/CommandLine.h>
 #include <protomol/config/Configuration.h>
 #include <protomol/io/ConfigurationReader.h>
-
-#include <protomol/config/CommandLine.h>
-#include <protomol/ProtoMolApp.h>
-#include <protomol/config/InputValue.h>
-
+#include <protomol/module/ConfigurationModule.h>
 #include <iostream>
+#include <map>
 #include <string>
+#include <utility>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/StringUtilities.h"
+#include "protomol/config/CommandLineOption.h"
+#include "protomol/config/Value.h"
+#include "protomol/io/File.h"
 
 using namespace std;
 using namespace ProtoMol;

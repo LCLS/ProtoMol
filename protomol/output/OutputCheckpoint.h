@@ -3,11 +3,15 @@
 #define PROTOMOL_OUTPUT_CHECKPIINT_H
 
 #include <protomol/base/StringUtilities.h>
-#include <protomol/output/Output.h>
 #include <protomol/base/Timer.h>
+#include <protomol/output/Output.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class Configuration;
+class Value;
+struct Parameter;
 
   class OutputCheckpoint : public Output {
   public:

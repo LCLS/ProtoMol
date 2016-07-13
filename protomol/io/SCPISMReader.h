@@ -1,12 +1,15 @@
 #ifndef SCPISMREADER_H
 #define SCPISMREADER_H
 
-#include <map>
-#include <sstream>
 #include <protomol/io/Reader.h>
 #include <protomol/topology/CoulombSCPISMParameters.h>
+#include <map>
+#include <sstream>
+#include <string>
 
 namespace ProtoMol {
+struct CoulombSCPISMParameters;
+
     class SCPISMReader : public Reader {
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             // Constructors, destructors (both default here), assignment

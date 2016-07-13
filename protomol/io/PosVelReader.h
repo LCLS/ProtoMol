@@ -3,11 +3,15 @@
 #define POS_VEL_READER_H
 
 #include <protomol/io/PosVelReaderType.h>
-#include <protomol/type/XYZ.h>
 #include <protomol/type/PDB.h>
+#include <protomol/type/XYZ.h>
+#include <string>
 
 namespace ProtoMol {
   class Configuration;
+class Vector3DBlock;
+struct PDB;
+struct XYZ;
 
   //________________________________________________________ PosVelReader
   class PosVelReader {

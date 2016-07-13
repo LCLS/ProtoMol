@@ -1,23 +1,21 @@
+#include <math.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/MathUtilities.h>
+#include <protomol/base/PMConstants.h>
+#include <protomol/base/Report.h>
+#include <protomol/base/SystemUtilities.h>
+#include <protomol/base/Zap.h>
 #include <protomol/output/OutputCache.h>
-#include <protomol/output/Output.h>
-#include <protomol/config/Configuration.h>
 #include <protomol/topology/GenericTopology.h>
+#include <protomol/topology/TopologyUtilities.h>
 #include <protomol/type/ScalarStructure.h>
 #include <protomol/type/Vector3DBlock.h>
-#include <protomol/integrator/Integrator.h>
-
-#include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
-#include <protomol/base/SystemUtilities.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/PMConstants.h>
-
-#include <protomol/ProtoMolApp.h>
-
-#include <protomol/base/Zap.h>
-#include <protomol/base/Exception.h>
-
 #include <limits>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/type/PDB.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

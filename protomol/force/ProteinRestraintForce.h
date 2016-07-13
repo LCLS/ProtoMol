@@ -2,13 +2,25 @@
 #ifndef PROTEINRESTRAINTFORCE_H
 #define PROTEINRESTRAINTFORCE_H
 
-#include <protomol/topology/Topology.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/config/Parameter.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <string>
 #include <protomol/base/Report.h>
+#include <protomol/config/Parameter.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/topology/Topology.h>
+#include <protomol/topology/TopologyUtilities.h>
+#include <protomol/type/ScalarStructure.h>
+#include <string>
+#include <vector>
+
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+
+namespace ProtoMol {
+class GenericTopology;
+class Value;
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace ProtoMol::Report;
 

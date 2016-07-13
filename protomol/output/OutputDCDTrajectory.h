@@ -4,9 +4,14 @@
 
 #include <protomol/output/Output.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class DCDTrajectoryWriter;
+class Configuration;
+class Value;
+struct Parameter;
 
   class OutputDCDTrajectory : public Output {
   public:

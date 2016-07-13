@@ -3,10 +3,18 @@
 #define CGMINIMIZER_H
 
 #include <protomol/integrator/STSIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
+class Vector3DBlock;
+struct Parameter;
 
   /**
       Non-linear Conjugate Gradient Minimizer.

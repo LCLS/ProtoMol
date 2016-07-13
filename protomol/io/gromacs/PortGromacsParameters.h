@@ -1,8 +1,9 @@
 #ifndef PORTGROMACSPARAMETERS_H
 #define PORTGROMACSPARAMETERS_H
 
-#include <iostream>
 #include <protomol/type/Real.h>
+#include <iostream>
+#include <string>
 
 //#define PROPER_DIHEDRAL 1
 //#define RYCKERT_BELLEMAN_DIHEDRAL 3
@@ -15,10 +16,10 @@
 
 namespace ProtoMol {
 
-  class PSF;
-  class PAR;
-  class GromacsTopology;
   class GromacsParameters;
+  class GromacsTopology;
+  class PAR;
+  class PSF;
 
 
   class PortGromacsParameters {

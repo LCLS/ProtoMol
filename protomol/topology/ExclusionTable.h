@@ -2,12 +2,13 @@
 #ifndef EXCLUSIONTABLE_H
 #define EXCLUSIONTABLE_H
 
-#include <vector>
-#include <map>
-#include <set>
-
 #include <protomol/base/PMConstants.h>
 #include <protomol/type/SimpleTypes.h>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <utility>
+#include <vector>
 
 namespace ProtoMol {
   //________________________________________ ExclusionClass

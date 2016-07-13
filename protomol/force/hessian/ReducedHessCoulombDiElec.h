@@ -2,8 +2,11 @@
 #ifndef REDUCEDHESSCOULOMBDIELEC_H
 #define REDUCEDHESSCOULOMBDIELEC_H
 
-#include <protomol/type/Matrix3By3.h>
 #include <protomol/topology/ExclusionTable.h>
+#include <protomol/type/Matrix3By3.h>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   class GenericTopology;

@@ -3,7 +3,6 @@
 
 #include <protomol/base/Module.h>
 #include <protomol/config/InputValue.h>
-
 #include <string>
 
 namespace ProtoMol {

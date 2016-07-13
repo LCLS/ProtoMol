@@ -21,12 +21,12 @@
                    jcofflan@users.sourceforge.net
 
 \*******************************************************************/
-#include <protomol/type/String.h>
+#include <ctype.h>
 #include <protomol/base/Exception.h>
-
+#include <protomol/type/String.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
+#include <sys/errno.h>
 
 using namespace std;
 using namespace ProtoMol;

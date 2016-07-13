@@ -1,13 +1,16 @@
-#include <protomol/output/OutputScreen.h>
-#include <protomol/output/OutputCache.h>
-#include <protomol/integrator/Integrator.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/module/MainModule.h>
 #include <protomol/ProtoMolApp.h>
-#include <protomol/module/OutputModule.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/integrator/Integrator.h>
+#include <protomol/output/OutputCache.h>
+#include <protomol/output/OutputScreen.h>
+#include <algorithm>
+#include <iostream>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/base/Report.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

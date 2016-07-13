@@ -1,5 +1,8 @@
+#include <math.h>
 #include <protomol/force/hessian/ReducedHessAngle.h>
-#include <protomol/base/Report.h>
+#include <ostream>
+
+#include "protomol/type/Matrix3By3.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -1,5 +1,7 @@
 #include <protomol/type/Vector3DBlock.h>
-#include <protomol/type/Array.h>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/type/Vector3D.h"
 
 using namespace std;
 using namespace ProtoMol;

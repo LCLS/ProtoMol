@@ -5,6 +5,9 @@
 #include <protomol/io/Reader.h>
 #include <protomol/type/EigenvectorInfo.h>
 #include <protomol/type/TypeSelection.h>
+#include <string>
+
+#include "protomol/io/File.h"
 
 namespace ProtoMol {
   //____PDBReader
@@ -12,6 +15,8 @@ namespace ProtoMol {
   /**
    * Reads an EigenvectorInfo ASCII file.
    */
+struct EigenvectorInfo;
+
   class EigenvectorTextReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

@@ -1,8 +1,24 @@
+#include <math.h>
+#include <protomol/base/Lapack.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
 #include <protomol/topology/TopologyUtilities.h>
 #include <protomol/type/ScalarStructure.h>
+#include <stddef.h>
+#include <ostream>
+#include <string>
+#include <vector>
 
-#include <protomol/base/Lapack.h>
+#include "protomol/ProtoMolApp.h"
+#include "protomol/base/Exception.h"
+#include "protomol/base/MathUtilities.h"
+#include "protomol/base/PMConstants.h"
+#include "protomol/base/Report.h"
+#include "protomol/integrator/Integrator.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/EigenvectorInfo.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace ProtoMol::Report;
 

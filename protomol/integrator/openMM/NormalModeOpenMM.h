@@ -1,12 +1,20 @@
 #ifndef NORMALMODEOPENMM_H
 #define NORMALMODEOPENMM_H
 
-#include <protomol/integrator/openMM/OpenMMIntegrator.h>
 #include <protomol/integrator/normal/NormalModeUtilities.h>
+#include <protomol/integrator/openMM/OpenMMIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
-	class ScalarStructure;
 	class ForceGroup;
+	class ScalarStructure;
+class ProtoMolApp;
+class STSIntegrator;
+class Value;
+struct Parameter;
 
 	class NormalModeOpenMM : public OpenMMIntegrator, public NormalModeUtilities {
 		public:

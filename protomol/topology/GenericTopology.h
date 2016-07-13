@@ -2,22 +2,26 @@
 #ifndef GENERICTOPOLOGY_H
 #define GENERICTOPOLOGY_H
 
+#include <protomol/base/Makeable.h>
+#include <protomol/base/Zap.h>
+#include <protomol/topology/Angle.h>
 #include <protomol/topology/Atom.h>
 #include <protomol/topology/AtomType.h>
-#include <protomol/topology/Angle.h>
+#include <protomol/topology/BankLennardJonesParameterTable.h>
 #include <protomol/topology/Bond.h>
-#include <protomol/topology/Torsion.h>
 #include <protomol/topology/ExclusionTable.h>
 #include <protomol/topology/ExclusionType.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/base/Makeable.h>
-#include <protomol/topology/Molecule.h>
-#include <protomol/base/Zap.h>
-
-#include <protomol/topology/RBTorsion.h>
-
 #include <protomol/topology/LennardJonesParameterTable.h>
-#include <protomol/topology/BankLennardJonesParameterTable.h>
+#include <protomol/topology/Molecule.h>
+#include <protomol/topology/RBTorsion.h>
+#include <protomol/topology/Torsion.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <stddef.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //________________________________________ GenericTopology
@@ -50,6 +54,10 @@ namespace ProtoMol {
    */
 
   ///Available force fields
+class Value;
+class Vector3DBlock;
+struct Parameter;
+
   enum ForceFieldType {
     CHARMM,
     GROMACS

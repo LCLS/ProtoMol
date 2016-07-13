@@ -1,5 +1,7 @@
 #include <protomol/topology/AngleInfo.h>
 
+#include "protomol/type/Real.h"
+
 using namespace ProtoMol;
 AngleInfo::AngleInfo() {
   my_angle = 0.0;

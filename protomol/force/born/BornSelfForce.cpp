@@ -1,4 +1,10 @@
 #include <protomol/force/born/BornSelfForce.h>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/SimpleTypes.h"
+
 using namespace std;
 using namespace ProtoMol;
 //____ BornSelfForce

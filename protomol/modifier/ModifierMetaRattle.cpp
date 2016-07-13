@@ -1,6 +1,12 @@
-#include <protomol/modifier/ModifierMetaRattle.h>
+#include <math.h>
 #include <protomol/ProtoMolApp.h>
-#include <protomol/topology/Topology.h>
+#include <protomol/modifier/ModifierMetaRattle.h>
+#include <vector>
+
+#include "protomol/modifier/ModifierMetaRattleShake.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol;

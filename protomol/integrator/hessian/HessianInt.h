@@ -2,19 +2,29 @@
 #ifndef HESSIANINT_H
 #define HESSIANINT_H
 
-#include <protomol/integrator/STSIntegrator.h>
 #include <protomol/force/Force.h>
-#include <protomol/type/Vector3DBlock.h>
+#include <protomol/integrator/STSIntegrator.h>
 #include <protomol/integrator/hessian/BlockHessian.h>
 #include <protomol/integrator/hessian/BlockHessianDiagonalize.h>
 #include <protomol/type/TypeSelection.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+
+namespace ProtoMol {
+class ProtoMolApp;
+class Value;
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace std;
 
 namespace ProtoMol {
-  class ScalarStructure;
   class ForceGroup;
   class ReducedHessAngle;
+  class ScalarStructure;
 
   //____ HessianInt
   class HessianInt : public STSIntegrator {

@@ -1,5 +1,8 @@
 #include <protomol/type/PDB.h>
 
+#include "protomol/base/Report.h"
+#include "protomol/type/Vector3DBlock.h"
+
 using namespace std;
 using namespace ProtoMol::Report;
 using namespace ProtoMol;

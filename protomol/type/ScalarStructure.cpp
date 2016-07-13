@@ -1,5 +1,8 @@
 #include <protomol/type/ScalarStructure.h>
 
+#include "protomol/base/Proxy.h"
+#include "protomol/type/Vector3D.h"
+
 using namespace ProtoMol;
 //____ ScalarStructure
 ScalarStructure::ScalarStructure() :

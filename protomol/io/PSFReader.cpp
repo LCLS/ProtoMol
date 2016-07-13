@@ -1,8 +1,13 @@
-#include <protomol/io/PSFReader.h>
-
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/PSFReader.h>
+#include <stddef.h>
+#include <algorithm>
+#include <istream>
+#include <vector>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/PSF.h"
 
 //____#define DEBUG_PSF
 

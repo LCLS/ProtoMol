@@ -1,15 +1,21 @@
-#include <protomol/integrator/hessian/BlockHessianDiagonalize.h>
-#include <protomol/integrator/hessian/BlockHessian.h>
-
-#include <protomol/base/Report.h>
-
-#include <protomol/type/BlockMatrix.h>
-
+#include <math.h>
 #include <protomol/base/Lapack.h>
-
-#include <iostream>
-#include <stdio.h>
+#include <protomol/base/Report.h>
+#include <protomol/integrator/hessian/BlockHessian.h>
+#include <protomol/integrator/hessian/BlockHessianDiagonalize.h>
+#include <protomol/type/BlockMatrix.h>
+#include <algorithm>
 #include <fstream>
+#include <new>
+#include <string>
+
+#include "protomol/base/Exception.h"
+#include "protomol/base/Timer.h"
+#include "protomol/integrator/StandardIntegrator.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

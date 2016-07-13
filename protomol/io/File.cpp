@@ -1,15 +1,8 @@
-#include <protomol/io/File.h>
-
 #include <protomol/base/SystemUtilities.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/base/Zap.h>
-#include <protomol/type/String.h>
+#include <protomol/io/File.h>
 
 using namespace std;
 using namespace ProtoMol;
-
-#include <sstream>
-#include <iostream>
 
 //____ File
 File::File() : mode(ios::in | ios::out) {}

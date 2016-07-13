@@ -2,13 +2,17 @@
 #ifndef OUTPUTDIHEDRALS_H
 #define OUTPUTDIHEDRALS_H
 
-#include <string>
-#include <vector>
-#include <set>
-#include <algorithm>
-
 #include <protomol/output/Output.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <algorithm>
+#include <set>
+#include <string>
+#include <vector>
+
+namespace ProtoMol {
+class Value;
+struct Parameter;
+}  // namespace ProtoMol
 
 #ifdef HAVE_LIBFAH
 #include <cbang/os/File.h>

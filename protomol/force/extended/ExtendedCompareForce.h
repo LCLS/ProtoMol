@@ -8,6 +8,11 @@
 namespace ProtoMol {
   //________________________________________ ExtendedCompareForce
 
+class Force;
+class GenericTopology;
+class ScalarStructure;
+class Vector3DBlock;
+
   class ExtendedCompareForce : public CompareForce, public ExtendedForce {
     // This class contains the definition of one force
 

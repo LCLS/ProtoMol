@@ -1,15 +1,17 @@
-#include <protomol/force/ForceGroup.h>
-
-#include <protomol/force/system/SystemForce.h>
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/force/extended/ExtendedForce.h>
-#include <protomol/force/MollyForce.h>
-#include <protomol/force/MetaForce.h>
-#include <protomol/base/TimerStatistic.h>
 #include <protomol/ProtoMolApp.h>
+#include <protomol/base/TimerStatistic.h>
+#include <protomol/force/ForceGroup.h>
+#include <protomol/force/MetaForce.h>
+#include <protomol/force/MollyForce.h>
+#include <protomol/force/extended/ExtendedForce.h>
+#include <protomol/force/system/SystemForce.h>
 #include <protomol/parallel/Parallel.h>
+#include <protomol/topology/GenericTopology.h>
+#include <stddef.h>
+
+#include "protomol/base/MakeableDefinition.h"
+#include "protomol/base/Timer.h"
+#include "protomol/force/Force.h"
 
 //____#define DEBUG_OUTSTANDING_MSG
 

@@ -1,7 +1,5 @@
 #include "Lapack.h"
 
-#include <protomol/base/Exception.h>
-
 #if defined(HAVE_LAPACK)
 #include <protomol/integrator/hessian/LapackProtomol.h>
 #elif defined(HAVE_SIMTK_LAPACK)

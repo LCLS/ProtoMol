@@ -7,13 +7,15 @@
 #define COMM_NNCOORD 050363
 #define NUMCONN      20
 
-#include "stdtypes.h"
 #include <sys/types.h>
+
+#include "stdtypes.h"
 
 #if defined _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <winsock.h>
+
 typedef int socklen_t;  //  Unix socket length
 
 #else

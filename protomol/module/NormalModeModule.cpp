@@ -1,24 +1,32 @@
-#include <protomol/module/NormalModeModule.h>
-
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/type/String.h>
+#include <protomol/integrator/normal/NormalModeBrownian.h>
+#include <protomol/integrator/normal/NormalModeCompLang.h>
+#include <protomol/integrator/normal/NormalModeDamping.h> 
+#include <protomol/integrator/normal/NormalModeDiagonalize.h>
+#include <protomol/integrator/normal/NormalModeLangLf.h>
+#include <protomol/integrator/normal/NormalModeLangevin.h>
+#include <protomol/integrator/normal/NormalModeLangevinLeapfrogSwitching.h>
+#include <protomol/integrator/normal/NormalModeMinimizer.h>
+#include <protomol/integrator/normal/NormalModeMori.h>
+#include <protomol/integrator/normal/NormalModeQuadratic.h>
+#include <protomol/integrator/normal/NormalModeRelax.h>
+#include <protomol/integrator/normal/NormalModeSubspaceSampling.h>
 #include <protomol/io/EigenvectorReader.h>
 #include <protomol/io/EigenvectorTextReader.h>
 #include <protomol/io/XYZReader.h>
-#include <protomol/integrator/normal/NormalModeLangevin.h>
-#include <protomol/integrator/normal/NormalModeLangLf.h>
-#include <protomol/integrator/normal/NormalModeLangevinLeapfrogSwitching.h>
-#include <protomol/integrator/normal/NormalModeMinimizer.h>
-#include <protomol/integrator/normal/NormalModeDiagonalize.h>
-#include <protomol/integrator/normal/NormalModeMori.h>
-#include <protomol/integrator/normal/NormalModeRelax.h>
-#include <protomol/integrator/normal/NormalModeBrownian.h>
-#include <protomol/integrator/normal/NormalModeDamping.h> 
-#include <protomol/integrator/normal/NormalModeQuadratic.h>
-#include <protomol/integrator/normal/NormalModeSubspaceSampling.h>
-#include <protomol/integrator/normal/NormalModeCompLang.h>
+#include <protomol/module/NormalModeModule.h>
+#include <ostream>
+#include <vector>
+
+#include "protomol/base/Report.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/Value.h"
+#include "protomol/factory/IntegratorFactory.h"
+#include "protomol/io/File.h"
+#include "protomol/type/EigenvectorInfo.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3DBlock.h"
 
 using namespace std;
 using namespace ProtoMol;

@@ -3,9 +3,13 @@
 #define PROTOMOL_OUTPUT_FINAL_XYZ_VEL_H
 
 #include <protomol/output/Output.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class Configuration;
+class Value;
+struct Parameter;
 
   class OutputFinalXYZVel : public Output {
   public:

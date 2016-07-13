@@ -2,9 +2,14 @@
 #define PROTOMOL_ANALYSIS_ANALYSIS_H
 
 #include <protomol/base/Makeable.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
 	class ProtoMolApp;
+	class Configuration;
+	class Value;
+	struct Parameter;
 
 	class Analysis : public Makeable<Analysis> {
 		public:

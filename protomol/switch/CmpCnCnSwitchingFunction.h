@@ -2,11 +2,14 @@
 #ifndef CMPCNCNSWITCHINGFUNCTION_H
 #define CMPCNCNSWITCHINGFUNCTION_H
 
-#include <vector>
-#include <string>
-
 #include <protomol/config/Parameter.h>
 #include <protomol/type/Matrix3By3.h>
+#include <cmath>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //____ CmpCnCnSwitchingFunction
@@ -14,6 +17,9 @@ namespace ProtoMol {
   /**
    * The switching function provide C2,3,4 or 6 with compliment continuous
    */
+class Value;
+struct Parameter;
+
   class CmpCnCnSwitchingFunction {
 
   public:

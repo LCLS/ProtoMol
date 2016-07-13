@@ -1,5 +1,9 @@
 #include <protomol/topology/ExclusionTable.h>
 #include <protomol/base/Report.h>
+#include <stddef.h>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

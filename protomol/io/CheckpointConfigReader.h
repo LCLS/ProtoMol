@@ -2,15 +2,21 @@
 #ifndef CHECKPOINTCONFIGREADER_H
 #define CHECKPOINTREADERREADER_H
 
-#include <protomol/io/Reader.h>
 #include <protomol/base/Random.h>
 #include <protomol/config/Configuration.h>
 #include <protomol/integrator/Integrator.h>
+#include <protomol/io/Reader.h>
+#include <iosfwd>
+#include <string>
 
 namespace ProtoMol {
   //_________________________________________________________CheckpointConfigReader
   /*
    */
+class Configuration;
+class Integrator;
+class Random;
+
   class CheckpointConfigReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

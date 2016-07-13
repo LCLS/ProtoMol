@@ -2,8 +2,11 @@
 #ifndef CONFIGURATIONREADER_H
 #define CONFIGURATIONREADER_H
 
-#include <protomol/io/Reader.h>
 #include <protomol/config/Configuration.h>
+#include <protomol/io/Reader.h>
+#include <string>
+
+#include "protomol/io/File.h"
 
 namespace ProtoMol {
   //_________________________________________________________ConfigurationReader
@@ -13,6 +16,8 @@ namespace ProtoMol {
    * a keyowrd (identifier) and a value with associated type and constraint.
    * The parsing is implemented in the traits of the types.
    */
+class Configuration;
+
   class ConfigurationReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment

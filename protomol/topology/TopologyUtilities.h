@@ -2,22 +2,25 @@
 #ifndef TOPOLOGYUTILITIES_H
 #define TOPOLOGYUTILITIES_H
 
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/type/Vector3D.h>
-#include <protomol/type/Matrix3By3.h>
-#include <protomol/type/Real.h>
-#include <protomol/topology/Torsion.h>
-#include <protomol/type/Stack.h>
 #include <protomol/topology/AngleInfo.h>
 #include <protomol/topology/Bond.h>
-
+#include <protomol/topology/Torsion.h>
+#include <protomol/type/Matrix3By3.h>
+#include <protomol/type/Real.h>
+#include <protomol/type/Stack.h>
+#include <protomol/type/Vector3D.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <set>
 #include <string>
 #include <vector>
-#include <set>
 
 
 
 namespace ProtoMol {
+class AngleInfo;
+class Vector3DBlock;
+template <class T> class Stack;
+
   enum {X_AXIS, Y_AXIS, Z_AXIS};
 
   class GenericTopology;

@@ -1,12 +1,24 @@
-#include <protomol/integrator/normal/NormalModeMinimizer.h>
+#include <math.h>
+#include <protomol/ProtoMolApp.h>
+#include <protomol/base/PMConstants.h>
 #include <protomol/base/Report.h>
+#include <protomol/integrator/normal/NormalModeMinimizer.h>
+#include <protomol/topology/GenericTopology.h>
 #include <protomol/type/ScalarStructure.h>
 #include <protomol/type/Vector3DBlock.h>
-#include <protomol/force/ForceGroup.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/topology/TopologyUtilities.h>
-#include <protomol/base/PMConstants.h>
-#include <protomol/ProtoMolApp.h>
+#include <stddef.h>
+#include <ostream>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/integrator/STSIntegrator.h"
+#include "protomol/integrator/StandardIntegrator.h"
+#include "protomol/integrator/normal/NormalModeUtilities.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/type/EigenvectorInfo.h"
+#include "protomol/type/SimpleTypes.h"
+#include "protomol/type/Vector3D.h"
 
 //#include "ModifierForceProjection.h"
 

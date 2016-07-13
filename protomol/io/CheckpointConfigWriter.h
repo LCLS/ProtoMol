@@ -2,12 +2,16 @@
 #ifndef CHECKPOINTCONFIGWRITER_H
 #define CHECKPOINTCONFIGWRITER_H
 
-#include <protomol/io/Writer.h>
 #include <protomol/base/Random.h>
 #include <protomol/integrator/Integrator.h>
+#include <protomol/io/Writer.h>
+#include <string>
 
 namespace ProtoMol {
   //____CheckpointConfigWriter
+
+class Integrator;
+class Random;
 
   class CheckpointConfigWriter : public Writer {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

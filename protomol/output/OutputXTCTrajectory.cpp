@@ -1,11 +1,25 @@
 #include "OutputXTCTrajectory.h"
 
-#include "OutputCache.h"
-
-#include <protomol/module/MainModule.h>
-#include <protomol/base/StringUtilities.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/module/MainModule.h>
+#include <ostream>
+
+#include "gromacs/gmxfio.h"
+#include "gromacs/types/simple.h"
+#include "protomol/base/PMConstants.h"
+#include "protomol/base/Report.h"
+#include "protomol/base/SmartPointer.h"
+#include "protomol/config/Configuration.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/OutputCache.h"
+#include "protomol/topology/GenericTopology.h"
+#include "protomol/type/SimpleTypes.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
 
 #ifdef HAVE_GROMACS
 extern "C" {

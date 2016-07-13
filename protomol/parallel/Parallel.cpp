@@ -3,19 +3,21 @@
 #include <mpi.h>
 #endif
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-#include <protomol/parallel/Parallel.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/type/Vector3DBlock.h>
+#include <unistd.h>
 #include <protomol/base/MathUtilities.h>
+#include <protomol/base/Report.h>
 #include <protomol/base/SystemUtilities.h>
 #include <protomol/base/TimerStatistic.h>
-#include <protomol/base/Report.h>
+#include <protomol/parallel/Parallel.h>
+#include <algorithm>
+#include <string>
+#include <vector>
 
-#include <unistd.h>
+#include "protomol/parallel/ParallelType.h"
+#include "protomol/type/Real.h"
+
+#include <protomol/type/ScalarStructure.h>
+#include <protomol/type/Vector3DBlock.h>
 
 using namespace std;
 using namespace ProtoMol::Report;

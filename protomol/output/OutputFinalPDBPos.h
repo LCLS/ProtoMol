@@ -2,10 +2,16 @@
 #ifndef PROTOMOL_OUTPUT_FINAL_PDB_POS_H
 #define PROTOMOL_OUTPUT_FINAL_PDB_POS_H
 
+#include <string>
+#include <vector>
+
 #include "Output.h"
+#include "protomol/output/Output.h"
 
 namespace ProtoMol {
   class Configuration;
+class Value;
+struct Parameter;
 
   class OutputFinalPDBPos : public Output {
     static const std::string keyword;

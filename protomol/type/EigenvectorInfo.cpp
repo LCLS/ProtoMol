@@ -1,5 +1,7 @@
 #include "protomol/type/EigenvectorInfo.h"
 
+#include <new>
+
 using namespace ProtoMol;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

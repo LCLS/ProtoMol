@@ -1,12 +1,16 @@
-#include <protomol/output/OutputXYZTrajectoryForce.h>
-#include <protomol/module/MainModule.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/integrator/Integrator.h>
-#include <protomol/base/StringUtilities.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/io/XYZTrajectoryWriter.h>
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Exception.h>
+#include <protomol/integrator/Integrator.h>
+#include <protomol/io/XYZTrajectoryWriter.h>
+#include <protomol/output/OutputXYZTrajectoryForce.h>
+#include <protomol/topology/GenericTopology.h>
+#include <stddef.h>
+#include <ostream>
+
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/output/Output.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -1,8 +1,15 @@
-#include <protomol/io/DCDTrajectoryWriter.h>
-
+#include <protomol/base/Exception.h>
 #include <protomol/base/Report.h>
 #include <protomol/base/StringUtilities.h>
-#include <protomol/base/Exception.h>
+#include <protomol/io/DCDTrajectoryWriter.h>
+#include <iostream>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/base/SystemUtilities.h"
+#include "protomol/io/Writer.h"
+#include "protomol/type/Vector3D.h"
+#include "protomol/type/Vector3DBlock.h"
+#include "protomol/type/XYZ.h"
 
 using namespace std;
 using namespace ProtoMol::Report;

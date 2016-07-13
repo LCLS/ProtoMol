@@ -2,10 +2,14 @@
 #ifndef C1SWITCHINGFUNCTION_H
 #define C1SWITCHINGFUNCTION_H
 
-#include <vector>
-
+#include <math.h>
 #include <protomol/config/Parameter.h>
 #include <protomol/type/Matrix3By3.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //____ C1SwitchingFunction
@@ -13,6 +17,9 @@ namespace ProtoMol {
   /**
    * The switching function provide C1 continues
    */
+class Value;
+struct Parameter;
+
   class C1SwitchingFunction {
   public:
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

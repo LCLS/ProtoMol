@@ -1,6 +1,11 @@
-#include <protomol/force/hessian/HessDihedral.h>
-#include <protomol/type/Vector3DBlock.h>
+#include <math.h>
 #include <protomol/base/Report.h>
+#include <protomol/force/hessian/HessDihedral.h>
+#include <vector>
+
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/topology/Torsion.h"
+#include "protomol/type/Matrix3By3.h"
 
 using namespace ProtoMol::Report;
 

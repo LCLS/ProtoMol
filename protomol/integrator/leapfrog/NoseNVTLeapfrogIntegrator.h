@@ -3,13 +3,20 @@
 #define NOSENVTLEAPFROGINTEGRATOR_H
 
 #include <protomol/integrator/STSIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   //____ NoseNVTLeapfrogIntegrator
 
-  class ScalarStructure;
   class ForceGroup;
   class ModifierFriction;
+  class ScalarStructure;
+class ProtoMolApp;
+class Value;
+struct Parameter;
 
   class NoseNVTLeapfrogIntegrator : public STSIntegrator {
     friend class ModifierFriction;

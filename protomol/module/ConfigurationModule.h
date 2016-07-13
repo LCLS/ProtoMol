@@ -3,13 +3,14 @@
 
 #include <protomol/base/Module.h>
 #include <protomol/config/InputValue.h>
-
-#include <vector>
 #include <string>
+#include <vector>
+
+#include "protomol/config/InputValueMacros.h"
 
 namespace ProtoMol {
-  class ProtoMolApp;
   class Configuration;
+  class ProtoMolApp;
 
   declareInputValue(InputConfig, STRING, NOTEMPTY)
 

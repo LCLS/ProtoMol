@@ -4,8 +4,18 @@
 
 #include <protomol/config/Parameter.h>
 #include <protomol/type/Vector3DBlock.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
+
+namespace ProtoMol {
+class Value;
+class Vector3DBlock;
+}  // namespace ProtoMol
+
 using namespace std;
 
 namespace ProtoMol {

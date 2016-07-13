@@ -1,9 +1,23 @@
 #ifndef OPENMMINTEGRATOR_H
 #define OPENMMINTEGRATOR_H
 
-#include <protomol/integrator/STSIntegrator.h>
-
 #include <OpenMM.h>
+#include <protomol/integrator/STSIntegrator.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+
+namespace OpenMM {
+class Context;
+class Integrator;
+class System;
+}  // namespace OpenMM
+namespace ProtoMol {
+class ProtoMolApp;
+class Value;
+struct Parameter;
+}  // namespace ProtoMol
 
 #ifdef HAVE_OPENMM_LTMD
 #include <LTMD/Integrator.h>
@@ -15,8 +29,8 @@
 #endif
 
 namespace ProtoMol {
-	class ScalarStructure;
 	class ForceGroup;
+	class ScalarStructure;
 	class Vector3DBlock;
 
 	class OpenMMIntegrator : public STSIntegrator {

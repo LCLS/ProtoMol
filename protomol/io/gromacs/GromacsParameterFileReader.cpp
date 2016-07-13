@@ -1,7 +1,13 @@
-#include <protomol/io/gromacs/GromacsParameterFileReader.h>
-#include <protomol/base/StringUtilities.h>
 #include <protomol/base/Report.h>
-#include <protomol/base/MathUtilities.h>
+#include <protomol/base/StringUtilities.h>
+#include <protomol/io/gromacs/GromacsParameterFileReader.h>
+#include <stddef.h>
+#include <iostream>
+#include <map>
+#include <vector>
+
+#include "protomol/io/Reader.h"
+#include "protomol/type/GromacsParameters.h"
 
 
 using namespace ProtoMol::Report;

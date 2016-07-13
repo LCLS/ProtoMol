@@ -2,15 +2,21 @@
 #ifndef NORMALMODEUTILITIES_H
 #define NORMALMODEUTILITIES_H
 
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/topology/GenericTopology.h>
 #include <protomol/ProtoMolApp.h>
-
-#include <protomol/type/EigenvectorInfo.h>
 #include <protomol/integrator/Integrator.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/type/EigenvectorInfo.h>
+#include <protomol/type/Vector3DBlock.h>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   class ScalarStructure;
+class GenericTopology;
+class Integrator;
+class ProtoMolApp;
+struct EigenvectorInfo;
+
     /**
     *
     * Specific NormalModeUtilities routines

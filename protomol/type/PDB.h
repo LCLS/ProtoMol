@@ -2,17 +2,24 @@
 #ifndef PDB_H
 #define PDB_H
 
+#include <protomol/base/Report.h>
+#include <protomol/type/Vector3DBlock.h>
+#include <stddef.h>
 #include <string>
 #include <vector>
 
-#include <protomol/type/Vector3DBlock.h>
-#include <protomol/base/Report.h>
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //___________________________________________________________________PDB
   /**
    * PDB container holding Atom's and coordinates
    */
+namespace Report {
+class MyStreamer;
+}  // namespace Report
+
   struct PDB {
     //___________________________________________________________________Atom
     /**

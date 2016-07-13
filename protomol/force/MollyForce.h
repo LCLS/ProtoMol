@@ -8,9 +8,9 @@
 namespace ProtoMol {
   class ForceGroup;
   class GenericTopology;
-  class Vector3DBlock;
-  class ScalarStructure;
   class ReducedHessAngle;
+  class ScalarStructure;
+  class Vector3DBlock;
 
   //________________________________________ MollyForce
 

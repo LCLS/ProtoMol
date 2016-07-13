@@ -3,9 +3,14 @@
 #define PROTOMOL_OUTPUT_H
 
 #include <protomol/base/Makeable.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class ProtoMolApp;
+class Configuration;
+class Value;
+struct Parameter;
 
   /***
      Base class of all Output classes to dump data at a given

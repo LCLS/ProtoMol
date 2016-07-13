@@ -2,12 +2,11 @@
 #ifndef PAR_H
 #define PAR_H
 
+#include <protomol/base/Report.h>
+#include <protomol/type/Real.h>
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
-
-#include <protomol/type/Real.h>
-#include <protomol/base/Report.h>
 
 namespace ProtoMol {
   //_________________________________________________________________PAR
@@ -18,6 +17,10 @@ namespace ProtoMol {
    * - angles are always kept in degrees
    * - simga's for Nonbonded are asummed to be Charmm28
    */
+namespace Report {
+class MyStreamer;
+}  // namespace Report
+
   class PAR {
   public:
     //______________________________________________________________________Bond

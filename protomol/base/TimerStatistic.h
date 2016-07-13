@@ -2,10 +2,9 @@
 #ifndef TIMERSTATISTIC_H
 #define TIMERSTATISTIC_H
 
-#include <string>
-
-#include <protomol/base/Timer.h>
 #include <protomol/base/Report.h>
+#include <protomol/base/Timer.h>
+#include <string>
 
 namespace ProtoMol {
   //____________________________________________________________ TimerStatistic
@@ -16,6 +15,10 @@ namespace ProtoMol {
    * TimerStatistic::timer[TimerStatistic::RUN].stop();@n
    * TimerStatistic::timer[TimerStatistic::RUN].reset();@n
    */
+namespace Report {
+class MyStreamer;
+}  // namespace Report
+
   class TimerStatistic {
 public:
     enum Enum {

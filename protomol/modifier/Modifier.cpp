@@ -1,10 +1,7 @@
-#include <protomol/modifier/Modifier.h>
-
 #include <protomol/ProtoMolApp.h>
 #include <protomol/base/Report.h>
+#include <protomol/modifier/Modifier.h>
 #include <protomol/topology/GenericTopology.h>
-
-#include <sstream>
 
 using namespace std;
 using namespace ProtoMol::Report;

@@ -4,9 +4,12 @@
 
 #include <protomol/base/Factory.h>
 #include <protomol/topology/GenericTopology.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
   class Configuration;
+class Value;
 
   //________________________________________ TopologyFactory
   class TopologyFactory : public Factory<GenericTopology> {

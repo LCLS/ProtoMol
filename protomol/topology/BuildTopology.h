@@ -1,13 +1,14 @@
 #ifndef BUILD_TOPOLOGY_H
 #define BUILD_TOPOLOGY_H
 
-#include <protomol/topology/ExclusionType.h>
 #include <protomol/topology/CoulombSCPISMParameterTable.h>
+#include <protomol/topology/ExclusionType.h>
 
 namespace ProtoMol {
   class GenericTopology;
-  class PSF;
   class PAR;
+  class PSF;
+struct CoulombSCPISMParameterTable;
 
   void buildExclusionTable(GenericTopology *topo,
                            const ExclusionType &exclusionType);

@@ -1,11 +1,14 @@
 #ifndef CUBICCELLMANAGER_H
 #define CUBICCELLMANAGER_H
 
-#include <protomol/topology/ArrayCellListStructure.h>
 #include <protomol/config/Parameter.h>
+#include <protomol/topology/ArrayCellListStructure.h>
 #include <protomol/type/Vector3D.h>
-
+#include <string>
 #include <vector>
+
+#include "protomol/topology/CubicCellLocation.h"
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
 	/**
@@ -13,6 +16,9 @@ namespace ProtoMol {
 	 * in case of periodic boundary conditions the cells are not cubic any more
 	 * in order to fit the system by multiples of the cell dimensions.
 	 */
+class Value;
+struct Parameter;
+
 	class CubicCellManager {
 		public:
 			/// topology and cell location structure of the cell

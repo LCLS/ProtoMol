@@ -2,10 +2,14 @@
 #ifndef PERODICBOUNDARYCONDITIONS_H
 #define PERODICBOUNDARYCONDITIONS_H
 
-#include <string>
-
+#include <math.h>
 #include <protomol/config/Parameter.h>
 #include <protomol/type/Vector3DBlock.h>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3D.h"
 
 namespace ProtoMol {
   //________________________________________ PeriodicBoundaryConditions
@@ -16,6 +20,10 @@ namespace ProtoMol {
    * The class use a couple of shorts cut's to avoid rint and to many div's and
    * mul's.
    */
+class Value;
+class Vector3DBlock;
+struct Parameter;
+
   class PeriodicBoundaryConditions {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors, assignment

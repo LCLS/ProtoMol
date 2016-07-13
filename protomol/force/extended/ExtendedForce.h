@@ -6,12 +6,13 @@
 
 namespace ProtoMol {
   class CompareForce;
-  class TimeForce;
+  class CompareForce;
   class ForceGroup;
   class GenericTopology;
-  class Vector3DBlock;
-  class CompareForce;
   class TimeForce;
+  class TimeForce;
+  class Vector3DBlock;
+class ScalarStructure;
 
   //________________________________________ ExtendedForce
 

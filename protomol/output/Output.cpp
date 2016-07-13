@@ -1,9 +1,14 @@
-#include <protomol/output/Output.h>
-#include <protomol/config/Configuration.h>
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/module/MainModule.h>
 #include <protomol/ProtoMolApp.h>
+#include <protomol/config/Configuration.h>
+#include <protomol/module/MainModule.h>
+#include <protomol/output/Output.h>
+#include <algorithm>
+
+#include "protomol/base/MathUtilities.h"
+#include "protomol/config/ConstraintValueType.h"
+#include "protomol/config/Parameter.h"
+#include "protomol/config/Value.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 using namespace ProtoMol;

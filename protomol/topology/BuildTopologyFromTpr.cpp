@@ -1,17 +1,29 @@
-#include <protomol/topology/BuildTopologyFromTpr.h>
-
-#include <protomol/topology/BuildTopology.h>
-
+#include <ctype.h>
+#include <math.h>
 #include <protomol/base/Exception.h>
 #include <protomol/base/SystemUtilities.h>
-#include <protomol/type/String.h>
-#include <protomol/topology/TopologyUtilities.h>
+#include <protomol/topology/BuildTopology.h>
+#include <protomol/topology/BuildTopologyFromTpr.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/LennardJonesParameterTable.h>
+#include <stdlib.h>
+#include <iomanip>
+#include <iostream>
 #include <vector>
 
-#include <sstream>
-#include <iomanip>
+#include "protomol/base/MathUtilities.h"
+#include "protomol/base/PMConstants.h"
+#include "protomol/base/Report.h"
+#include "protomol/topology/Angle.h"
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/Bond.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/topology/LennardJonesParameters.h"
+#include "protomol/topology/RBTorsion.h"
+#include "protomol/topology/Torsion.h"
+#include "protomol/type/Real.h"
+#include "protomol/type/Vector3DBlock.h"
 
 // GROMACS headers
 #if defined(HAVE_GROMACS)

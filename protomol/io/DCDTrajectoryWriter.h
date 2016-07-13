@@ -2,10 +2,15 @@
 #ifndef DCDTRAJECTORYWRITER_H
 #define DCDTRAJECTORYWRITER_H
 
-#include <protomol/io/Writer.h>
-#include <protomol/type/XYZ.h>
 #include <protomol/base/SystemUtilities.h>
+#include <protomol/io/Writer.h>
 #include <protomol/type/TypeSelection.h>
+#include <protomol/type/XYZ.h>
+#include <iosfwd>
+#include <string>
+#include <vector>
+
+#include "protomol/type/Real.h"
 
 namespace ProtoMol {
   //____DCDTrajectoryWriter
@@ -14,6 +19,9 @@ namespace ProtoMol {
    * Writes DCD trajectories and updates the number of coordinate sets
    * after each write, no need to know the final number of sets.
    */
+class Vector3DBlock;
+struct XYZ;
+
   class DCDTrajectoryWriter : public Writer {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Typedef

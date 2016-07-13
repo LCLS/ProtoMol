@@ -2,17 +2,29 @@
 #ifndef BORNRADII_H
 #define BORNRADII_H
 
-#include <protomol/topology/GenericTopology.h>
-#include <protomol/type/ScalarStructure.h>
-#include <protomol/topology/ExclusionTable.h>
-#include <protomol/type/Real.h>
-#include <protomol/type/Vector3D.h>
+#include <math.h>
+#include <protomol/base/Report.h>
 #include <protomol/config/Parameter.h>
 #include <protomol/force/born/BornSwitch.h>
 #include <protomol/parallel/Parallel.h>
+#include <protomol/topology/ExclusionTable.h>
+#include <protomol/topology/GenericTopology.h>
+#include <protomol/type/Real.h>
+#include <protomol/type/ScalarStructure.h>
+#include <protomol/type/Vector3D.h>
 #include <string>
+#include <vector>
 
-#include <protomol/base/Report.h>
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/Molecule.h"
+
+namespace ProtoMol {
+class ScalarStructure;
+class Value;
+class Vector3DBlock;
+struct Parameter;
+}  // namespace ProtoMol
 
 using namespace ProtoMol::Report;
 

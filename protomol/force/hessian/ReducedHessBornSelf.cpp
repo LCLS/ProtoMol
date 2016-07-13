@@ -1,6 +1,14 @@
+#include <math.h>
+#include <protomol/force/born/BornSwitch.h>
 #include <protomol/force/hessian/ReducedHessBornSelf.h>
 #include <protomol/topology/GenericTopology.h>
-#include <protomol/force/born/BornSwitch.h>
+#include <string>
+#include <vector>
+
+#include "protomol/topology/Atom.h"
+#include "protomol/topology/AtomType.h"
+#include "protomol/topology/ExclusionTable.h"
+#include "protomol/type/Matrix3By3.h"
 
 using namespace ProtoMol;
 //____ ReducedHessBornSelf

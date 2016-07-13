@@ -3,11 +3,16 @@
 #define SYSTEMCOMPAREFORCE_H
 
 #include <protomol/force/CompareForce.h>
-#include <protomol/force/system/SystemForce.h>
 #include <protomol/force/hessian/ReducedHessAngle.h>
+#include <protomol/force/system/SystemForce.h>
 
 namespace ProtoMol {
   //________________________________________ SystemCompareForce
+
+class Force;
+class GenericTopology;
+class ScalarStructure;
+class Vector3DBlock;
 
   class SystemCompareForce : public CompareForce, public SystemForce {
     // This class contains the definition of one force

@@ -1,5 +1,8 @@
 #include <protomol/topology/VacuumBoundaryConditions.h>
 
+#include "protomol/base/PMConstants.h"
+#include "protomol/config/Value.h"
+
 using namespace std;
 using namespace ProtoMol;
 //____ VacuumBoundaryConditions

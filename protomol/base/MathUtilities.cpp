@@ -1,5 +1,10 @@
 #include <protomol/base/MathUtilities.h>
 #include <protomol/base/Timer.h>
+#include <stdlib.h>
+
+#include "protomol/base/PMConstants.h"
+#include "protomol/base/Random.h"
+#include "protomol/type/SimpleTypes.h"
 
 using namespace std;
 

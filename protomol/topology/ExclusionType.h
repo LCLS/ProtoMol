@@ -3,6 +3,7 @@
 #define EXCLUSIONTYPE_H
 
 #include <protomol/type/AbstractEnumType.h>
+#include <string>
 
 namespace ProtoMol {
   //________________________________________ ExclusionEnum

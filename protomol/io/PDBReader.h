@@ -5,6 +5,8 @@
 #include <protomol/io/Reader.h>
 #include <protomol/type/PDB.h>
 #include <protomol/type/XYZ.h>
+#include <string>
+#include <vector>
 
 namespace ProtoMol {
 
@@ -12,6 +14,9 @@ namespace ProtoMol {
   /**
    * Reads a PDB (ASCII) file, ATOM, HETATOM and TER record only.
    */
+class Vector3DBlock;
+struct XYZ;
+
   class PDBReader : public Reader {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructors, destructors (both default here), assignment
