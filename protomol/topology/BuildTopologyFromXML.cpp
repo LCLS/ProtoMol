@@ -417,8 +417,8 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         Bond tempbond;
         tempbond.restLength = atof(fnbchild->Attribute( "length" )) * Constant::NM_ANGSTROM;
         tempbond.springConstant = atof(fnbchild->Attribute( "k" )) * Constant::KJ_KCAL * Constant::ANGSTROM_NM * Constant::ANGSTROM_NM * 0.5;
-        tempbond.atom1 = atoi(fnbchild->Attribute( "particle1" )) - 1;
-        tempbond.atom2 = atoi(fnbchild->Attribute( "particle2" )) - 1;
+        tempbond.atom1 = atoi(fnbchild->Attribute( "particle1" ));
+        tempbond.atom2 = atoi(fnbchild->Attribute( "particle2" ));
         topo->bonds.push_back(tempbond);
         
         // populate the vector of bonds maintained at each atom
@@ -455,9 +455,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         
         Angle tempangle;
         // ####note fliping of atoms
-        tempangle.atom1 = atoi(fnbchild->Attribute( "particle1" )) - 1;
-        tempangle.atom2 = atoi(fnbchild->Attribute( "particle2" )) - 1;
-        tempangle.atom3 = atoi(fnbchild->Attribute( "particle3" )) - 1;
+        tempangle.atom1 = atoi(fnbchild->Attribute( "particle1" ));
+        tempangle.atom2 = atoi(fnbchild->Attribute( "particle2" ));
+        tempangle.atom3 = atoi(fnbchild->Attribute( "particle3" ));
         tempangle.restAngle = atof(fnbchild->Attribute( "k" )) * M_PI/180.0;
         tempangle.forceConstant = atof(fnbchild->Attribute( "length" ))
         * Constant::KJ_KCAL * 0.5; // times 1/2 as Amber is 1/2 k(a-a_0)^2;
@@ -475,6 +475,41 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     }
     
     // ~~~~Proper Dihedrals~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //find force of type PeriodicTorsionForce
+    if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "PeriodicTorsionForce") == 0){
+      report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      
+      //find children of force, HarmonicAngleForce
+      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("tortions");
+      
+      //number in file
+      const int fhacount = atoi(forceharmonic->Attribute( "count" ));
+      
+      report << "Periodic Torsion count " << fhacount << endr;
+      
+      //loop through it
+      for (tinyxml2::XMLElement* fnbchild = forceharmonic->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
+        
+        //report << debug(810) << "PeriodicTorsion k " << fnbchild->Attribute( "k" ) << endr;
+        
+        Torsion torsion;
+        torsion.atom1 = atoi(fnbchild->Attribute( "particle1" ));
+        torsion.atom2 = atoi(fnbchild->Attribute( "particle2" ));
+        torsion.atom3 = atoi(fnbchild->Attribute( "particle3" ));
+        torsion.atom4 = atoi(fnbchild->Attribute( "particle4" ));
+        torsion.periodicity.push_back((int)atoi(fnbchild->Attribute( "periodicity" ))); // equiv to mult.
+        torsion.phaseShift.push_back(atof(fnbchild->Attribute( "phase" )) * M_PI / 180.0); // phiA
+        torsion.forceConstant.push_back(atof(fnbchild->Attribute( "k" )) *
+                                        Constant::KJ_KCAL); // cpA
+        torsion.multiplicity = 1;
+        topo->dihedrals.push_back(torsion);
+      }
+      
+      //test right number
+      if(topo->dihedrals.size() != fhacount){
+        report << error << "Number of dihedrals wrong " << topo->dihedrals.size() << ". " << fhacount << endr;
+      }
+    }
 
   }
   
