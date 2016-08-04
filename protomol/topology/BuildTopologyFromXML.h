@@ -16,7 +16,6 @@ namespace ProtoMol {
   void buildTopologyFromXML(GenericTopology *topo,
                                 Vector3DBlock &pos, Vector3DBlock &vel,
                                 const string &fname,
-                                const string &posfname,
                                 std::vector<PDB::Atom>);
 
   //parse functions

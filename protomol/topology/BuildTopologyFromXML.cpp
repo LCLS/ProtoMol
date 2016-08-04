@@ -8,10 +8,14 @@
 #include <protomol/topology/TopologyUtilities.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/LennardJonesParameterTable.h>
-#include <vector>
+#include <protomol/tinyxml2/tinyxml2.h>
 
+#include <vector>
 #include <sstream>
 #include <iomanip>
+
+#include <iostream>
+#include <fstream>
 
 // GROMACS headers
 #if defined(HAVE_GROMACS)
@@ -23,6 +27,7 @@ extern "C" {
 using namespace std;
 using namespace ProtoMol;
 using namespace ProtoMol::Report;
+using namespace tinyxml2;
 
 // use GROMACS exclusions?
 #define GROMACSEXCL
@@ -38,7 +43,6 @@ using namespace ProtoMol::Report;
 // main build topology
 void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
                                     Vector3DBlock &vel, const string &fname,
-                                    const string &posfname,
                                     std::vector<PDB::Atom> atoms) {
   // define versions of TPR file
   // Version 4.5.3 has tpx_version=73 and includes gb_radius in the tpr file
@@ -70,6 +74,47 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   topo->rb_dihedrals.clear();
   
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Read the XML file
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  /*string line;
+  ifstream myfile (fname.c_str());
+  if (myfile.is_open())
+  {
+    while ( getline (myfile,line) )
+    {
+      cout << line << '\n';
+    }
+    myfile.close();
+  }*/
+  //create XML object and read file into it
+  XMLDocument doc;
+  doc.LoadFile( fname.c_str() );
+  
+  if(doc.ErrorID()) report << error << "XML File error opening " << fname << endr;
+  
+  //~~~~get particle mass information~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //create vectors for masses
+  std::vector<int> massindex;
+  std::vector<float> massvalue;
+
+  //load element containing 'particle'
+  tinyxml2::XMLElement *levelElement = doc.FirstChildElement("forcefield")->FirstChildElement("particles");
+  
+  //loop through it
+  for (tinyxml2::XMLElement* child = levelElement->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
+  {
+    // do something with each child element
+    report << debug(800) << "Mass of particle " << child->Attribute( "mass" ) << ", " << child->Attribute( "index" ) << endr;
+    const float xmlmass = atof(child->Attribute( "mass" ));
+    const int xmlindex = atoi(child->Attribute( "index" ));
+    massindex.push_back(xmlindex);
+    massvalue.push_back(xmlmass);
+  }
+  
+  //test no error
+  if(doc.ErrorID()) report << error << "XML File parsing error!" << endr;
+  
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atom types
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //create set for atom types
@@ -80,7 +125,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   
   //loop over input atom data
   for(int i=0; i<atoms.size(); i++){
-    report << "Element " << atoms[i].elementName << endr;
+    //report << "Element " << atoms[i].elementName << endr;
     atomtypes.insert(atoms[i].elementName);
     residues.insert(atoms[i].residueName);
   }
@@ -149,6 +194,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     
     // Update atom type if 'name' not initialized?
     if (!tempatomtype->name.length()) {
+      //report << "setting type " << i << endr;
       // type not set
       // generate type name from first atom char and index
       stringstream ss;
@@ -156,7 +202,21 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       string str = string(atoms[i].elementName).substr((size_t)0, (size_t)1);
       
       tempatomtype->name = str + ss.str();
-      tempatomtype->mass = 1.0;//atom[i].m; ####TODO get mass from XML
+      
+      //get mass, if available
+      vector<int>::iterator itm;
+      if ((itm=std::find(massindex.begin(), massindex.end(), atoms[i].elementNum - 1)) != massindex.end())
+      {
+        // Element in vector.
+        const int itmi = distance(massindex.begin(), itm);
+        //report << "Mass " << massvalue[itmi] << endr;
+        tempatomtype->mass = massvalue[itmi];
+      }else{
+        tempatomtype->mass = 0.0;//atom[i].m; ####TODO get mass from XML
+        THROW("Mass of atom undefined.");
+      }
+      //~~~~~~~~
+      
       tempatomtype->charge = 0.001;//atom[i].q; ####TODO get charge from XML
       // ####just take first char for now.
       tempatomtype->symbolName = str;

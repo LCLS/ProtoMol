@@ -323,7 +323,6 @@ void ProtoMolApp::build() {
     }else{  //else from XML
       buildTopologyFromXML( topology, positions, velocities,
                            config[InputGromacsXMLFile::keyword].getString(),
-                           config[InputPositions::keyword].getString(),
                            outputCache.getAtoms());
     }
   }
