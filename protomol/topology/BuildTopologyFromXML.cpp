@@ -157,7 +157,8 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   
   //loop through it
   for (tinyxml2::XMLElement* child = levelElemente->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
-    
+    if(strcmp(child->Name(), "force") == 0) report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+
     //find force of type NonbondedForce
     if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "NonbondedForce") == 0){
       report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
@@ -184,7 +185,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       }
                                                                                             
       //go as there is only one set
-      break;
+      //break;
     }
   }
   
@@ -384,16 +385,20 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   int ignoredBonds = 0;   // preset ignored bonds
   int ignoredAngles = 0;  // and angles
 
-  // ~~~~Bonds~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~Bonds/Angles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //load element containing 'forcefield'
-  tinyxml2::XMLElement *levelElementb = doc.FirstChildElement("forcefield");
+  //tinyxml2::XMLElement *levelElementb = doc.FirstChildElement("forcefield");
   
   //loop through it to find force, HarmonicBondForce
-  for (tinyxml2::XMLElement* child = levelElementb->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
+  for (tinyxml2::XMLElement* child = levelElemente->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
     
+    //if force, report it
+    if(strcmp(child->Name(), "force") == 0) report << "xml name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+    
+    // ~~~~Bonds~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //find force of type HarmonicBondForce
     if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "HarmonicBondForce") == 0){
-      //report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
       
       //find children of force, HarmonicBondForce
       tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("bonds");
@@ -401,19 +406,19 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       //number in file
       const int fhcount = atoi(forceharmonic->Attribute( "count" ));
       
-      report << "Harmonic count " << fhcount << endr;
+      report << "Harmonic bond count " << fhcount << endr;
       
       //loop through it
       for (tinyxml2::XMLElement* fnbchild = forceharmonic->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
         
-        report << debug(910) << "Harmonic k " << fnbchild->Attribute( "k" ) << endr;
+        //report << debug(810) << "Harmonic k " << fnbchild->Attribute( "k" ) << endr;
         
         //create bond
         Bond tempbond;
         tempbond.restLength = atof(fnbchild->Attribute( "length" )) * Constant::NM_ANGSTROM;
         tempbond.springConstant = atof(fnbchild->Attribute( "k" )) * Constant::KJ_KCAL * Constant::ANGSTROM_NM * Constant::ANGSTROM_NM * 0.5;
-        tempbond.atom1 = atof(fnbchild->Attribute( "particle1" )) - 1;
-        tempbond.atom2 = atof(fnbchild->Attribute( "particle2" )) - 1;
+        tempbond.atom1 = atoi(fnbchild->Attribute( "particle1" )) - 1;
+        tempbond.atom2 = atoi(fnbchild->Attribute( "particle2" )) - 1;
         topo->bonds.push_back(tempbond);
         
         // populate the vector of bonds maintained at each atom
@@ -428,16 +433,55 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       if(topo->bonds.size() != fhcount){
         report << error << "Number of bonds wrong " << topo->bonds.size() << ". " << fhcount << endr;
       }
-      
-      //go as there is only one set
-      break;
     }
+    
+    // ~~~~Angles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //find force of type HarmonicAngleForce
+    if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "HarmonicAngleForce") == 0){
+      report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      
+      //find children of force, HarmonicAngleForce
+      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("angles");
+      
+      //number in file
+      const int fhacount = atoi(forceharmonic->Attribute( "count" ));
+      
+      report << "Harmonic angle count " << fhacount << endr;
+      
+      //loop through it
+      for (tinyxml2::XMLElement* fnbchild = forceharmonic->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
+       
+        //report << debug(810) << "Harmonic angle k " << fnbchild->Attribute( "k" ) << endr;
+        
+        Angle tempangle;
+        // ####note fliping of atoms
+        tempangle.atom1 = atoi(fnbchild->Attribute( "particle1" )) - 1;
+        tempangle.atom2 = atoi(fnbchild->Attribute( "particle2" )) - 1;
+        tempangle.atom3 = atoi(fnbchild->Attribute( "particle3" )) - 1;
+        tempangle.restAngle = atof(fnbchild->Attribute( "k" )) * M_PI/180.0;
+        tempangle.forceConstant = atof(fnbchild->Attribute( "length" ))
+        * Constant::KJ_KCAL * 0.5; // times 1/2 as Amber is 1/2 k(a-a_0)^2;
+        // no Urey-Bradley term specified
+        tempangle.ureyBradleyConstant = 0.0;
+        tempangle.ureyBradleyRestLength = 0.0;
+        topo->angles.push_back(tempangle);
+        if (!tempangle.forceConstant) ignoredAngles++;
+      }
+      
+      //test right number
+      if(topo->angles.size() != fhacount){
+        report << error << "Number of angles wrong " << topo->angles.size() << ". " << fhacount << endr;
+      }
+    }
+    
+    // ~~~~Proper Dihedrals~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   }
   
   //test no error
   if(doc.ErrorID()) report << error << "XML File parsing Harmonic Bonds error!" << endr;
 
-  // ~~~~Angles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
 
   
 #endif
