@@ -29,7 +29,7 @@ using namespace ProtoMol;
 using namespace ProtoMol::Report;
 using namespace tinyxml2;
 
-//structs
+//~~~~structs~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //masses with index
 typedef struct mass_index {
   // members
@@ -63,7 +63,7 @@ typedef struct electrostatic_index {
     return l == index;
   }
 } electrostatic_index;
-
+//~~~~End structs~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // use GROMACS exclusions?
 #define GROMACSEXCL
@@ -146,7 +146,50 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   }
   
   //test no error
-  if(doc.ErrorID()) report << error << "XML File parsing error!" << endr;
+  if(doc.ErrorID()) report << error << "XML File parsing masses error!" << endr;
+  
+  //~~~~get particle electrostatic information~~~~~~~~~~~~~~~~~~~~~~~~~
+  //create vector for electrostatics
+  std::vector<electrostatic_index> electrostatics;
+  
+  //load element containing 'particle'
+  tinyxml2::XMLElement *levelElemente = doc.FirstChildElement("forcefield");
+  
+  //loop through it
+  for (tinyxml2::XMLElement* child = levelElemente->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
+    
+    //find force of type NonbondedForce
+    if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "NonbondedForce") == 0){
+      report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      
+      //find children of particles, and partical count
+      tinyxml2::XMLElement *forcenonbonded = child->FirstChildElement("particles");
+      
+      const int fnbcount = atoi(forcenonbonded->Attribute( "count" ));
+      
+      //report << "Count " << forcenonbonded->Attribute( "count" ) << endr;
+      
+      //loop through it
+      for (tinyxml2::XMLElement* fnbchild = forcenonbonded->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
+        
+        //report << "Electrostatics " << fnbcount << endr;
+        
+        //save data
+        electrostatics.push_back(electrostatic_index(atoi(fnbchild->Attribute( "index" )), atof(fnbchild->Attribute( "charge" )), atof(fnbchild->Attribute( "epsilon" )), atof(fnbchild->Attribute( "sigma" ))));
+      }
+                                                                                            
+      //test right number
+      if(electrostatics.size() != fnbcount){
+        report << error << "Number of electrostatics wrong " << electrostatics.size() << ". " << fnbcount << endr;
+      }
+                                                                                            
+      //go as there is only one set
+      break;
+    }
+  }
+  
+  //test no error
+  if(doc.ErrorID()) report << error << "XML File parsing electrostatics error!" << endr;
   
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atom types
@@ -248,9 +291,22 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         tempatomtype->mass = 0.0;//atom[i].m; ####TODO get mass from XML
         THROW("Mass of atom undefined.");
       }
+      
+      //get electrostatics, if available
+      vector<electrostatic_index>::iterator ite;
+      if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end())
+      {
+        // Element in vector.
+        //report << "Electrostatics " << (*ite).charge << endr;
+        tempatomtype->charge = (*ite).charge;
+        tempatomtype->sigma = (*ite).sigma * Constant::NM_ANGSTROM;
+        tempatomtype->epsilon = (*ite).epsilon * Constant::KJ_KCAL;
+      }else{
+        tempatomtype->charge = 0.000;//atom[i].q; ####TODO get charge from XML
+        THROW("Electrostatics of atom undefined.");
+      }
       //~~~~~~~~
       
-      tempatomtype->charge = 0.001;//atom[i].q; ####TODO get charge from XML
       // ####just take first char for now.
       tempatomtype->symbolName = str;
       
@@ -321,6 +377,11 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   
   report << plain << "D.O.F. = " << topo->degreesOfFreedom << endr;
 
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Get the forces
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+  // ~~~~Bonds~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   
 #endif
