@@ -29,6 +29,42 @@ using namespace ProtoMol;
 using namespace ProtoMol::Report;
 using namespace tinyxml2;
 
+//structs
+//masses with index
+typedef struct mass_index {
+  // members
+  int index;
+  float mass;
+  
+  mass_index(int indx, float ms){
+    index = indx;
+    mass = ms;
+  }
+  
+  bool operator==(const int& l) const
+  {
+    return l == index;
+  }
+} mass_index;
+
+//charge/epsilon/sigma with index
+typedef struct electrostatic_index {
+  // members
+  int index;
+  float charge, epsilon, sigma;
+  
+  electrostatic_index(int indx, float ch, float ep, float si){
+    index = indx;
+    charge = ch; epsilon = ep; sigma = si;
+  }
+  
+  bool operator==(const int& l) const
+  {
+    return l == index;
+  }
+} electrostatic_index;
+
+
 // use GROMACS exclusions?
 #define GROMACSEXCL
 
@@ -93,9 +129,8 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   if(doc.ErrorID()) report << error << "XML File error opening " << fname << endr;
   
   //~~~~get particle mass information~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  //create vectors for masses
-  std::vector<int> massindex;
-  std::vector<float> massvalue;
+  //create vector for masses
+  std::vector<mass_index> masses;
 
   //load element containing 'particle'
   tinyxml2::XMLElement *levelElement = doc.FirstChildElement("forcefield")->FirstChildElement("particles");
@@ -107,8 +142,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     report << debug(800) << "Mass of particle " << child->Attribute( "mass" ) << ", " << child->Attribute( "index" ) << endr;
     const float xmlmass = atof(child->Attribute( "mass" ));
     const int xmlindex = atoi(child->Attribute( "index" ));
-    massindex.push_back(xmlindex);
-    massvalue.push_back(xmlmass);
+    masses.push_back(mass_index(xmlindex, xmlmass));
   }
   
   //test no error
@@ -204,13 +238,12 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       tempatomtype->name = str + ss.str();
       
       //get mass, if available
-      vector<int>::iterator itm;
-      if ((itm=std::find(massindex.begin(), massindex.end(), atoms[i].elementNum - 1)) != massindex.end())
+      vector<mass_index>::iterator itm;
+      if ((itm=std::find(masses.begin(), masses.end(), atoms[i].elementNum - 1)) != masses.end())
       {
         // Element in vector.
-        const int itmi = distance(massindex.begin(), itm);
-        //report << "Mass " << massvalue[itmi] << endr;
-        tempatomtype->mass = massvalue[itmi];
+        //report << "Mass " << (*itm).mass << endr;
+        tempatomtype->mass = (*itm).mass;
       }else{
         tempatomtype->mass = 0.0;//atom[i].m; ####TODO get mass from XML
         THROW("Mass of atom undefined.");
