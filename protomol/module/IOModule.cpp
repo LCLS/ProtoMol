@@ -39,6 +39,7 @@ defineInputValue(InputGromacsParamPath, "gromacsparameterpath")
 defineInputValue(InputGromacsGBParameterFile, "gromacsGBparameterfile")
 
 defineInputValue(InputGromacsTprFile, "gromacstprfile")
+defineInputValue(InputGromacsXMLFile, "gromacsxmlfile")
 
 void IOModule::init(ProtoMolApp *app) {
   Configuration *config = &app->config;
@@ -57,6 +58,7 @@ void IOModule::init(ProtoMolApp *app) {
   InputGromacsGBParameterFile::registerConfiguration(config);
 
   InputGromacsTprFile::registerConfiguration(config);
+  InputGromacsXMLFile::registerConfiguration(config);
 
 }
 
@@ -65,7 +67,8 @@ void IOModule::read(ProtoMolApp *app) {
 
   //test if TPR file as only velocities and positions allowed
   bool GROMACSTPR = false;
-  if( config.valid(InputGromacsTprFile::keyword) ) GROMACSTPR = true;
+  if( config.valid(InputGromacsTprFile::keyword) ||
+     config.valid(InputGromacsXMLFile::keyword)) GROMACSTPR = true;
 
   if( !config.valid(InputPositions::keyword) && !config.valid(InputVelocities::keyword) ){
     return;

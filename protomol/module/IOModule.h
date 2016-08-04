@@ -23,6 +23,8 @@ namespace ProtoMol {
 
   declareInputValue(InputGromacsTprFile, STRING, NOTEMPTY)
 
+  declareInputValue(InputGromacsXMLFile, STRING, NOTEMPTY)
+
   class IOModule : public Module {
   public:
     const std::string getName() const {return "IO";}
