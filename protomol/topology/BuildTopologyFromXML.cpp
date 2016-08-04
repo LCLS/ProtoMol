@@ -380,8 +380,64 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the forces
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  
+  // Find the parameters from TPR
+  int ignoredBonds = 0;   // preset ignored bonds
+  int ignoredAngles = 0;  // and angles
+
   // ~~~~Bonds~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //load element containing 'forcefield'
+  tinyxml2::XMLElement *levelElementb = doc.FirstChildElement("forcefield");
+  
+  //loop through it to find force, HarmonicBondForce
+  for (tinyxml2::XMLElement* child = levelElementb->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
+    
+    //find force of type HarmonicBondForce
+    if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "HarmonicBondForce") == 0){
+      //report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      
+      //find children of force, HarmonicBondForce
+      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("bonds");
+      
+      //number in file
+      const int fhcount = atoi(forceharmonic->Attribute( "count" ));
+      
+      report << "Harmonic count " << fhcount << endr;
+      
+      //loop through it
+      for (tinyxml2::XMLElement* fnbchild = forceharmonic->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
+        
+        report << debug(910) << "Harmonic k " << fnbchild->Attribute( "k" ) << endr;
+        
+        //create bond
+        Bond tempbond;
+        tempbond.restLength = atof(fnbchild->Attribute( "length" )) * Constant::NM_ANGSTROM;
+        tempbond.springConstant = atof(fnbchild->Attribute( "k" )) * Constant::KJ_KCAL * Constant::ANGSTROM_NM * Constant::ANGSTROM_NM * 0.5;
+        tempbond.atom1 = atof(fnbchild->Attribute( "particle1" )) - 1;
+        tempbond.atom2 = atof(fnbchild->Attribute( "particle2" )) - 1;
+        topo->bonds.push_back(tempbond);
+        
+        // populate the vector of bonds maintained at each atom
+        topo->atoms[tempbond.atom1].mybonds.push_back((topo->bonds.size()) - 1);
+        topo->atoms[tempbond.atom2].mybonds.push_back((topo->bonds.size()) - 1);
+        
+        if (!tempbond.springConstant) ignoredBonds++;
+
+      }
+      
+      //test right number
+      if(topo->bonds.size() != fhcount){
+        report << error << "Number of bonds wrong " << topo->bonds.size() << ". " << fhcount << endr;
+      }
+      
+      //go as there is only one set
+      break;
+    }
+  }
+  
+  //test no error
+  if(doc.ErrorID()) report << error << "XML File parsing Harmonic Bonds error!" << endr;
+
+  // ~~~~Angles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   
 #endif
