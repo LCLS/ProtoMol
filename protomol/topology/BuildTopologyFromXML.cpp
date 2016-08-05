@@ -635,8 +635,14 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     }
   }
   
+  // store the molecule information
+  buildMoleculeTable(topo);
+  
+  // optimize again
+  topo->exclusions.optimize();
+
 #endif
-    //end here until viable force field produced
-  report << error << "Force field incomplete for XML." << endr;
+  //end here until viable force field produced
+  //report << error << "Force field incomplete for XML." << endr;
 }
 
