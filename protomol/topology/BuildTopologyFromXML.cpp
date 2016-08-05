@@ -303,11 +303,21 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         tempatomtype->sigma = (*ite).sigma * Constant::NM_ANGSTROM;
         tempatomtype->epsilon = (*ite).epsilon * Constant::KJ_KCAL;
       }else{
-        tempatomtype->charge = 0.000;//atom[i].q; ####TODO get charge from XML
+        tempatomtype->charge = 0.0;//atom[i].q; ####TODO get charge from XML
+        tempatomtype->sigma = 1.0;
+        tempatomtype->epsilon = 0.0;
         THROW("Electrostatics of atom undefined.");
       }
       //~~~~~~~~
       
+      //fill in dependent values
+      // copy to 1-4
+      topo->atomTypes[i].sigma14 = topo->atomTypes[i].sigma;
+      topo->atomTypes[i].epsilon14 = topo->atomTypes[i].epsilon;
+      
+      //for implicit solvents we require the van der waals radius from the LJ params
+      topo->atomTypes[i].vdwR = topo->atomTypes[i].sigma;
+
       // ####just take first char for now.
       tempatomtype->symbolName = str;
       
@@ -378,6 +388,10 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   
   report << plain << "D.O.F. = " << topo->degreesOfFreedom << endr;
 
+  //preset 1-4 factors, will get averages later
+  topo->coulombScalingFactor = 0.6059;
+  topo->LJScalingFactor = 0.5;
+
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the forces
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -385,7 +399,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   int ignoredBonds = 0;   // preset ignored bonds
   int ignoredAngles = 0;  // and angles
 
-  // ~~~~Bonds/Angles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~Bonds/Angles/Dihedrals and exceptions~~~~~~~~~~~~~~~~~~~~~~~~~~
   //load element containing 'forcefield'
   //tinyxml2::XMLElement *levelElementb = doc.FirstChildElement("forcefield");
   
@@ -511,13 +525,106 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       }
     }
 
+    // ~~~~Exceptions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //find force NonbondedForce Exceptions
+    if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "NonbondedForce") == 0){
+      report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      
+      //find children of force, HarmonicAngleForce
+      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("exceptions");
+      
+      //number in file
+      const int fhacount = atoi(forceharmonic->Attribute( "count" ));
+      
+      report << "NonbondedForce Exceptions count " << fhacount << endr;
+      
+      //define average containers
+      float qq_ratio = 0;
+      float lj_ratio = 0;
+      float rcount = 0;
+      
+      //counter
+      int lcount = 0;
+
+      //loop through it
+      for (tinyxml2::XMLElement* fnbchild = forceharmonic->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
+        
+        //report << debug(810) << "Exceptions chargeProd " << fnbchild->Attribute( "chargeProd" ) << endr;
+        
+        lcount++;
+        
+        //get data
+        const float epsilon = atof(fnbchild->Attribute( "epsilon" )) * Constant::KJ_KCAL;
+        const float sigma = atof(fnbchild->Attribute( "sigma" )) * Constant::NM_ANGSTROM;
+        const float chargeProd = atof(fnbchild->Attribute( "chargeProd" ));
+        const int p1 = atoi(fnbchild->Attribute( "particle1" ));
+        const int p2 = atoi(fnbchild->Attribute( "particle2" ));
+        
+        //data valid?
+        if(epsilon != 0.0){
+          //calculate expected sigma/epsilon
+          const float calc_epsilon = sqrt(topo->atomTypes[topo->atoms[p1].type].epsilon *
+                                          topo->atomTypes[topo->atoms[p2].type].epsilon);
+          const float calc_sigma = 0.5 * (topo->atomTypes[topo->atoms[p1].type].sigma +
+                                          topo->atomTypes[topo->atoms[p2].type].sigma);
+          
+          const float charge = topo->atomTypes[topo->atoms[p1].type].charge *
+                                topo->atomTypes[topo->atoms[p2].type].charge;
+          
+          //report << debug(810) << "Exceptions ratio " << epsilon << ", " << calc_epsilon <<
+            //    ", " << sigma << ", " << calc_sigma << ", " << epsilon / calc_epsilon <<
+              //  ", " << charge << ", " << chargeProd << ", " << chargeProd / charge << endr;
+          
+          //capture ratios
+          qq_ratio += chargeProd / charge;
+          lj_ratio += epsilon / calc_epsilon;
+          rcount += 1.0;
+        }
+      }
+      
+      //averages
+      report << debug(810) << "1-4 Ratios " << qq_ratio / rcount << ", " << lj_ratio / rcount << endr;
+      
+      //save averages
+      topo->coulombScalingFactor = qq_ratio / rcount;
+      topo->LJScalingFactor = lj_ratio / rcount;
+      
+      //test right number
+      if(lcount != fhacount){
+        report << error << "Number of Exceptions wrong " << lcount << ". " << fhacount << endr;
+      }
+    }
+
   }
   
   //test no error
-  if(doc.ErrorID()) report << error << "XML File parsing Harmonic Bonds error!" << endr;
+  if(doc.ErrorID()) report << error << "XML File parsing Forces and Exceptions error!" << endr;
 
-  
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // LennardJonesParameters
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  //set lookup size
+  topo->lennardJonesParameters.resize(atypesize);
+
+  // Nonbonded
+  for (unsigned int i = 0; i < atypesize; i++) {
+    for (unsigned int j = i; j < atypesize; j++) {
+
+      LennardJonesParameters paramsij;
+      
+      Real r_ij = 0.5 * (topo->atomTypes[i].sigma + topo->atomTypes[j].sigma);
+      Real e_ij = sqrt(topo->atomTypes[i].epsilon * topo->atomTypes[j].epsilon);
+      
+      paramsij.A = power<12>(r_ij) * e_ij * 4.0;
+      paramsij.B = power<6>(r_ij) * e_ij * 4.0;
+      ///#### FudgeLJ=0.5 should be read from the parameter files, see previous section
+      paramsij.A14 = topo->LJScalingFactor * paramsij.A;//power<12>(r14_ij) * e14_ij * 4.0;
+      paramsij.B14 = topo->LJScalingFactor * paramsij.B;//2 * power<6>(r14_ij) * e14_ij * 4.0;
+      
+      topo->lennardJonesParameters.set(i, j, paramsij);
+    }
+  }
   
 #endif
     //end here until viable force field produced
