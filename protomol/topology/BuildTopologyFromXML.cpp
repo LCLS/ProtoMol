@@ -391,6 +391,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   //preset 1-4 factors, will get averages later
   topo->coulombScalingFactor = 0.6059;
   topo->LJScalingFactor = 0.5;
+  
+  //  Resize array to atoms size. Will populate using XML data
+  topo->exclusions.resize(topo->atoms.size());
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the forces
@@ -562,6 +565,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         
         //data valid?
         if(epsilon != 0.0){
+          //exclusion modified here
+          topo->exclusions.add(p1, p2, EXCLUSION_MODIFIED); // Set
+
           //calculate expected sigma/epsilon
           const float calc_epsilon = sqrt(topo->atomTypes[topo->atoms[p1].type].epsilon *
                                           topo->atomTypes[topo->atoms[p2].type].epsilon);
@@ -579,6 +585,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
           qq_ratio += chargeProd / charge;
           lj_ratio += epsilon / calc_epsilon;
           rcount += 1.0;
+        }else{
+          //exclusion full here
+          topo->exclusions.add(p1, p2, EXCLUSION_FULL); // Set
         }
       }
       
