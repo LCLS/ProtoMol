@@ -392,8 +392,12 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   topo->coulombScalingFactor = 0.6059;
   topo->LJScalingFactor = 0.5;
   
-  //  Resize array to atoms size. Will populate using XML data
+  //  Resize exclusions array to atoms size. Will populate using XML data
   topo->exclusions.resize(topo->atoms.size());
+  
+  // setup flag for GBSA data initialization
+  bool GBSA_data_initialized = false;
+  unsigned atomsSize = topo->atoms.size();
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the forces
@@ -604,7 +608,92 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       }
     }
 
-  }
+    // ~~~~GBSA parameters~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //find force of type GBSAOBCForce
+    if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "GBSAOBCForce") == 0){
+      report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
+      
+      //~~~~GBSA force exists so initialize data~~~~~~~~~~~~~~~~~~~~~~~~
+      if(!GBSA_data_initialized){
+        GBSA_data_initialized = true;
+        
+        //fixed data (Note: hard coded as does not exist in XML)
+        // set parameters from topology
+        topo->doGBSAOpenMM =    1;
+        topo->implicitSolvent = GBSA;
+        topo->obcType =         2;    //ir.gb_algorithm + 1;
+        topo->alphaObc =        1.0;  //ir.gb_obc_alpha;
+        topo->betaObc =         0.8;  //ir.gb_obc_beta;
+        topo->gammaObc =        4.85; //ir.gb_obc_gamma;
+        topo->dielecOffset =    0.09; //ir.gb_dielectric_offset * Constant::NM_ANGSTROM;
+
+        report << debug(800) << "Implicit solvent:"
+        << " OBC type " << topo->obcType
+        << ", alpha " << topo->alphaObc
+        << ", beta " << topo->betaObc
+        << ", gamma " << topo->gammaObc
+        << ", dielec offset " << topo->dielecOffset
+        << "." << endr;
+
+      }
+      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      
+      //find children of force, GBSAOBCForce
+      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("particles");
+      
+      //number in file
+      const int fhacount = atoi(forceharmonic->Attribute( "count" ));
+      
+      //test
+      if(fhacount != atomsSize){
+        report << error << "GBSA: too few entries in XML " << fhacount << ", " << atomsSize << endr;
+      }
+      
+      report << "GBSA particle count " << fhacount << endr;
+      
+      //loop through it
+      for (tinyxml2::XMLElement* fnbchild = forceharmonic->FirstChildElement(); fnbchild != NULL; fnbchild = fnbchild->NextSiblingElement()){
+        
+        //report << debug(810) << "GBSA particle radius " << atof(fnbchild->Attribute( "radius" ))  * Constant::NM_ANGSTROM << endr;
+        
+        //get data
+        const float radius = atof(fnbchild->Attribute( "radius" )) * Constant::NM_ANGSTROM;
+        const float scale = atof(fnbchild->Attribute( "scale" ));
+        const int i = atoi(fnbchild->Attribute( "index" ));
+        
+        //test bounds
+        if(i >= atomsSize){
+          report << error  << "GBSA: index out of bounds " << i << ", " << atomsSize << endr;
+        }
+        
+        //apply it
+        Atom *tempatom = &(topo->atoms[i]);
+        tempatom->myGBSA_T = new GBSAAtomParameters();
+        
+        tempatom->myGBSA_T->vanDerWaalRadius = radius;
+        tempatom->myGBSA_T->offsetRadius = 0.09;
+        tempatom->myGBSA_T->scalingFactor = scale;
+        
+        // allocate the array to store derivatives of born radius w.r.t. r_{ij}'s
+        if (!tempatom->myGBSA_T->bornRadiusDerivatives)
+          tempatom->myGBSA_T->SetSpaceForBornRadiusDerivatives(atomsSize);
+        
+        if (!tempatom->myGBSA_T->Lvalues)
+          tempatom->myGBSA_T->SetSpaceLvalues(atomsSize);
+        
+        if (!tempatom->myGBSA_T->Uvalues)
+          tempatom->myGBSA_T->SetSpaceUvalues(atomsSize);
+        
+        if (!tempatom->myGBSA_T->distij)
+          tempatom->myGBSA_T->SetSpaceDistij(atomsSize);
+        
+        tempatom->myGBSA_T->expTerm.resize( atomsSize );
+        tempatom->myGBSA_T->filTerm.resize( atomsSize );
+        tempatom->myGBSA_T->partialTerm.resize( atomsSize );
+      }
+    }
+
+  }//end of <forcefield> tag
   
   //test no error
   if(doc.ErrorID()) report << error << "XML File parsing Forces and Exceptions error!" << endr;
