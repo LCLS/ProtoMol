@@ -348,8 +348,8 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   // Get the forces
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Find the parameters from TPR
-  //int ignoredBonds = 0;   // preset ignored bonds
-  //int ignoredAngles = 0;  // and angles
+  int ignoredBonds = 0;   // preset ignored bonds
+  int ignoredAngles = 0;  // and angles
 
   // ~~~~Bonds/Angles/Dihedrals and exceptions~~~~~~~~~~~~~~~~~~~~~~~~~~
   
@@ -386,7 +386,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         topo->atoms[tempbond.atom1].mybonds.push_back((topo->bonds.size()) - 1);
         topo->atoms[tempbond.atom2].mybonds.push_back((topo->bonds.size()) - 1);
         
-        //if (!tempbond.springConstant) ignoredBonds++;
+        if (!tempbond.springConstant) ignoredBonds++;
       }
       
       //test right number
@@ -425,7 +425,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         tempangle.ureyBradleyConstant = 0.0;
         tempangle.ureyBradleyRestLength = 0.0;
         topo->angles.push_back(tempangle);
-        //if (!tempangle.forceConstant) ignoredAngles++;
+        if (!tempangle.forceConstant) ignoredAngles++;
       }
       
       //test right number
@@ -663,6 +663,15 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     }
   }
   
+  // ignored bonds etc.?
+  if (ignoredBonds > 0)
+    report << hint << "Systems contains " << ignoredBonds
+    << " bonds with zero force constants." << endr;
+  
+  if (ignoredAngles > 0)
+    report << hint << "Systems contains " << ignoredAngles <<
+    " angles with zero force constants." << endr;
+
   // store the molecule information
   buildMoleculeTable(topo);
   
