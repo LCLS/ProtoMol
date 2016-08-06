@@ -80,12 +80,9 @@ typedef struct electrostatic_index {
 void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
                                     Vector3DBlock &vel, const string &fname,
                                     std::vector<PDB::Atom> atoms) {
-  // define versions of TPR file
-  // Version 4.5.3 has tpx_version=73 and includes gb_radius in the tpr file
-  //enum {GB_RADII_IN_TPR = 73};
-
 #if defined(HAVE_GROMACS)
-  report << "XML input: Atoms length " << atoms.size() << endr;
+  //print number of atoms in PDB
+  report << "XML: PDB number of atoms " << atoms.size() << endr;
   
   // Check if XML exists
   if (!ProtoMol::SystemUtilities::exists(fname)) report << error << "XML Missing: " << fname << endr;
@@ -112,16 +109,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Read the XML file
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  /*string line;
-  ifstream myfile (fname.c_str());
-  if (myfile.is_open())
-  {
-    while ( getline (myfile,line) )
-    {
-      cout << line << '\n';
-    }
-    myfile.close();
-  }*/
   //create XML object and read file into it
   XMLDocument doc;
   doc.LoadFile( fname.c_str() );
@@ -139,7 +126,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   for (tinyxml2::XMLElement* child = levelElement->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
   {
     // do something with each child element
-    report << debug(800) << "Mass of particle " << child->Attribute( "mass" ) << ", " << child->Attribute( "index" ) << endr;
+    //report << debug(800) << "Mass of particle " << child->Attribute( "mass" ) << ", " << child->Attribute( "index" ) << endr;
     const float xmlmass = atof(child->Attribute( "mass" ));
     const int xmlindex = atoi(child->Attribute( "index" ));
     masses.push_back(mass_index(xmlindex, xmlmass));
@@ -157,7 +144,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   
   //loop through it
   for (tinyxml2::XMLElement* child = levelElemente->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
-    if(strcmp(child->Name(), "force") == 0) report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
 
     //find force of type NonbondedForce
     if(strcmp(child->Name(), "force") == 0 && strcmp(child->Attribute( "type" ), "NonbondedForce") == 0){
@@ -201,9 +187,8 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   //and residues
   std::set<std::string> residues;
   
-  //loop over input atom data
+  //loop over input atom data, save element and residue
   for(int i=0; i<atoms.size(); i++){
-    //report << "Element " << atoms[i].elementName << endr;
     atomtypes.insert(atoms[i].elementName);
     residues.insert(atoms[i].residueName);
   }
@@ -217,37 +202,10 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   // save size for tests
   const unsigned atypesize = atomtypes.size();
   
-  /*// get atomtypes
-  t_atomtypes *atomtypes = &(mtop.atomtypes);
-  
-  // resize atomtypes
-  topo->atomTypes.resize(atomtypes->nr);
-  
-  
-  // loop and print data
-  for (unsigned i = 0; i < atypesize; i++) {
-    report << debug(810) << "atomtype[" << i << "]={radius="
-    << atomtypes->radius[i]
-    << ", volume=" << atomtypes->vol[i]
-    << ", gb_radius=" << atomtypes->gb_radius[i]
-    << ", surftens=" << atomtypes->surftens[i]
-    << ", atomnumber=" << atomtypes->atomnumber[i]
-    << ", S_hct=" << atomtypes->S_hct[i] << ")}" << endr;
-  }*/
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atoms
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
-  // used to get atom names to look up van der waal radii for GB
-  //vector<string> atomTypeNames;
-  
-  // loop over all atoms in the Gromacs topology
-  // molecule type topology data
-  //for (int mt = 0; mt < mtop.nmoltype; mt++) {
-  //  gmx_moltype_t *molt = &mtop.moltype[mt];
-  //  t_atoms *atoms = &(molt->atoms);
-  //  t_atom *atom = atoms->atom;
-    
   // loop over atoms in molecule
   for (int i = 0; i < atoms.size(); i++) {
     // get gromacs data
@@ -272,8 +230,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     
     // Update atom type if 'name' not initialized?
     if (!tempatomtype->name.length()) {
-      //report << "setting type " << i << endr;
-      // type not set
       // generate type name from first atom char and index
       stringstream ss;
       ss << atype;
@@ -286,10 +242,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       if ((itm=std::find(masses.begin(), masses.end(), atoms[i].elementNum - 1)) != masses.end())
       {
         // Element in vector.
-        //report << "Mass " << (*itm).mass << endr;
         tempatomtype->mass = (*itm).mass;
       }else{
-        tempatomtype->mass = 0.0;//atom[i].m; ####TODO get mass from XML
+        tempatomtype->mass = 0.0;
         THROW("Mass of atom undefined.");
       }
       
@@ -298,12 +253,11 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end())
       {
         // Element in vector.
-        //report << "Electrostatics " << (*ite).charge << endr;
         tempatomtype->charge = (*ite).charge;
         tempatomtype->sigma = (*ite).sigma * Constant::NM_ANGSTROM;
         tempatomtype->epsilon = (*ite).epsilon * Constant::KJ_KCAL;
       }else{
-        tempatomtype->charge = 0.0;//atom[i].q; ####TODO get charge from XML
+        tempatomtype->charge = 0.0;
         tempatomtype->sigma = 1.0;
         tempatomtype->epsilon = 0.0;
         THROW("Electrostatics of atom undefined.");
@@ -320,13 +274,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
 
       // ####just take first char for now.
       tempatomtype->symbolName = str;
-      
-      // get radius, test file version
-      // if (file_version >= GB_RADII_IN_TPR) {
-      // version 4.5?
-      //    tempatomtype->vdwR = atomtypes->gb_radius[atype];
-      // } else {
-      // }
       
     } else ;
     // ####TODO check new data is consistent? i.e. check new atom mass
@@ -348,8 +295,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     // Now, the scaled charge.  This is straightforward.
     tempatom.scaledCharge = tempatomtype->charge * Constant::SQRTCOULOMBCONSTANT;
     tempatom.scaledMass = tempatomtype->mass;
-    
-    //####Need this? atomTypeNames.push_back(string(*(atoms->atomtype[i])));
     
     // report atoms
     report << debug(810) << "Atom " << tempatom.name << ", " <<
@@ -403,18 +348,13 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   // Get the forces
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Find the parameters from TPR
-  int ignoredBonds = 0;   // preset ignored bonds
-  int ignoredAngles = 0;  // and angles
+  //int ignoredBonds = 0;   // preset ignored bonds
+  //int ignoredAngles = 0;  // and angles
 
   // ~~~~Bonds/Angles/Dihedrals and exceptions~~~~~~~~~~~~~~~~~~~~~~~~~~
-  //load element containing 'forcefield'
-  //tinyxml2::XMLElement *levelElementb = doc.FirstChildElement("forcefield");
   
-  //loop through it to find force, HarmonicBondForce
+  //loop through XML <forcefield> tag to find individual forces
   for (tinyxml2::XMLElement* child = levelElemente->FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
-    
-    //if force, report it
-    if(strcmp(child->Name(), "force") == 0) report << "xml name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
     
     // ~~~~Bonds~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //find force of type HarmonicBondForce
@@ -446,8 +386,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         topo->atoms[tempbond.atom1].mybonds.push_back((topo->bonds.size()) - 1);
         topo->atoms[tempbond.atom2].mybonds.push_back((topo->bonds.size()) - 1);
         
-        if (!tempbond.springConstant) ignoredBonds++;
-
+        //if (!tempbond.springConstant) ignoredBonds++;
       }
       
       //test right number
@@ -486,7 +425,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         tempangle.ureyBradleyConstant = 0.0;
         tempangle.ureyBradleyRestLength = 0.0;
         topo->angles.push_back(tempangle);
-        if (!tempangle.forceConstant) ignoredAngles++;
+        //if (!tempangle.forceConstant) ignoredAngles++;
       }
       
       //test right number
