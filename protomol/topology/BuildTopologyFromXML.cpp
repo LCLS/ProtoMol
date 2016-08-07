@@ -524,10 +524,14 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
             //    ", " << sigma << ", " << calc_sigma << ", " << epsilon / calc_epsilon <<
               //  ", " << charge << ", " << chargeProd << ", " << chargeProd / charge << endr;
           
-          //capture ratios
-          qq_ratio += chargeProd / charge;
-          lj_ratio += epsilon / calc_epsilon;
-          rcount += 1.0;
+          //capture ratios if valid data
+          //####TODO for some reason some LJ factprs exist when the full force field factors do not
+          //####also some electrostatics are of reverse sign
+          if(calc_epsilon != 0 && charge != 0){
+            qq_ratio += fabs(chargeProd / charge);
+            lj_ratio += epsilon / calc_epsilon;
+            rcount += 1.0;
+          }
         }else{
           //exclusion full here
           topo->exclusions.add(p1, p2, EXCLUSION_FULL); // Set
