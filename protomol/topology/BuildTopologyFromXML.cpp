@@ -322,6 +322,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     }
     // C/C++ starts at 0, where PSF/PDB at 1
     tempatom.atomNum = atoms[i].elementNum - 1;//i; // ####atom->number - 1;*/
+    if(tempatom.atomNum != i) report << error << "Atom out of sequence " <<
+      i << ", " << tempatom.atomNum << endr;
+    
     // Also the molecule - using residue sequence for now
     topo->atoms.push_back(tempatom);
   }
