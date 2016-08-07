@@ -506,29 +506,30 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         const int p1 = atoi(fnbchild->Attribute( "particle1" ));
         const int p2 = atoi(fnbchild->Attribute( "particle2" ));
         
+        //calculate expected epsilon
+        const float calc_epsilon = sqrt(topo->atomTypes[topo->atoms[p1].type].epsilon *
+                                        topo->atomTypes[topo->atoms[p2].type].epsilon);
+        
         //data valid?
-        if(epsilon != 0.0){
+        if(epsilon != 0.0 && calc_epsilon != 0.0){
           //exclusion modified here
           topo->exclusions.add(p1, p2, EXCLUSION_MODIFIED); // Set
 
-          //calculate expected sigma/epsilon
-          const float calc_epsilon = sqrt(topo->atomTypes[topo->atoms[p1].type].epsilon *
-                                          topo->atomTypes[topo->atoms[p2].type].epsilon);
+          //calculate expected sigma/charge
           const float calc_sigma = 0.5 * (topo->atomTypes[topo->atoms[p1].type].sigma +
                                           topo->atomTypes[topo->atoms[p2].type].sigma);
-          
-          const float charge = topo->atomTypes[topo->atoms[p1].type].charge *
-                                topo->atomTypes[topo->atoms[p2].type].charge;
+          const float calc_charge = topo->atomTypes[topo->atoms[p1].type].charge *
+                                      topo->atomTypes[topo->atoms[p2].type].charge;
           
           //report << debug(810) << "Exceptions ratio " << epsilon << ", " << calc_epsilon <<
             //    ", " << sigma << ", " << calc_sigma << ", " << epsilon / calc_epsilon <<
-              //  ", " << charge << ", " << chargeProd << ", " << chargeProd / charge << endr;
+              //  ", " << calc_charge << ", " << chargeProd << ", " << chargeProd / calc_charge << endr;
           
           //capture ratios if valid data
           //####TODO for some reason some LJ factprs exist when the full force field factors do not
           //####also some electrostatics are of reverse sign
-          if(calc_epsilon != 0 && charge != 0){
-            qq_ratio += fabs(chargeProd / charge);
+          if(calc_charge != 0){
+            qq_ratio += fabs(chargeProd / calc_charge);
             lj_ratio += epsilon / calc_epsilon;
             rcount += 1.0;
           }
