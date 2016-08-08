@@ -202,6 +202,15 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     // atom type, test valid
     unsigned atype = topo->atomTypes.size();
     
+    //get electrostatics, if available
+    Real tempepsilon = 0, tempcharge = 0, tempsigma = 0;
+    vector<electrostatic_index>::iterator ite;
+    if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end()){
+      tempcharge = (*ite).charge;
+      tempsigma = (*ite).sigma * Constant::NM_ANGSTROM;
+      tempepsilon = (*ite).epsilon * Constant::KJ_KCAL;
+    }
+    
     //loop over current types
     for( int j=0; j<topo->atomTypes.size(); j++){
       //get name part of type
@@ -209,7 +218,9 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       string comp = topo->atomTypes[j].name.substr(0, type_length);
       
       //compare
-      if(atoms[i].elementName.compare(comp) == 0){
+      if(atoms[i].elementName.compare(comp) == 0 &&
+         topo->atomTypes[j].epsilon == tempepsilon &&
+         topo->atomTypes[j].sigma == tempsigma){
         atype = j;
         break;
       }
@@ -284,8 +295,11 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         if(tempatomtype->charge != (*ite).charge){
           report << "Charge error in type " << tempatomtype->name << ": " << tempatomtype->charge << ", " << (*ite).charge << endr;
         }
-        if(tempatomtype->epsilon != (*ite).epsilon){
-          report << "Epsilon error in type " << tempatomtype->name << ": " << tempatomtype->epsilon << ", " << (*ite).epsilon << endr;
+        if(tempatomtype->epsilon != (*ite).epsilon * Constant::KJ_KCAL){
+          report << "Epsilon error in type " << tempatomtype->name << ": " << tempatomtype->epsilon << ", " << (*ite).epsilon * Constant::KJ_KCAL << endr;
+        }
+        if(tempatomtype->sigma != (*ite).sigma * Constant::NM_ANGSTROM){
+          report << "Sigma error in type " << tempatomtype->name << ": " << tempatomtype->sigma << ", " << (*ite).sigma * Constant::NM_ANGSTROM << endr;
         }
       }
     }
