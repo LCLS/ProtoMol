@@ -181,26 +181,15 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atom types
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  //create set for atom types
-  std::set<std::string> atomtypes;
-  
-  //and residues
+  //create set for  residues
   std::set<std::string> residues;
   
   //loop over input atom data, save element and residue
   for(int i=0; i<atoms.size(); i++){
-    atomtypes.insert(atoms[i].elementName);
     residues.insert(atoms[i].residueName);
   }
   
-  report << "there are " << atomtypes.size() << " atom types" << endr;
   report << "there are " << residues.size() << " residue types" << endr;
-  
-  // resize atomtypes
-  topo->atomTypes.resize(atomtypes.size());
-  
-  // save size for tests
-  const unsigned atypesize = atomtypes.size();
   
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atoms
@@ -211,16 +200,25 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     // get gromacs data
     
     // atom type, test valid
-    unsigned atype = atypesize;
-    set<string>::iterator it;
-    if ((it=std::find(atomtypes.begin(), atomtypes.end(), atoms[i].elementName)) != atomtypes.end())
-    {
-      // Element in set.
-      //report << "Index " << distance(atomtypes.begin(), it) << endr;
-      atype = distance(atomtypes.begin(), it);
-    }
+    unsigned atype = topo->atomTypes.size();
     
-    if (atype >= atypesize) THROW("Undefined atom type.");
+    //loop over current types
+    for( int j=0; j<topo->atomTypes.size(); j++){
+      //get name part of type
+      size_t type_length = topo->atomTypes[j].name.find('_');
+      string comp = topo->atomTypes[j].name.substr(0, type_length);
+      
+      //compare
+      if(atoms[i].elementName.compare(comp) == 0){
+        atype = j;
+        break;
+      }
+    }
+
+    // resize atomtypes if required
+    if (atype == topo->atomTypes.size()){
+      topo->atomTypes.resize(topo->atomTypes.size() + 1);
+    }//THROW("Undefined atom type.");
     
     // point to types
     AtomType *tempatomtype = &(topo->atomTypes[atype]);
@@ -235,7 +233,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       ss << atype;
       string str = string(atoms[i].elementName).substr((size_t)0, (size_t)1);
       
-      tempatomtype->name = str + ss.str();
+      tempatomtype->name = atoms[i].elementName + '_' + ss.str();
       
       //get mass, if available
       vector<mass_index>::iterator itm;
@@ -266,11 +264,11 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       
       //fill in dependent values
       // copy to 1-4
-      topo->atomTypes[i].sigma14 = topo->atomTypes[i].sigma;
-      topo->atomTypes[i].epsilon14 = topo->atomTypes[i].epsilon;
+      tempatomtype->sigma14 = tempatomtype->sigma;
+      tempatomtype->epsilon14 = tempatomtype->epsilon;
       
       //for implicit solvents we require the van der waals radius from the LJ params
-      topo->atomTypes[i].vdwR = topo->atomTypes[i].sigma;
+      tempatomtype->vdwR = tempatomtype->sigma;
 
       // ####just take first char for now.
       tempatomtype->symbolName = str;
@@ -343,6 +341,10 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   }
   //}
   
+  // save size for tests
+  const unsigned atypesize = topo->atomTypes.size();
+  report << plain << "Number of types " << atypesize << endr;
+
   // calculate the # of degrees of freedom, if there are any bond constraints
   // they will be subtracted later by ModifierShake
   topo->degreesOfFreedom = 3 * topo->atoms.size() - 3;
