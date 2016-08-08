@@ -275,9 +275,22 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       // ####just take first char for now.
       tempatomtype->symbolName = str;
       
-    } else ;
-    // ####TODO check new data is consistent? i.e. check new atom mass
-    // is the same.
+    } else{
+      // ####TODO check new data is consistent? i.e. check new atom mass
+      // is the same.
+      //get electrostatics, if available
+      vector<electrostatic_index>::iterator ite;
+      if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end())
+      {
+        // data matches?
+        if(tempatomtype->charge != (*ite).charge){
+          report << "Charge error in type " << tempatomtype->name << ": " << tempatomtype->charge << ", " << (*ite).charge << endr;
+        }
+        if(tempatomtype->epsilon != (*ite).epsilon){
+          report << "Epsilon error in type " << tempatomtype->name << ": " << tempatomtype->epsilon << ", " << (*ite).epsilon << endr;
+        }
+      }
+    }
     
     // report types
     report << debug(810) << "Atom type " << tempatomtype->name << ", "
