@@ -8,7 +8,7 @@
 #include <protomol/topology/TopologyUtilities.h>
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/LennardJonesParameterTable.h>
-#include <protomol/tinyxml2/tinyxml2.h>
+#include <protomol/io/tinyxml2.h>
 
 #include <vector>
 #include <sstream>
