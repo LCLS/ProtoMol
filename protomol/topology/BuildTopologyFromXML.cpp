@@ -184,12 +184,12 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
   //create set for  residues
   std::set<std::string> residues;
   
-  //loop over input atom data, save element and residue
+  //loop over input atom data, save residues
   for(int i=0; i<atoms.size(); i++){
     residues.insert(atoms[i].residueName);
   }
   
-  report << "there are " << residues.size() << " residue types" << endr;
+  report << "There are " << residues.size() << " residue types." << endr;
   
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the atoms
@@ -206,18 +206,17 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     Real tempepsilon = 0, tempcharge = 0, tempsigma = 0;
     vector<electrostatic_index>::iterator ite;
     if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end()){
-      tempcharge = (*ite).charge;
       tempsigma = (*ite).sigma * Constant::NM_ANGSTROM;
       tempepsilon = (*ite).epsilon * Constant::KJ_KCAL;
     }
     
-    //loop over current types
+    //loop over current types and find type by name, epsilon and sigma
     for( int j=0; j<topo->atomTypes.size(); j++){
       //get name part of type
       size_t type_length = topo->atomTypes[j].name.find('_');
       string comp = topo->atomTypes[j].name.substr(0, type_length);
       
-      //compare
+      //compare by name, epsilon and sigma
       if(atoms[i].elementName.compare(comp) == 0 &&
          topo->atomTypes[j].epsilon == tempepsilon &&
          topo->atomTypes[j].sigma == tempsigma){
@@ -225,11 +224,15 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         break;
       }
     }
+    
+    //did we find electrostatics?
+    if(ite == electrostatics.end())
+      report << error << "Electrostatics for atom " << atoms[i].elementNum - 1 << " undefined." << endr;
 
     // resize atomtypes if required
     if (atype == topo->atomTypes.size()){
       topo->atomTypes.resize(topo->atomTypes.size() + 1);
-    }//THROW("Undefined atom type.");
+    }
     
     // point to types
     AtomType *tempatomtype = &(topo->atomTypes[atype]);
@@ -239,7 +242,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     
     // Update atom type if 'name' not initialized?
     if (!tempatomtype->name.length()) {
-      // generate type name from first atom char and index
+      // generate type name from atom name and index
       stringstream ss;
       ss << atype;
       string str = string(atoms[i].elementName).substr((size_t)0, (size_t)1);
@@ -253,24 +256,14 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         // Element in vector.
         tempatomtype->mass = (*itm).mass;
       }else{
-        tempatomtype->mass = 0.0;
         THROW("Mass of atom undefined.");
       }
       
-      //get electrostatics, if available
-      vector<electrostatic_index>::iterator ite;
-      if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end())
-      {
-        // Element in vector.
-        tempatomtype->charge = (*ite).charge;
-        tempatomtype->sigma = (*ite).sigma * Constant::NM_ANGSTROM;
-        tempatomtype->epsilon = (*ite).epsilon * Constant::KJ_KCAL;
-      }else{
-        tempatomtype->charge = 0.0;
-        tempatomtype->sigma = 1.0;
-        tempatomtype->epsilon = 0.0;
-        THROW("Electrostatics of atom undefined.");
-      }
+      //get electrostatics, found above for type test
+      // Element in vector.
+      tempatomtype->charge = (*ite).charge;
+      tempatomtype->sigma = (*ite).sigma * Constant::NM_ANGSTROM;
+      tempatomtype->epsilon = (*ite).epsilon * Constant::KJ_KCAL;
       //~~~~~~~~
       
       //fill in dependent values
@@ -284,23 +277,13 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       // ####just take first char for now.
       tempatomtype->symbolName = str;
       
-    } else{
-      // ####TODO check new data is consistent? i.e. check new atom mass
-      // is the same.
-      //get electrostatics, if available
-      vector<electrostatic_index>::iterator ite;
-      if ((ite=std::find(electrostatics.begin(), electrostatics.end(), atoms[i].elementNum - 1)) != electrostatics.end())
-      {
-        // data matches?
-        if(tempatomtype->charge != (*ite).charge){
-          report << "Charge error in type " << tempatomtype->name << ": " << tempatomtype->charge << ", " << (*ite).charge << endr;
-        }
-        if(tempatomtype->epsilon != (*ite).epsilon * Constant::KJ_KCAL){
-          report << "Epsilon error in type " << tempatomtype->name << ": " << tempatomtype->epsilon << ", " << (*ite).epsilon * Constant::KJ_KCAL << endr;
-        }
-        if(tempatomtype->sigma != (*ite).sigma * Constant::NM_ANGSTROM){
-          report << "Sigma error in type " << tempatomtype->name << ": " << tempatomtype->sigma << ", " << (*ite).sigma * Constant::NM_ANGSTROM << endr;
-        }
+    }else{
+      // data matches?
+      if(tempatomtype->epsilon != (*ite).epsilon * Constant::KJ_KCAL){
+        report << "Epsilon error in type " << tempatomtype->name << ": " << tempatomtype->epsilon << ", " << (*ite).epsilon * Constant::KJ_KCAL << endr;
+      }
+      if(tempatomtype->sigma != (*ite).sigma * Constant::NM_ANGSTROM){
+        report << "Sigma error in type " << tempatomtype->name << ": " << tempatomtype->sigma << ", " << (*ite).sigma * Constant::NM_ANGSTROM << endr;
       }
     }
     
@@ -310,7 +293,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     << tempatomtype->charge << ", " << tempatomtype->symbolName
     << ", " << tempatomtype->vdwR << endr;
     
-    
     // First, we need to find the index. (an integer corresponding
     // to the type of the atom
     tempatom.name = string(atoms[i].elementName);
@@ -318,7 +300,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     tempatom.residue_name = string(atoms[i].residueName);
     tempatom.residue_seq = atoms[i].residueNum;
     // Now, the scaled charge.  This is straightforward.
-    tempatom.scaledCharge = tempatomtype->charge * Constant::SQRTCOULOMBCONSTANT;
+    tempatom.scaledCharge = (*ite).charge * Constant::SQRTCOULOMBCONSTANT; // tempatomtype->charge * Constant::SQRTCOULOMBCONSTANT;
     tempatom.scaledMass = tempatomtype->mass;
     
     // report atoms
@@ -353,7 +335,6 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
     // Also the molecule - using residue sequence for now
     topo->atoms.push_back(tempatom);
   }
-  //}
   
   // save size for tests
   const unsigned atypesize = topo->atomTypes.size();
@@ -550,18 +531,18 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
           //calculate expected sigma/charge
           const float calc_sigma = 0.5 * (topo->atomTypes[topo->atoms[p1].type].sigma +
                                           topo->atomTypes[topo->atoms[p2].type].sigma);
-          const float calc_charge = topo->atomTypes[topo->atoms[p1].type].charge *
-                                      topo->atomTypes[topo->atoms[p2].type].charge;
+          const float calc_charge = topo->atoms[p1].scaledCharge * topo->atoms[p2].scaledCharge *
+                                      1.0/(Constant::SQRTCOULOMBCONSTANT * Constant::SQRTCOULOMBCONSTANT);
           
           //report << debug(810) << "Exceptions ratio " << epsilon << ", " << calc_epsilon <<
             //    ", " << sigma << ", " << calc_sigma << ", " << epsilon / calc_epsilon <<
               //  ", " << calc_charge << ", " << chargeProd << ", " << chargeProd / calc_charge << endr;
           
           //capture ratios if valid data
-          //####TODO for some reason some LJ factprs exist when the full force field factors do not
-          //####also some electrostatics are of reverse sign
+          //####TODO FIXED! for some reason some LJ factprs exist when the full force field factors do not
+          //####FIXED! also some electrostatics are of reverse sign
           if(calc_charge != 0){
-            qq_ratio += fabs(chargeProd / calc_charge);
+            qq_ratio += chargeProd / calc_charge; //fabs();
             lj_ratio += epsilon / calc_epsilon;
             rcount += 1.0;
           }
@@ -580,7 +561,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       
       //test right number
       if(lcount != fhacount){
-        report << error << "Number of Exceptions wrong " << lcount << ". " << fhacount << endr;
+        report << error << "Number of Exceptions wrong " << lcount << ", " << fhacount << endr;
       }
     }
 
