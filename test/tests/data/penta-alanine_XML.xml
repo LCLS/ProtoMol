@@ -1,0 +1,861 @@
+<?xml version="1.0" ?>
+<forcefield>
+    <particles>
+        <particle index="0" mass="1.007947"/>
+        <particle index="1" mass="12.01078"/>
+        <particle index="2" mass="1.007947"/>
+        <particle index="3" mass="1.007947"/>
+        <particle index="4" mass="12.01078"/>
+        <particle index="5" mass="15.99943"/>
+        <particle index="6" mass="14.00672"/>
+        <particle index="7" mass="1.007947"/>
+        <particle index="8" mass="12.01078"/>
+        <particle index="9" mass="1.007947"/>
+        <particle index="10" mass="12.01078"/>
+        <particle index="11" mass="1.007947"/>
+        <particle index="12" mass="1.007947"/>
+        <particle index="13" mass="1.007947"/>
+        <particle index="14" mass="12.01078"/>
+        <particle index="15" mass="15.99943"/>
+        <particle index="16" mass="14.00672"/>
+        <particle index="17" mass="1.007947"/>
+        <particle index="18" mass="12.01078"/>
+        <particle index="19" mass="1.007947"/>
+        <particle index="20" mass="12.01078"/>
+        <particle index="21" mass="1.007947"/>
+        <particle index="22" mass="1.007947"/>
+        <particle index="23" mass="1.007947"/>
+        <particle index="24" mass="12.01078"/>
+        <particle index="25" mass="15.99943"/>
+        <particle index="26" mass="14.00672"/>
+        <particle index="27" mass="1.007947"/>
+        <particle index="28" mass="12.01078"/>
+        <particle index="29" mass="1.007947"/>
+        <particle index="30" mass="12.01078"/>
+        <particle index="31" mass="1.007947"/>
+        <particle index="32" mass="1.007947"/>
+        <particle index="33" mass="1.007947"/>
+        <particle index="34" mass="12.01078"/>
+        <particle index="35" mass="15.99943"/>
+        <particle index="36" mass="14.00672"/>
+        <particle index="37" mass="1.007947"/>
+        <particle index="38" mass="12.01078"/>
+        <particle index="39" mass="1.007947"/>
+        <particle index="40" mass="12.01078"/>
+        <particle index="41" mass="1.007947"/>
+        <particle index="42" mass="1.007947"/>
+        <particle index="43" mass="1.007947"/>
+        <particle index="44" mass="12.01078"/>
+        <particle index="45" mass="15.99943"/>
+        <particle index="46" mass="14.00672"/>
+        <particle index="47" mass="1.007947"/>
+        <particle index="48" mass="12.01078"/>
+        <particle index="49" mass="1.007947"/>
+        <particle index="50" mass="12.01078"/>
+        <particle index="51" mass="1.007947"/>
+        <particle index="52" mass="1.007947"/>
+        <particle index="53" mass="1.007947"/>
+        <particle index="54" mass="12.01078"/>
+        <particle index="55" mass="15.99943"/>
+        <particle index="56" mass="14.00672"/>
+        <particle index="57" mass="1.007947"/>
+        <particle index="58" mass="12.01078"/>
+        <particle index="59" mass="1.007947"/>
+        <particle index="60" mass="1.007947"/>
+        <particle index="61" mass="1.007947"/>
+    </particles>
+    <force type="HarmonicBondForce">
+        <bonds count="61">
+            <bond index="0" k="265265.6" length="0.1522" particle1="4" particle2="1"/>
+            <bond index="1" k="476976.0" length="0.1229" particle1="4" particle2="5"/>
+            <bond index="2" k="284512.0" length="0.109" particle1="1" particle2="0"/>
+            <bond index="3" k="284512.0" length="0.109" particle1="1" particle2="2"/>
+            <bond index="4" k="284512.0" length="0.109" particle1="1" particle2="3"/>
+            <bond index="5" k="410032.0" length="0.1335" particle1="4" particle2="6"/>
+            <bond index="6" k="265265.6" length="0.1522" particle1="14" particle2="8"/>
+            <bond index="7" k="476976.0" length="0.1229" particle1="14" particle2="15"/>
+            <bond index="8" k="259408.0" length="0.1526" particle1="8" particle2="10"/>
+            <bond index="9" k="284512.0" length="0.109" particle1="8" particle2="9"/>
+            <bond index="10" k="282001.6" length="0.1449" particle1="8" particle2="6"/>
+            <bond index="11" k="284512.0" length="0.109" particle1="10" particle2="11"/>
+            <bond index="12" k="284512.0" length="0.109" particle1="10" particle2="12"/>
+            <bond index="13" k="284512.0" length="0.109" particle1="10" particle2="13"/>
+            <bond index="14" k="363171.2" length="0.101" particle1="7" particle2="6"/>
+            <bond index="15" k="410032.0" length="0.1335" particle1="14" particle2="16"/>
+            <bond index="16" k="265265.6" length="0.1522" particle1="24" particle2="18"/>
+            <bond index="17" k="476976.0" length="0.1229" particle1="24" particle2="25"/>
+            <bond index="18" k="259408.0" length="0.1526" particle1="18" particle2="20"/>
+            <bond index="19" k="284512.0" length="0.109" particle1="18" particle2="19"/>
+            <bond index="20" k="282001.6" length="0.1449" particle1="18" particle2="16"/>
+            <bond index="21" k="284512.0" length="0.109" particle1="20" particle2="21"/>
+            <bond index="22" k="284512.0" length="0.109" particle1="20" particle2="22"/>
+            <bond index="23" k="284512.0" length="0.109" particle1="20" particle2="23"/>
+            <bond index="24" k="363171.2" length="0.101" particle1="17" particle2="16"/>
+            <bond index="25" k="410032.0" length="0.1335" particle1="24" particle2="26"/>
+            <bond index="26" k="265265.6" length="0.1522" particle1="34" particle2="28"/>
+            <bond index="27" k="476976.0" length="0.1229" particle1="34" particle2="35"/>
+            <bond index="28" k="259408.0" length="0.1526" particle1="28" particle2="30"/>
+            <bond index="29" k="284512.0" length="0.109" particle1="28" particle2="29"/>
+            <bond index="30" k="282001.6" length="0.1449" particle1="28" particle2="26"/>
+            <bond index="31" k="284512.0" length="0.109" particle1="30" particle2="31"/>
+            <bond index="32" k="284512.0" length="0.109" particle1="30" particle2="32"/>
+            <bond index="33" k="284512.0" length="0.109" particle1="30" particle2="33"/>
+            <bond index="34" k="363171.2" length="0.101" particle1="27" particle2="26"/>
+            <bond index="35" k="410032.0" length="0.1335" particle1="34" particle2="36"/>
+            <bond index="36" k="265265.6" length="0.1522" particle1="44" particle2="38"/>
+            <bond index="37" k="476976.0" length="0.1229" particle1="44" particle2="45"/>
+            <bond index="38" k="259408.0" length="0.1526" particle1="38" particle2="40"/>
+            <bond index="39" k="284512.0" length="0.109" particle1="38" particle2="39"/>
+            <bond index="40" k="282001.6" length="0.1449" particle1="38" particle2="36"/>
+            <bond index="41" k="284512.0" length="0.109" particle1="40" particle2="41"/>
+            <bond index="42" k="284512.0" length="0.109" particle1="40" particle2="42"/>
+            <bond index="43" k="284512.0" length="0.109" particle1="40" particle2="43"/>
+            <bond index="44" k="363171.2" length="0.101" particle1="37" particle2="36"/>
+            <bond index="45" k="410032.0" length="0.1335" particle1="44" particle2="46"/>
+            <bond index="46" k="265265.6" length="0.1522" particle1="54" particle2="48"/>
+            <bond index="47" k="476976.0" length="0.1229" particle1="54" particle2="55"/>
+            <bond index="48" k="259408.0" length="0.1526" particle1="48" particle2="50"/>
+            <bond index="49" k="284512.0" length="0.109" particle1="48" particle2="49"/>
+            <bond index="50" k="282001.6" length="0.1449" particle1="48" particle2="46"/>
+            <bond index="51" k="284512.0" length="0.109" particle1="50" particle2="51"/>
+            <bond index="52" k="284512.0" length="0.109" particle1="50" particle2="52"/>
+            <bond index="53" k="284512.0" length="0.109" particle1="50" particle2="53"/>
+            <bond index="54" k="363171.2" length="0.101" particle1="47" particle2="46"/>
+            <bond index="55" k="410032.0" length="0.1335" particle1="54" particle2="56"/>
+            <bond index="56" k="284512.0" length="0.109" particle1="58" particle2="59"/>
+            <bond index="57" k="284512.0" length="0.109" particle1="58" particle2="60"/>
+            <bond index="58" k="284512.0" length="0.109" particle1="58" particle2="61"/>
+            <bond index="59" k="282001.6" length="0.1449" particle1="58" particle2="56"/>
+            <bond index="60" k="363171.2" length="0.101" particle1="57" particle2="56"/>
+        </bonds>
+    </force>
+    <force type="HarmonicAngleForce">
+        <angles count="108">
+            <angle index="0" k="292.88" length="1.91113553093" particle1="0" particle2="1" particle3="2"/>
+            <angle index="1" k="292.88" length="1.91113553093" particle1="0" particle2="1" particle3="3"/>
+            <angle index="2" k="418.4" length="1.91113553093" particle1="0" particle2="1" particle3="4"/>
+            <angle index="3" k="669.44" length="2.1013764194" particle1="1" particle2="4" particle3="5"/>
+            <angle index="4" k="585.76" length="2.03505390783" particle1="1" particle2="4" particle3="6"/>
+            <angle index="5" k="292.88" length="1.91113553093" particle1="2" particle2="1" particle3="3"/>
+            <angle index="6" k="418.4" length="1.91113553093" particle1="2" particle2="1" particle3="4"/>
+            <angle index="7" k="418.4" length="1.91113553093" particle1="3" particle2="1" particle3="4"/>
+            <angle index="8" k="418.4" length="2.09439510239" particle1="4" particle2="6" particle3="7"/>
+            <angle index="9" k="418.4" length="2.12755635818" particle1="4" particle2="6" particle3="8"/>
+            <angle index="10" k="669.44" length="2.1450096507" particle1="5" particle2="4" particle3="6"/>
+            <angle index="11" k="418.4" length="1.91113553093" particle1="6" particle2="8" particle3="9"/>
+            <angle index="12" k="669.44" length="1.91462618944" particle1="6" particle2="8" particle3="10"/>
+            <angle index="13" k="527.184" length="1.92160750645" particle1="6" particle2="8" particle3="14"/>
+            <angle index="14" k="418.4" length="2.06018664905" particle1="7" particle2="6" particle3="8"/>
+            <angle index="15" k="418.4" length="1.91113553093" particle1="8" particle2="10" particle3="11"/>
+            <angle index="16" k="418.4" length="1.91113553093" particle1="8" particle2="10" particle3="12"/>
+            <angle index="17" k="418.4" length="1.91113553093" particle1="8" particle2="10" particle3="13"/>
+            <angle index="18" k="669.44" length="2.1013764194" particle1="8" particle2="14" particle3="15"/>
+            <angle index="19" k="585.76" length="2.03505390783" particle1="8" particle2="14" particle3="16"/>
+            <angle index="20" k="418.4" length="1.91113553093" particle1="9" particle2="8" particle3="10"/>
+            <angle index="21" k="418.4" length="1.91113553093" particle1="9" particle2="8" particle3="14"/>
+            <angle index="22" k="527.184" length="1.93906079897" particle1="10" particle2="8" particle3="14"/>
+            <angle index="23" k="292.88" length="1.91113553093" particle1="11" particle2="10" particle3="12"/>
+            <angle index="24" k="292.88" length="1.91113553093" particle1="11" particle2="10" particle3="13"/>
+            <angle index="25" k="292.88" length="1.91113553093" particle1="12" particle2="10" particle3="13"/>
+            <angle index="26" k="418.4" length="2.09439510239" particle1="14" particle2="16" particle3="17"/>
+            <angle index="27" k="418.4" length="2.12755635818" particle1="14" particle2="16" particle3="18"/>
+            <angle index="28" k="669.44" length="2.1450096507" particle1="15" particle2="14" particle3="16"/>
+            <angle index="29" k="418.4" length="1.91113553093" particle1="16" particle2="18" particle3="19"/>
+            <angle index="30" k="669.44" length="1.91462618944" particle1="16" particle2="18" particle3="20"/>
+            <angle index="31" k="527.184" length="1.92160750645" particle1="16" particle2="18" particle3="24"/>
+            <angle index="32" k="418.4" length="2.06018664905" particle1="17" particle2="16" particle3="18"/>
+            <angle index="33" k="418.4" length="1.91113553093" particle1="18" particle2="20" particle3="21"/>
+            <angle index="34" k="418.4" length="1.91113553093" particle1="18" particle2="20" particle3="22"/>
+            <angle index="35" k="418.4" length="1.91113553093" particle1="18" particle2="20" particle3="23"/>
+            <angle index="36" k="669.44" length="2.1013764194" particle1="18" particle2="24" particle3="25"/>
+            <angle index="37" k="585.76" length="2.03505390783" particle1="18" particle2="24" particle3="26"/>
+            <angle index="38" k="418.4" length="1.91113553093" particle1="19" particle2="18" particle3="20"/>
+            <angle index="39" k="418.4" length="1.91113553093" particle1="19" particle2="18" particle3="24"/>
+            <angle index="40" k="527.184" length="1.93906079897" particle1="20" particle2="18" particle3="24"/>
+            <angle index="41" k="292.88" length="1.91113553093" particle1="21" particle2="20" particle3="22"/>
+            <angle index="42" k="292.88" length="1.91113553093" particle1="21" particle2="20" particle3="23"/>
+            <angle index="43" k="292.88" length="1.91113553093" particle1="22" particle2="20" particle3="23"/>
+            <angle index="44" k="418.4" length="2.09439510239" particle1="24" particle2="26" particle3="27"/>
+            <angle index="45" k="418.4" length="2.12755635818" particle1="24" particle2="26" particle3="28"/>
+            <angle index="46" k="669.44" length="2.1450096507" particle1="25" particle2="24" particle3="26"/>
+            <angle index="47" k="418.4" length="1.91113553093" particle1="26" particle2="28" particle3="29"/>
+            <angle index="48" k="669.44" length="1.91462618944" particle1="26" particle2="28" particle3="30"/>
+            <angle index="49" k="527.184" length="1.92160750645" particle1="26" particle2="28" particle3="34"/>
+            <angle index="50" k="418.4" length="2.06018664905" particle1="27" particle2="26" particle3="28"/>
+            <angle index="51" k="418.4" length="1.91113553093" particle1="28" particle2="30" particle3="31"/>
+            <angle index="52" k="418.4" length="1.91113553093" particle1="28" particle2="30" particle3="32"/>
+            <angle index="53" k="418.4" length="1.91113553093" particle1="28" particle2="30" particle3="33"/>
+            <angle index="54" k="669.44" length="2.1013764194" particle1="28" particle2="34" particle3="35"/>
+            <angle index="55" k="585.76" length="2.03505390783" particle1="28" particle2="34" particle3="36"/>
+            <angle index="56" k="418.4" length="1.91113553093" particle1="29" particle2="28" particle3="30"/>
+            <angle index="57" k="418.4" length="1.91113553093" particle1="29" particle2="28" particle3="34"/>
+            <angle index="58" k="527.184" length="1.93906079897" particle1="30" particle2="28" particle3="34"/>
+            <angle index="59" k="292.88" length="1.91113553093" particle1="31" particle2="30" particle3="32"/>
+            <angle index="60" k="292.88" length="1.91113553093" particle1="31" particle2="30" particle3="33"/>
+            <angle index="61" k="292.88" length="1.91113553093" particle1="32" particle2="30" particle3="33"/>
+            <angle index="62" k="418.4" length="2.09439510239" particle1="34" particle2="36" particle3="37"/>
+            <angle index="63" k="418.4" length="2.12755635818" particle1="34" particle2="36" particle3="38"/>
+            <angle index="64" k="669.44" length="2.1450096507" particle1="35" particle2="34" particle3="36"/>
+            <angle index="65" k="418.4" length="1.91113553093" particle1="36" particle2="38" particle3="39"/>
+            <angle index="66" k="669.44" length="1.91462618944" particle1="36" particle2="38" particle3="40"/>
+            <angle index="67" k="527.184" length="1.92160750645" particle1="36" particle2="38" particle3="44"/>
+            <angle index="68" k="418.4" length="2.06018664905" particle1="37" particle2="36" particle3="38"/>
+            <angle index="69" k="418.4" length="1.91113553093" particle1="38" particle2="40" particle3="41"/>
+            <angle index="70" k="418.4" length="1.91113553093" particle1="38" particle2="40" particle3="42"/>
+            <angle index="71" k="418.4" length="1.91113553093" particle1="38" particle2="40" particle3="43"/>
+            <angle index="72" k="669.44" length="2.1013764194" particle1="38" particle2="44" particle3="45"/>
+            <angle index="73" k="585.76" length="2.03505390783" particle1="38" particle2="44" particle3="46"/>
+            <angle index="74" k="418.4" length="1.91113553093" particle1="39" particle2="38" particle3="40"/>
+            <angle index="75" k="418.4" length="1.91113553093" particle1="39" particle2="38" particle3="44"/>
+            <angle index="76" k="527.184" length="1.93906079897" particle1="40" particle2="38" particle3="44"/>
+            <angle index="77" k="292.88" length="1.91113553093" particle1="41" particle2="40" particle3="42"/>
+            <angle index="78" k="292.88" length="1.91113553093" particle1="41" particle2="40" particle3="43"/>
+            <angle index="79" k="292.88" length="1.91113553093" particle1="42" particle2="40" particle3="43"/>
+            <angle index="80" k="418.4" length="2.09439510239" particle1="44" particle2="46" particle3="47"/>
+            <angle index="81" k="418.4" length="2.12755635818" particle1="44" particle2="46" particle3="48"/>
+            <angle index="82" k="669.44" length="2.1450096507" particle1="45" particle2="44" particle3="46"/>
+            <angle index="83" k="418.4" length="1.91113553093" particle1="46" particle2="48" particle3="49"/>
+            <angle index="84" k="669.44" length="1.91462618944" particle1="46" particle2="48" particle3="50"/>
+            <angle index="85" k="527.184" length="1.92160750645" particle1="46" particle2="48" particle3="54"/>
+            <angle index="86" k="418.4" length="2.06018664905" particle1="47" particle2="46" particle3="48"/>
+            <angle index="87" k="418.4" length="1.91113553093" particle1="48" particle2="50" particle3="51"/>
+            <angle index="88" k="418.4" length="1.91113553093" particle1="48" particle2="50" particle3="52"/>
+            <angle index="89" k="418.4" length="1.91113553093" particle1="48" particle2="50" particle3="53"/>
+            <angle index="90" k="669.44" length="2.1013764194" particle1="48" particle2="54" particle3="55"/>
+            <angle index="91" k="585.76" length="2.03505390783" particle1="48" particle2="54" particle3="56"/>
+            <angle index="92" k="418.4" length="1.91113553093" particle1="49" particle2="48" particle3="50"/>
+            <angle index="93" k="418.4" length="1.91113553093" particle1="49" particle2="48" particle3="54"/>
+            <angle index="94" k="527.184" length="1.93906079897" particle1="50" particle2="48" particle3="54"/>
+            <angle index="95" k="292.88" length="1.91113553093" particle1="51" particle2="50" particle3="52"/>
+            <angle index="96" k="292.88" length="1.91113553093" particle1="51" particle2="50" particle3="53"/>
+            <angle index="97" k="292.88" length="1.91113553093" particle1="52" particle2="50" particle3="53"/>
+            <angle index="98" k="418.4" length="2.09439510239" particle1="54" particle2="56" particle3="57"/>
+            <angle index="99" k="418.4" length="2.12755635818" particle1="54" particle2="56" particle3="58"/>
+            <angle index="100" k="669.44" length="2.1450096507" particle1="55" particle2="54" particle3="56"/>
+            <angle index="101" k="418.4" length="1.91113553093" particle1="56" particle2="58" particle3="59"/>
+            <angle index="102" k="418.4" length="1.91113553093" particle1="56" particle2="58" particle3="60"/>
+            <angle index="103" k="418.4" length="1.91113553093" particle1="56" particle2="58" particle3="61"/>
+            <angle index="104" k="418.4" length="2.06018664905" particle1="57" particle2="56" particle3="58"/>
+            <angle index="105" k="292.88" length="1.91113553093" particle1="59" particle2="58" particle3="60"/>
+            <angle index="106" k="292.88" length="1.91113553093" particle1="59" particle2="58" particle3="61"/>
+            <angle index="107" k="292.88" length="1.91113553093" particle1="60" particle2="58" particle3="61"/>
+        </angles>
+    </force>
+    <force type="PeriodicTorsionForce">
+        <tortions count="163">
+            <tortion index="0" k="3.3472" particle1="0" particle2="1" particle3="4" particle4="5" periodicity="1" phase="0.0"/>
+            <tortion index="1" k="0.33472" particle1="0" particle2="1" particle3="4" particle4="5" periodicity="3" phase="3.14159265359"/>
+            <tortion index="2" k="10.46" particle1="1" particle2="4" particle3="6" particle4="7" periodicity="2" phase="3.14159265359"/>
+            <tortion index="3" k="10.46" particle1="1" particle2="4" particle3="6" particle4="8" periodicity="2" phase="3.14159265359"/>
+            <tortion index="4" k="3.3472" particle1="2" particle2="1" particle3="4" particle4="5" periodicity="1" phase="0.0"/>
+            <tortion index="5" k="0.33472" particle1="2" particle2="1" particle3="4" particle4="5" periodicity="3" phase="3.14159265359"/>
+            <tortion index="6" k="3.3472" particle1="3" particle2="1" particle3="4" particle4="5" periodicity="1" phase="0.0"/>
+            <tortion index="7" k="0.33472" particle1="3" particle2="1" particle3="4" particle4="5" periodicity="3" phase="3.14159265359"/>
+            <tortion index="8" k="0.949768" particle1="4" particle2="6" particle3="8" particle4="10" periodicity="3" phase="3.14159265359"/>
+            <tortion index="9" k="3.6969824" particle1="4" particle2="6" particle3="8" particle4="10" periodicity="2" phase="3.14159265359"/>
+            <tortion index="10" k="1.4798808" particle1="4" particle2="6" particle3="8" particle4="10" periodicity="1" phase="3.14159265359"/>
+            <tortion index="11" k="0.9451656" particle1="4" particle2="6" particle3="8" particle4="14" periodicity="3" phase="0.0"/>
+            <tortion index="12" k="1.4438984" particle1="4" particle2="6" particle3="8" particle4="14" periodicity="2" phase="3.14159265359"/>
+            <tortion index="13" k="4.2505256" particle1="4" particle2="6" particle3="8" particle4="14" periodicity="1" phase="0.0"/>
+            <tortion index="14" k="10.46" particle1="5" particle2="4" particle3="6" particle4="7" periodicity="2" phase="3.14159265359"/>
+            <tortion index="15" k="8.368" particle1="5" particle2="4" particle3="6" particle4="7" periodicity="1" phase="0.0"/>
+            <tortion index="16" k="10.46" particle1="5" particle2="4" particle3="6" particle4="8" periodicity="2" phase="3.14159265359"/>
+            <tortion index="17" k="0.650844444444" particle1="6" particle2="8" particle3="10" particle4="11" periodicity="3" phase="0.0"/>
+            <tortion index="18" k="0.650844444444" particle1="6" particle2="8" particle3="10" particle4="12" periodicity="3" phase="0.0"/>
+            <tortion index="19" k="0.650844444444" particle1="6" particle2="8" particle3="10" particle4="13" periodicity="3" phase="0.0"/>
+            <tortion index="20" k="1.930916" particle1="6" particle2="8" particle3="14" particle4="16" periodicity="3" phase="3.14159265359"/>
+            <tortion index="21" k="6.0822808" particle1="6" particle2="8" particle3="14" particle4="16" periodicity="2" phase="3.14159265359"/>
+            <tortion index="22" k="2.8614376" particle1="6" particle2="8" particle3="14" particle4="16" periodicity="1" phase="3.14159265359"/>
+            <tortion index="23" k="10.46" particle1="8" particle2="14" particle3="16" particle4="17" periodicity="2" phase="3.14159265359"/>
+            <tortion index="24" k="10.46" particle1="8" particle2="14" particle3="16" particle4="18" periodicity="2" phase="3.14159265359"/>
+            <tortion index="25" k="0.650844444444" particle1="9" particle2="8" particle3="10" particle4="11" periodicity="3" phase="0.0"/>
+            <tortion index="26" k="0.650844444444" particle1="9" particle2="8" particle3="10" particle4="12" periodicity="3" phase="0.0"/>
+            <tortion index="27" k="0.650844444444" particle1="9" particle2="8" particle3="10" particle4="13" periodicity="3" phase="0.0"/>
+            <tortion index="28" k="3.3472" particle1="9" particle2="8" particle3="14" particle4="15" periodicity="1" phase="0.0"/>
+            <tortion index="29" k="0.33472" particle1="9" particle2="8" particle3="14" particle4="15" periodicity="3" phase="3.14159265359"/>
+            <tortion index="30" k="0.234304" particle1="10" particle2="8" particle3="14" particle4="16" periodicity="3" phase="0.0"/>
+            <tortion index="31" k="0.2748888" particle1="10" particle2="8" particle3="14" particle4="16" periodicity="2" phase="3.14159265359"/>
+            <tortion index="32" k="3.2568256" particle1="10" particle2="8" particle3="14" particle4="16" periodicity="1" phase="3.14159265359"/>
+            <tortion index="33" k="0.650844444444" particle1="11" particle2="10" particle3="8" particle4="14" periodicity="3" phase="0.0"/>
+            <tortion index="34" k="0.650844444444" particle1="12" particle2="10" particle3="8" particle4="14" periodicity="3" phase="0.0"/>
+            <tortion index="35" k="0.650844444444" particle1="13" particle2="10" particle3="8" particle4="14" periodicity="3" phase="0.0"/>
+            <tortion index="36" k="0.949768" particle1="14" particle2="16" particle3="18" particle4="20" periodicity="3" phase="3.14159265359"/>
+            <tortion index="37" k="3.6969824" particle1="14" particle2="16" particle3="18" particle4="20" periodicity="2" phase="3.14159265359"/>
+            <tortion index="38" k="1.4798808" particle1="14" particle2="16" particle3="18" particle4="20" periodicity="1" phase="3.14159265359"/>
+            <tortion index="39" k="0.9451656" particle1="14" particle2="16" particle3="18" particle4="24" periodicity="3" phase="0.0"/>
+            <tortion index="40" k="1.4438984" particle1="14" particle2="16" particle3="18" particle4="24" periodicity="2" phase="3.14159265359"/>
+            <tortion index="41" k="4.2505256" particle1="14" particle2="16" particle3="18" particle4="24" periodicity="1" phase="0.0"/>
+            <tortion index="42" k="10.46" particle1="15" particle2="14" particle3="16" particle4="17" periodicity="2" phase="3.14159265359"/>
+            <tortion index="43" k="8.368" particle1="15" particle2="14" particle3="16" particle4="17" periodicity="1" phase="0.0"/>
+            <tortion index="44" k="10.46" particle1="15" particle2="14" particle3="16" particle4="18" periodicity="2" phase="3.14159265359"/>
+            <tortion index="45" k="0.650844444444" particle1="16" particle2="18" particle3="20" particle4="21" periodicity="3" phase="0.0"/>
+            <tortion index="46" k="0.650844444444" particle1="16" particle2="18" particle3="20" particle4="22" periodicity="3" phase="0.0"/>
+            <tortion index="47" k="0.650844444444" particle1="16" particle2="18" particle3="20" particle4="23" periodicity="3" phase="0.0"/>
+            <tortion index="48" k="1.930916" particle1="16" particle2="18" particle3="24" particle4="26" periodicity="3" phase="3.14159265359"/>
+            <tortion index="49" k="6.0822808" particle1="16" particle2="18" particle3="24" particle4="26" periodicity="2" phase="3.14159265359"/>
+            <tortion index="50" k="2.8614376" particle1="16" particle2="18" particle3="24" particle4="26" periodicity="1" phase="3.14159265359"/>
+            <tortion index="51" k="10.46" particle1="18" particle2="24" particle3="26" particle4="27" periodicity="2" phase="3.14159265359"/>
+            <tortion index="52" k="10.46" particle1="18" particle2="24" particle3="26" particle4="28" periodicity="2" phase="3.14159265359"/>
+            <tortion index="53" k="0.650844444444" particle1="19" particle2="18" particle3="20" particle4="21" periodicity="3" phase="0.0"/>
+            <tortion index="54" k="0.650844444444" particle1="19" particle2="18" particle3="20" particle4="22" periodicity="3" phase="0.0"/>
+            <tortion index="55" k="0.650844444444" particle1="19" particle2="18" particle3="20" particle4="23" periodicity="3" phase="0.0"/>
+            <tortion index="56" k="3.3472" particle1="19" particle2="18" particle3="24" particle4="25" periodicity="1" phase="0.0"/>
+            <tortion index="57" k="0.33472" particle1="19" particle2="18" particle3="24" particle4="25" periodicity="3" phase="3.14159265359"/>
+            <tortion index="58" k="0.234304" particle1="20" particle2="18" particle3="24" particle4="26" periodicity="3" phase="0.0"/>
+            <tortion index="59" k="0.2748888" particle1="20" particle2="18" particle3="24" particle4="26" periodicity="2" phase="3.14159265359"/>
+            <tortion index="60" k="3.2568256" particle1="20" particle2="18" particle3="24" particle4="26" periodicity="1" phase="3.14159265359"/>
+            <tortion index="61" k="0.650844444444" particle1="21" particle2="20" particle3="18" particle4="24" periodicity="3" phase="0.0"/>
+            <tortion index="62" k="0.650844444444" particle1="22" particle2="20" particle3="18" particle4="24" periodicity="3" phase="0.0"/>
+            <tortion index="63" k="0.650844444444" particle1="23" particle2="20" particle3="18" particle4="24" periodicity="3" phase="0.0"/>
+            <tortion index="64" k="0.949768" particle1="24" particle2="26" particle3="28" particle4="30" periodicity="3" phase="3.14159265359"/>
+            <tortion index="65" k="3.6969824" particle1="24" particle2="26" particle3="28" particle4="30" periodicity="2" phase="3.14159265359"/>
+            <tortion index="66" k="1.4798808" particle1="24" particle2="26" particle3="28" particle4="30" periodicity="1" phase="3.14159265359"/>
+            <tortion index="67" k="0.9451656" particle1="24" particle2="26" particle3="28" particle4="34" periodicity="3" phase="0.0"/>
+            <tortion index="68" k="1.4438984" particle1="24" particle2="26" particle3="28" particle4="34" periodicity="2" phase="3.14159265359"/>
+            <tortion index="69" k="4.2505256" particle1="24" particle2="26" particle3="28" particle4="34" periodicity="1" phase="0.0"/>
+            <tortion index="70" k="10.46" particle1="25" particle2="24" particle3="26" particle4="27" periodicity="2" phase="3.14159265359"/>
+            <tortion index="71" k="8.368" particle1="25" particle2="24" particle3="26" particle4="27" periodicity="1" phase="0.0"/>
+            <tortion index="72" k="10.46" particle1="25" particle2="24" particle3="26" particle4="28" periodicity="2" phase="3.14159265359"/>
+            <tortion index="73" k="0.650844444444" particle1="26" particle2="28" particle3="30" particle4="31" periodicity="3" phase="0.0"/>
+            <tortion index="74" k="0.650844444444" particle1="26" particle2="28" particle3="30" particle4="32" periodicity="3" phase="0.0"/>
+            <tortion index="75" k="0.650844444444" particle1="26" particle2="28" particle3="30" particle4="33" periodicity="3" phase="0.0"/>
+            <tortion index="76" k="1.930916" particle1="26" particle2="28" particle3="34" particle4="36" periodicity="3" phase="3.14159265359"/>
+            <tortion index="77" k="6.0822808" particle1="26" particle2="28" particle3="34" particle4="36" periodicity="2" phase="3.14159265359"/>
+            <tortion index="78" k="2.8614376" particle1="26" particle2="28" particle3="34" particle4="36" periodicity="1" phase="3.14159265359"/>
+            <tortion index="79" k="10.46" particle1="28" particle2="34" particle3="36" particle4="37" periodicity="2" phase="3.14159265359"/>
+            <tortion index="80" k="10.46" particle1="28" particle2="34" particle3="36" particle4="38" periodicity="2" phase="3.14159265359"/>
+            <tortion index="81" k="0.650844444444" particle1="29" particle2="28" particle3="30" particle4="31" periodicity="3" phase="0.0"/>
+            <tortion index="82" k="0.650844444444" particle1="29" particle2="28" particle3="30" particle4="32" periodicity="3" phase="0.0"/>
+            <tortion index="83" k="0.650844444444" particle1="29" particle2="28" particle3="30" particle4="33" periodicity="3" phase="0.0"/>
+            <tortion index="84" k="3.3472" particle1="29" particle2="28" particle3="34" particle4="35" periodicity="1" phase="0.0"/>
+            <tortion index="85" k="0.33472" particle1="29" particle2="28" particle3="34" particle4="35" periodicity="3" phase="3.14159265359"/>
+            <tortion index="86" k="0.234304" particle1="30" particle2="28" particle3="34" particle4="36" periodicity="3" phase="0.0"/>
+            <tortion index="87" k="0.2748888" particle1="30" particle2="28" particle3="34" particle4="36" periodicity="2" phase="3.14159265359"/>
+            <tortion index="88" k="3.2568256" particle1="30" particle2="28" particle3="34" particle4="36" periodicity="1" phase="3.14159265359"/>
+            <tortion index="89" k="0.650844444444" particle1="31" particle2="30" particle3="28" particle4="34" periodicity="3" phase="0.0"/>
+            <tortion index="90" k="0.650844444444" particle1="32" particle2="30" particle3="28" particle4="34" periodicity="3" phase="0.0"/>
+            <tortion index="91" k="0.650844444444" particle1="33" particle2="30" particle3="28" particle4="34" periodicity="3" phase="0.0"/>
+            <tortion index="92" k="0.949768" particle1="34" particle2="36" particle3="38" particle4="40" periodicity="3" phase="3.14159265359"/>
+            <tortion index="93" k="3.6969824" particle1="34" particle2="36" particle3="38" particle4="40" periodicity="2" phase="3.14159265359"/>
+            <tortion index="94" k="1.4798808" particle1="34" particle2="36" particle3="38" particle4="40" periodicity="1" phase="3.14159265359"/>
+            <tortion index="95" k="0.9451656" particle1="34" particle2="36" particle3="38" particle4="44" periodicity="3" phase="0.0"/>
+            <tortion index="96" k="1.4438984" particle1="34" particle2="36" particle3="38" particle4="44" periodicity="2" phase="3.14159265359"/>
+            <tortion index="97" k="4.2505256" particle1="34" particle2="36" particle3="38" particle4="44" periodicity="1" phase="0.0"/>
+            <tortion index="98" k="10.46" particle1="35" particle2="34" particle3="36" particle4="37" periodicity="2" phase="3.14159265359"/>
+            <tortion index="99" k="8.368" particle1="35" particle2="34" particle3="36" particle4="37" periodicity="1" phase="0.0"/>
+            <tortion index="100" k="10.46" particle1="35" particle2="34" particle3="36" particle4="38" periodicity="2" phase="3.14159265359"/>
+            <tortion index="101" k="0.650844444444" particle1="36" particle2="38" particle3="40" particle4="41" periodicity="3" phase="0.0"/>
+            <tortion index="102" k="0.650844444444" particle1="36" particle2="38" particle3="40" particle4="42" periodicity="3" phase="0.0"/>
+            <tortion index="103" k="0.650844444444" particle1="36" particle2="38" particle3="40" particle4="43" periodicity="3" phase="0.0"/>
+            <tortion index="104" k="1.930916" particle1="36" particle2="38" particle3="44" particle4="46" periodicity="3" phase="3.14159265359"/>
+            <tortion index="105" k="6.0822808" particle1="36" particle2="38" particle3="44" particle4="46" periodicity="2" phase="3.14159265359"/>
+            <tortion index="106" k="2.8614376" particle1="36" particle2="38" particle3="44" particle4="46" periodicity="1" phase="3.14159265359"/>
+            <tortion index="107" k="10.46" particle1="38" particle2="44" particle3="46" particle4="47" periodicity="2" phase="3.14159265359"/>
+            <tortion index="108" k="10.46" particle1="38" particle2="44" particle3="46" particle4="48" periodicity="2" phase="3.14159265359"/>
+            <tortion index="109" k="0.650844444444" particle1="39" particle2="38" particle3="40" particle4="41" periodicity="3" phase="0.0"/>
+            <tortion index="110" k="0.650844444444" particle1="39" particle2="38" particle3="40" particle4="42" periodicity="3" phase="0.0"/>
+            <tortion index="111" k="0.650844444444" particle1="39" particle2="38" particle3="40" particle4="43" periodicity="3" phase="0.0"/>
+            <tortion index="112" k="3.3472" particle1="39" particle2="38" particle3="44" particle4="45" periodicity="1" phase="0.0"/>
+            <tortion index="113" k="0.33472" particle1="39" particle2="38" particle3="44" particle4="45" periodicity="3" phase="3.14159265359"/>
+            <tortion index="114" k="0.234304" particle1="40" particle2="38" particle3="44" particle4="46" periodicity="3" phase="0.0"/>
+            <tortion index="115" k="0.2748888" particle1="40" particle2="38" particle3="44" particle4="46" periodicity="2" phase="3.14159265359"/>
+            <tortion index="116" k="3.2568256" particle1="40" particle2="38" particle3="44" particle4="46" periodicity="1" phase="3.14159265359"/>
+            <tortion index="117" k="0.650844444444" particle1="41" particle2="40" particle3="38" particle4="44" periodicity="3" phase="0.0"/>
+            <tortion index="118" k="0.650844444444" particle1="42" particle2="40" particle3="38" particle4="44" periodicity="3" phase="0.0"/>
+            <tortion index="119" k="0.650844444444" particle1="43" particle2="40" particle3="38" particle4="44" periodicity="3" phase="0.0"/>
+            <tortion index="120" k="0.949768" particle1="44" particle2="46" particle3="48" particle4="50" periodicity="3" phase="3.14159265359"/>
+            <tortion index="121" k="3.6969824" particle1="44" particle2="46" particle3="48" particle4="50" periodicity="2" phase="3.14159265359"/>
+            <tortion index="122" k="1.4798808" particle1="44" particle2="46" particle3="48" particle4="50" periodicity="1" phase="3.14159265359"/>
+            <tortion index="123" k="0.9451656" particle1="44" particle2="46" particle3="48" particle4="54" periodicity="3" phase="0.0"/>
+            <tortion index="124" k="1.4438984" particle1="44" particle2="46" particle3="48" particle4="54" periodicity="2" phase="3.14159265359"/>
+            <tortion index="125" k="4.2505256" particle1="44" particle2="46" particle3="48" particle4="54" periodicity="1" phase="0.0"/>
+            <tortion index="126" k="10.46" particle1="45" particle2="44" particle3="46" particle4="47" periodicity="2" phase="3.14159265359"/>
+            <tortion index="127" k="8.368" particle1="45" particle2="44" particle3="46" particle4="47" periodicity="1" phase="0.0"/>
+            <tortion index="128" k="10.46" particle1="45" particle2="44" particle3="46" particle4="48" periodicity="2" phase="3.14159265359"/>
+            <tortion index="129" k="0.650844444444" particle1="46" particle2="48" particle3="50" particle4="51" periodicity="3" phase="0.0"/>
+            <tortion index="130" k="0.650844444444" particle1="46" particle2="48" particle3="50" particle4="52" periodicity="3" phase="0.0"/>
+            <tortion index="131" k="0.650844444444" particle1="46" particle2="48" particle3="50" particle4="53" periodicity="3" phase="0.0"/>
+            <tortion index="132" k="1.930916" particle1="46" particle2="48" particle3="54" particle4="56" periodicity="3" phase="3.14159265359"/>
+            <tortion index="133" k="6.0822808" particle1="46" particle2="48" particle3="54" particle4="56" periodicity="2" phase="3.14159265359"/>
+            <tortion index="134" k="2.8614376" particle1="46" particle2="48" particle3="54" particle4="56" periodicity="1" phase="3.14159265359"/>
+            <tortion index="135" k="10.46" particle1="48" particle2="54" particle3="56" particle4="57" periodicity="2" phase="3.14159265359"/>
+            <tortion index="136" k="10.46" particle1="48" particle2="54" particle3="56" particle4="58" periodicity="2" phase="3.14159265359"/>
+            <tortion index="137" k="0.650844444444" particle1="49" particle2="48" particle3="50" particle4="51" periodicity="3" phase="0.0"/>
+            <tortion index="138" k="0.650844444444" particle1="49" particle2="48" particle3="50" particle4="52" periodicity="3" phase="0.0"/>
+            <tortion index="139" k="0.650844444444" particle1="49" particle2="48" particle3="50" particle4="53" periodicity="3" phase="0.0"/>
+            <tortion index="140" k="3.3472" particle1="49" particle2="48" particle3="54" particle4="55" periodicity="1" phase="0.0"/>
+            <tortion index="141" k="0.33472" particle1="49" particle2="48" particle3="54" particle4="55" periodicity="3" phase="3.14159265359"/>
+            <tortion index="142" k="0.234304" particle1="50" particle2="48" particle3="54" particle4="56" periodicity="3" phase="0.0"/>
+            <tortion index="143" k="0.2748888" particle1="50" particle2="48" particle3="54" particle4="56" periodicity="2" phase="3.14159265359"/>
+            <tortion index="144" k="3.2568256" particle1="50" particle2="48" particle3="54" particle4="56" periodicity="1" phase="3.14159265359"/>
+            <tortion index="145" k="0.650844444444" particle1="51" particle2="50" particle3="48" particle4="54" periodicity="3" phase="0.0"/>
+            <tortion index="146" k="0.650844444444" particle1="52" particle2="50" particle3="48" particle4="54" periodicity="3" phase="0.0"/>
+            <tortion index="147" k="0.650844444444" particle1="53" particle2="50" particle3="48" particle4="54" periodicity="3" phase="0.0"/>
+            <tortion index="148" k="10.46" particle1="55" particle2="54" particle3="56" particle4="57" periodicity="2" phase="3.14159265359"/>
+            <tortion index="149" k="8.368" particle1="55" particle2="54" particle3="56" particle4="57" periodicity="1" phase="0.0"/>
+            <tortion index="150" k="10.46" particle1="55" particle2="54" particle3="56" particle4="58" periodicity="2" phase="3.14159265359"/>
+            <tortion index="151" k="43.932" particle1="1" particle2="6" particle3="4" particle4="5" periodicity="2" phase="3.14159265359"/>
+            <tortion index="152" k="4.6024" particle1="4" particle2="8" particle3="6" particle4="7" periodicity="2" phase="3.14159265359"/>
+            <tortion index="153" k="43.932" particle1="8" particle2="16" particle3="14" particle4="15" periodicity="2" phase="3.14159265359"/>
+            <tortion index="154" k="4.6024" particle1="14" particle2="18" particle3="16" particle4="17" periodicity="2" phase="3.14159265359"/>
+            <tortion index="155" k="43.932" particle1="18" particle2="26" particle3="24" particle4="25" periodicity="2" phase="3.14159265359"/>
+            <tortion index="156" k="4.6024" particle1="24" particle2="28" particle3="26" particle4="27" periodicity="2" phase="3.14159265359"/>
+            <tortion index="157" k="43.932" particle1="28" particle2="36" particle3="34" particle4="35" periodicity="2" phase="3.14159265359"/>
+            <tortion index="158" k="4.6024" particle1="34" particle2="38" particle3="36" particle4="37" periodicity="2" phase="3.14159265359"/>
+            <tortion index="159" k="43.932" particle1="38" particle2="46" particle3="44" particle4="45" periodicity="2" phase="3.14159265359"/>
+            <tortion index="160" k="4.6024" particle1="44" particle2="48" particle3="46" particle4="47" periodicity="2" phase="3.14159265359"/>
+            <tortion index="161" k="43.932" particle1="48" particle2="56" particle3="54" particle4="55" periodicity="2" phase="3.14159265359"/>
+            <tortion index="162" k="4.6024" particle1="54" particle2="58" particle3="56" particle4="57" periodicity="2" phase="3.14159265359"/>
+        </tortions>
+    </force>
+    <force type="NonbondedForce">
+        <cutoff value="1.0"/>
+        <particles count="62">
+            <particle charge="0.07601" epsilon="0.0656888" index="0" sigma="0.264953278775"/>
+            <particle charge="-0.190264" epsilon="0.4577296" index="1" sigma="0.339966950842"/>
+            <particle charge="0.07601" epsilon="0.0656888" index="2" sigma="0.264953278775"/>
+            <particle charge="0.07601" epsilon="0.0656888" index="3" sigma="0.264953278775"/>
+            <particle charge="0.512403" epsilon="0.359824" index="4" sigma="0.339966950842"/>
+            <particle charge="-0.55017" epsilon="0.87864" index="5" sigma="0.295992190115"/>
+            <particle charge="-0.404773" epsilon="0.71128" index="6" sigma="0.324999852378"/>
+            <particle charge="0.294276" epsilon="0.0656888" index="7" sigma="0.106907846177"/>
+            <particle charge="-0.027733" epsilon="0.4577296" index="8" sigma="0.339966950842"/>
+            <particle charge="0.120802" epsilon="0.0656888" index="9" sigma="0.247135304412"/>
+            <particle charge="-0.229951" epsilon="0.4577296" index="10" sigma="0.339966950842"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="11" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="12" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="13" sigma="0.264953278775"/>
+            <particle charge="0.570224" epsilon="0.359824" index="14" sigma="0.339966950842"/>
+            <particle charge="-0.555129" epsilon="0.87864" index="15" sigma="0.295992190115"/>
+            <particle charge="-0.404773" epsilon="0.71128" index="16" sigma="0.324999852378"/>
+            <particle charge="0.294276" epsilon="0.0656888" index="17" sigma="0.106907846177"/>
+            <particle charge="-0.027733" epsilon="0.4577296" index="18" sigma="0.339966950842"/>
+            <particle charge="0.120802" epsilon="0.0656888" index="19" sigma="0.247135304412"/>
+            <particle charge="-0.229951" epsilon="0.4577296" index="20" sigma="0.339966950842"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="21" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="22" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="23" sigma="0.264953278775"/>
+            <particle charge="0.570224" epsilon="0.359824" index="24" sigma="0.339966950842"/>
+            <particle charge="-0.555129" epsilon="0.87864" index="25" sigma="0.295992190115"/>
+            <particle charge="-0.404773" epsilon="0.71128" index="26" sigma="0.324999852378"/>
+            <particle charge="0.294276" epsilon="0.0656888" index="27" sigma="0.106907846177"/>
+            <particle charge="-0.027733" epsilon="0.4577296" index="28" sigma="0.339966950842"/>
+            <particle charge="0.120802" epsilon="0.0656888" index="29" sigma="0.247135304412"/>
+            <particle charge="-0.229951" epsilon="0.4577296" index="30" sigma="0.339966950842"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="31" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="32" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="33" sigma="0.264953278775"/>
+            <particle charge="0.570224" epsilon="0.359824" index="34" sigma="0.339966950842"/>
+            <particle charge="-0.555129" epsilon="0.87864" index="35" sigma="0.295992190115"/>
+            <particle charge="-0.404773" epsilon="0.71128" index="36" sigma="0.324999852378"/>
+            <particle charge="0.294276" epsilon="0.0656888" index="37" sigma="0.106907846177"/>
+            <particle charge="-0.027733" epsilon="0.4577296" index="38" sigma="0.339966950842"/>
+            <particle charge="0.120802" epsilon="0.0656888" index="39" sigma="0.247135304412"/>
+            <particle charge="-0.229951" epsilon="0.4577296" index="40" sigma="0.339966950842"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="41" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="42" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="43" sigma="0.264953278775"/>
+            <particle charge="0.570224" epsilon="0.359824" index="44" sigma="0.339966950842"/>
+            <particle charge="-0.555129" epsilon="0.87864" index="45" sigma="0.295992190115"/>
+            <particle charge="-0.404773" epsilon="0.71128" index="46" sigma="0.324999852378"/>
+            <particle charge="0.294276" epsilon="0.0656888" index="47" sigma="0.106907846177"/>
+            <particle charge="-0.027733" epsilon="0.4577296" index="48" sigma="0.339966950842"/>
+            <particle charge="0.120802" epsilon="0.0656888" index="49" sigma="0.247135304412"/>
+            <particle charge="-0.229951" epsilon="0.4577296" index="50" sigma="0.339966950842"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="51" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="52" sigma="0.264953278775"/>
+            <particle charge="0.077428" epsilon="0.0656888" index="53" sigma="0.264953278775"/>
+            <particle charge="0.570224" epsilon="0.359824" index="54" sigma="0.339966950842"/>
+            <particle charge="-0.555129" epsilon="0.87864" index="55" sigma="0.295992190115"/>
+            <particle charge="-0.423888" epsilon="0.71128" index="56" sigma="0.324999852378"/>
+            <particle charge="0.290111" epsilon="0.0656888" index="57" sigma="0.106907846177"/>
+            <particle charge="-0.054293" epsilon="0.4577296" index="58" sigma="0.339966950842"/>
+            <particle charge="0.06269" epsilon="0.0656888" index="59" sigma="0.247135304412"/>
+            <particle charge="0.06269" epsilon="0.0656888" index="60" sigma="0.247135304412"/>
+            <particle charge="0.06269" epsilon="0.0656888" index="61" sigma="0.247135304412"/>
+        </particles>
+        <exceptions count="310">
+            <exception chargeProd="0.0" epsilon="0.0" index="0" particle1="0" particle2="1" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="1" particle1="0" particle2="2" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="2" particle1="1" particle2="2" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="3" particle1="0" particle2="3" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="4" particle1="1" particle2="3" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="5" particle1="2" particle2="3" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="6" particle1="0" particle2="4" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="7" particle1="1" particle2="4" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="8" particle1="2" particle2="4" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="9" particle1="3" particle2="4" sigma="1.0"/>
+            <exception chargeProd="-0.0348486708105" epsilon="0.120121612577" index="10" particle1="0" particle2="5" sigma="0.280472734445"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="11" particle1="1" particle2="5" sigma="1.0"/>
+            <exception chargeProd="-0.0348486708105" epsilon="0.120121612577" index="12" particle1="2" particle2="5" sigma="0.280472734445"/>
+            <exception chargeProd="-0.0348486708105" epsilon="0.120121612577" index="13" particle1="3" particle2="5" sigma="0.280472734445"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="14" particle1="4" particle2="5" sigma="1.0"/>
+            <exception chargeProd="-0.0256389861861" epsilon="0.108077668443" index="15" particle1="0" particle2="6" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="16" particle1="1" particle2="6" sigma="1.0"/>
+            <exception chargeProd="-0.0256389861861" epsilon="0.108077668443" index="17" particle1="2" particle2="6" sigma="0.294976565576"/>
+            <exception chargeProd="-0.0256389861861" epsilon="0.108077668443" index="18" particle1="3" particle2="6" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="19" particle1="4" particle2="6" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="20" particle1="5" particle2="6" sigma="1.0"/>
+            <exception chargeProd="-0.0466584220566" epsilon="0.0867002135933" index="21" particle1="1" particle2="7" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="22" particle1="4" particle2="7" sigma="1.0"/>
+            <exception chargeProd="-0.134918135133" epsilon="0.120121612577" index="23" particle1="5" particle2="7" sigma="0.201450018146"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="24" particle1="6" particle2="7" sigma="1.0"/>
+            <exception chargeProd="0.00439715783447" epsilon="0.2288648" index="25" particle1="1" particle2="8" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="26" particle1="4" particle2="8" sigma="1.0"/>
+            <exception chargeProd="0.012714882089" epsilon="0.317088132758" index="27" particle1="5" particle2="8" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="28" particle1="6" particle2="8" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="29" particle1="7" particle2="8" sigma="1.0"/>
+            <exception chargeProd="0.0515827353719" epsilon="0.0768706816205" index="30" particle1="4" particle2="9" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="31" particle1="6" particle2="9" sigma="1.0"/>
+            <exception chargeProd="0.0296242626103" epsilon="0.0328444" index="32" particle1="7" particle2="9" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="33" particle1="8" particle2="9" sigma="1.0"/>
+            <exception chargeProd="-0.0981896126016" epsilon="0.202917529794" index="34" particle1="4" particle2="10" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="35" particle1="6" particle2="10" sigma="1.0"/>
+            <exception chargeProd="-0.0563908611736" epsilon="0.0867002135933" index="36" particle1="7" particle2="10" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="37" particle1="8" particle2="10" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="38" particle1="9" particle2="10" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="39" particle1="6" particle2="11" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="40" particle1="8" particle2="11" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="41" particle1="9" particle2="11" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="42" particle1="10" particle2="11" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="43" particle1="6" particle2="12" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="44" particle1="8" particle2="12" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="45" particle1="9" particle2="12" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="46" particle1="10" particle2="12" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="47" particle1="11" particle2="12" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="48" particle1="6" particle2="13" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="49" particle1="8" particle2="13" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="50" particle1="9" particle2="13" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="51" particle1="10" particle2="13" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="52" particle1="11" particle2="13" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="53" particle1="12" particle2="13" sigma="1.0"/>
+            <exception chargeProd="0.243486976165" epsilon="0.179912" index="54" particle1="4" particle2="14" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="55" particle1="6" particle2="14" sigma="1.0"/>
+            <exception chargeProd="0.139835975586" epsilon="0.0768706816205" index="56" particle1="7" particle2="14" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="57" particle1="8" particle2="14" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="58" particle1="9" particle2="14" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="59" particle1="10" particle2="14" sigma="1.0"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="60" particle1="11" particle2="14" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="61" particle1="12" particle2="14" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="62" particle1="13" particle2="14" sigma="0.302460114808"/>
+            <exception chargeProd="0.187250950697" epsilon="0.395271760691" index="63" particle1="6" particle2="15" sigma="0.310496021246"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="64" particle1="8" particle2="15" sigma="1.0"/>
+            <exception chargeProd="-0.0558838888614" epsilon="0.120121612577" index="65" particle1="9" particle2="15" sigma="0.271563747263"/>
+            <exception chargeProd="0.106377014682" epsilon="0.317088132758" index="66" particle1="10" particle2="15" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="67" particle1="14" particle2="15" sigma="1.0"/>
+            <exception chargeProd="0.136534263327" epsilon="0.35564" index="68" particle1="6" particle2="16" sigma="0.324999852378"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="69" particle1="8" particle2="16" sigma="1.0"/>
+            <exception chargeProd="-0.0407478069892" epsilon="0.108077668443" index="70" particle1="9" particle2="16" sigma="0.286067578395"/>
+            <exception chargeProd="0.0775649324098" epsilon="0.2852954214" index="71" particle1="10" particle2="16" sigma="0.33248340161"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="72" particle1="14" particle2="16" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="73" particle1="15" particle2="16" sigma="1.0"/>
+            <exception chargeProd="-0.00680096086961" epsilon="0.0867002135933" index="74" particle1="8" particle2="17" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="75" particle1="14" particle2="17" sigma="1.0"/>
+            <exception chargeProd="-0.136134230216" epsilon="0.120121612577" index="76" particle1="15" particle2="17" sigma="0.201450018146"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="77" particle1="16" particle2="17" sigma="1.0"/>
+            <exception chargeProd="0.00064093248446" epsilon="0.2288648" index="78" particle1="8" particle2="18" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="79" particle1="14" particle2="18" sigma="1.0"/>
+            <exception chargeProd="0.0128294886657" epsilon="0.317088132758" index="80" particle1="15" particle2="18" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="81" particle1="16" particle2="18" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="82" particle1="17" particle2="18" sigma="1.0"/>
+            <exception chargeProd="0.0574034767453" epsilon="0.0768706816205" index="83" particle1="14" particle2="19" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="84" particle1="16" particle2="19" sigma="1.0"/>
+            <exception chargeProd="0.0296242626103" epsilon="0.0328444" index="85" particle1="17" particle2="19" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="86" particle1="18" particle2="19" sigma="1.0"/>
+            <exception chargeProd="-0.109269605479" epsilon="0.202917529794" index="87" particle1="14" particle2="20" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="88" particle1="16" particle2="20" sigma="1.0"/>
+            <exception chargeProd="-0.0563908611736" epsilon="0.0867002135933" index="89" particle1="17" particle2="20" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="90" particle1="18" particle2="20" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="91" particle1="19" particle2="20" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="92" particle1="16" particle2="21" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="93" particle1="18" particle2="21" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="94" particle1="19" particle2="21" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="95" particle1="20" particle2="21" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="96" particle1="16" particle2="22" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="97" particle1="18" particle2="22" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="98" particle1="19" particle2="22" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="99" particle1="20" particle2="22" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="100" particle1="21" particle2="22" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="101" particle1="16" particle2="23" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="102" particle1="18" particle2="23" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="103" particle1="19" particle2="23" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="104" particle1="20" particle2="23" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="105" particle1="21" particle2="23" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="106" particle1="22" particle2="23" sigma="1.0"/>
+            <exception chargeProd="0.270962733428" epsilon="0.179912" index="107" particle1="14" particle2="24" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="108" particle1="16" particle2="24" sigma="1.0"/>
+            <exception chargeProd="0.139835975586" epsilon="0.0768706816205" index="109" particle1="17" particle2="24" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="110" particle1="18" particle2="24" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="111" particle1="19" particle2="24" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="112" particle1="20" particle2="24" sigma="1.0"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="113" particle1="21" particle2="24" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="114" particle1="22" particle2="24" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="115" particle1="23" particle2="24" sigma="0.302460114808"/>
+            <exception chargeProd="0.187250950697" epsilon="0.395271760691" index="116" particle1="16" particle2="25" sigma="0.310496021246"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="117" particle1="18" particle2="25" sigma="1.0"/>
+            <exception chargeProd="-0.0558838888614" epsilon="0.120121612577" index="118" particle1="19" particle2="25" sigma="0.271563747263"/>
+            <exception chargeProd="0.106377014682" epsilon="0.317088132758" index="119" particle1="20" particle2="25" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="120" particle1="24" particle2="25" sigma="1.0"/>
+            <exception chargeProd="0.136534263327" epsilon="0.35564" index="121" particle1="16" particle2="26" sigma="0.324999852378"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="122" particle1="18" particle2="26" sigma="1.0"/>
+            <exception chargeProd="-0.0407478069892" epsilon="0.108077668443" index="123" particle1="19" particle2="26" sigma="0.286067578395"/>
+            <exception chargeProd="0.0775649324098" epsilon="0.2852954214" index="124" particle1="20" particle2="26" sigma="0.33248340161"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="125" particle1="24" particle2="26" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="126" particle1="25" particle2="26" sigma="1.0"/>
+            <exception chargeProd="-0.00680096086961" epsilon="0.0867002135933" index="127" particle1="18" particle2="27" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="128" particle1="24" particle2="27" sigma="1.0"/>
+            <exception chargeProd="-0.136134230216" epsilon="0.120121612577" index="129" particle1="25" particle2="27" sigma="0.201450018146"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="130" particle1="26" particle2="27" sigma="1.0"/>
+            <exception chargeProd="0.00064093248446" epsilon="0.2288648" index="131" particle1="18" particle2="28" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="132" particle1="24" particle2="28" sigma="1.0"/>
+            <exception chargeProd="0.0128294886657" epsilon="0.317088132758" index="133" particle1="25" particle2="28" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="134" particle1="26" particle2="28" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="135" particle1="27" particle2="28" sigma="1.0"/>
+            <exception chargeProd="0.0574034767453" epsilon="0.0768706816205" index="136" particle1="24" particle2="29" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="137" particle1="26" particle2="29" sigma="1.0"/>
+            <exception chargeProd="0.0296242626103" epsilon="0.0328444" index="138" particle1="27" particle2="29" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="139" particle1="28" particle2="29" sigma="1.0"/>
+            <exception chargeProd="-0.109269605479" epsilon="0.202917529794" index="140" particle1="24" particle2="30" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="141" particle1="26" particle2="30" sigma="1.0"/>
+            <exception chargeProd="-0.0563908611736" epsilon="0.0867002135933" index="142" particle1="27" particle2="30" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="143" particle1="28" particle2="30" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="144" particle1="29" particle2="30" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="145" particle1="26" particle2="31" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="146" particle1="28" particle2="31" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="147" particle1="29" particle2="31" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="148" particle1="30" particle2="31" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="149" particle1="26" particle2="32" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="150" particle1="28" particle2="32" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="151" particle1="29" particle2="32" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="152" particle1="30" particle2="32" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="153" particle1="31" particle2="32" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="154" particle1="26" particle2="33" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="155" particle1="28" particle2="33" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="156" particle1="29" particle2="33" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="157" particle1="30" particle2="33" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="158" particle1="31" particle2="33" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="159" particle1="32" particle2="33" sigma="1.0"/>
+            <exception chargeProd="0.270962733428" epsilon="0.179912" index="160" particle1="24" particle2="34" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="161" particle1="26" particle2="34" sigma="1.0"/>
+            <exception chargeProd="0.139835975586" epsilon="0.0768706816205" index="162" particle1="27" particle2="34" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="163" particle1="28" particle2="34" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="164" particle1="29" particle2="34" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="165" particle1="30" particle2="34" sigma="1.0"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="166" particle1="31" particle2="34" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="167" particle1="32" particle2="34" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="168" particle1="33" particle2="34" sigma="0.302460114808"/>
+            <exception chargeProd="0.187250950697" epsilon="0.395271760691" index="169" particle1="26" particle2="35" sigma="0.310496021246"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="170" particle1="28" particle2="35" sigma="1.0"/>
+            <exception chargeProd="-0.0558838888614" epsilon="0.120121612577" index="171" particle1="29" particle2="35" sigma="0.271563747263"/>
+            <exception chargeProd="0.106377014682" epsilon="0.317088132758" index="172" particle1="30" particle2="35" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="173" particle1="34" particle2="35" sigma="1.0"/>
+            <exception chargeProd="0.136534263327" epsilon="0.35564" index="174" particle1="26" particle2="36" sigma="0.324999852378"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="175" particle1="28" particle2="36" sigma="1.0"/>
+            <exception chargeProd="-0.0407478069892" epsilon="0.108077668443" index="176" particle1="29" particle2="36" sigma="0.286067578395"/>
+            <exception chargeProd="0.0775649324098" epsilon="0.2852954214" index="177" particle1="30" particle2="36" sigma="0.33248340161"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="178" particle1="34" particle2="36" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="179" particle1="35" particle2="36" sigma="1.0"/>
+            <exception chargeProd="-0.00680096086961" epsilon="0.0867002135933" index="180" particle1="28" particle2="37" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="181" particle1="34" particle2="37" sigma="1.0"/>
+            <exception chargeProd="-0.136134230216" epsilon="0.120121612577" index="182" particle1="35" particle2="37" sigma="0.201450018146"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="183" particle1="36" particle2="37" sigma="1.0"/>
+            <exception chargeProd="0.00064093248446" epsilon="0.2288648" index="184" particle1="28" particle2="38" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="185" particle1="34" particle2="38" sigma="1.0"/>
+            <exception chargeProd="0.0128294886657" epsilon="0.317088132758" index="186" particle1="35" particle2="38" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="187" particle1="36" particle2="38" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="188" particle1="37" particle2="38" sigma="1.0"/>
+            <exception chargeProd="0.0574034767453" epsilon="0.0768706816205" index="189" particle1="34" particle2="39" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="190" particle1="36" particle2="39" sigma="1.0"/>
+            <exception chargeProd="0.0296242626103" epsilon="0.0328444" index="191" particle1="37" particle2="39" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="192" particle1="38" particle2="39" sigma="1.0"/>
+            <exception chargeProd="-0.109269605479" epsilon="0.202917529794" index="193" particle1="34" particle2="40" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="194" particle1="36" particle2="40" sigma="1.0"/>
+            <exception chargeProd="-0.0563908611736" epsilon="0.0867002135933" index="195" particle1="37" particle2="40" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="196" particle1="38" particle2="40" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="197" particle1="39" particle2="40" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="198" particle1="36" particle2="41" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="199" particle1="38" particle2="41" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="200" particle1="39" particle2="41" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="201" particle1="40" particle2="41" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="202" particle1="36" particle2="42" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="203" particle1="38" particle2="42" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="204" particle1="39" particle2="42" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="205" particle1="40" particle2="42" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="206" particle1="41" particle2="42" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="207" particle1="36" particle2="43" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="208" particle1="38" particle2="43" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="209" particle1="39" particle2="43" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="210" particle1="40" particle2="43" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="211" particle1="41" particle2="43" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="212" particle1="42" particle2="43" sigma="1.0"/>
+            <exception chargeProd="0.270962733428" epsilon="0.179912" index="213" particle1="34" particle2="44" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="214" particle1="36" particle2="44" sigma="1.0"/>
+            <exception chargeProd="0.139835975586" epsilon="0.0768706816205" index="215" particle1="37" particle2="44" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="216" particle1="38" particle2="44" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="217" particle1="39" particle2="44" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="218" particle1="40" particle2="44" sigma="1.0"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="219" particle1="41" particle2="44" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="220" particle1="42" particle2="44" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="221" particle1="43" particle2="44" sigma="0.302460114808"/>
+            <exception chargeProd="0.187250950697" epsilon="0.395271760691" index="222" particle1="36" particle2="45" sigma="0.310496021246"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="223" particle1="38" particle2="45" sigma="1.0"/>
+            <exception chargeProd="-0.0558838888614" epsilon="0.120121612577" index="224" particle1="39" particle2="45" sigma="0.271563747263"/>
+            <exception chargeProd="0.106377014682" epsilon="0.317088132758" index="225" particle1="40" particle2="45" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="226" particle1="44" particle2="45" sigma="1.0"/>
+            <exception chargeProd="0.136534263327" epsilon="0.35564" index="227" particle1="36" particle2="46" sigma="0.324999852378"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="228" particle1="38" particle2="46" sigma="1.0"/>
+            <exception chargeProd="-0.0407478069892" epsilon="0.108077668443" index="229" particle1="39" particle2="46" sigma="0.286067578395"/>
+            <exception chargeProd="0.0775649324098" epsilon="0.2852954214" index="230" particle1="40" particle2="46" sigma="0.33248340161"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="231" particle1="44" particle2="46" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="232" particle1="45" particle2="46" sigma="1.0"/>
+            <exception chargeProd="-0.00680096086961" epsilon="0.0867002135933" index="233" particle1="38" particle2="47" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="234" particle1="44" particle2="47" sigma="1.0"/>
+            <exception chargeProd="-0.136134230216" epsilon="0.120121612577" index="235" particle1="45" particle2="47" sigma="0.201450018146"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="236" particle1="46" particle2="47" sigma="1.0"/>
+            <exception chargeProd="0.00064093248446" epsilon="0.2288648" index="237" particle1="38" particle2="48" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="238" particle1="44" particle2="48" sigma="1.0"/>
+            <exception chargeProd="0.0128294886657" epsilon="0.317088132758" index="239" particle1="45" particle2="48" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="240" particle1="46" particle2="48" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="241" particle1="47" particle2="48" sigma="1.0"/>
+            <exception chargeProd="0.0574034767453" epsilon="0.0768706816205" index="242" particle1="44" particle2="49" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="243" particle1="46" particle2="49" sigma="1.0"/>
+            <exception chargeProd="0.0296242626103" epsilon="0.0328444" index="244" particle1="47" particle2="49" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="245" particle1="48" particle2="49" sigma="1.0"/>
+            <exception chargeProd="-0.109269605479" epsilon="0.202917529794" index="246" particle1="44" particle2="50" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="247" particle1="46" particle2="50" sigma="1.0"/>
+            <exception chargeProd="-0.0563908611736" epsilon="0.0867002135933" index="248" particle1="47" particle2="50" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="249" particle1="48" particle2="50" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="250" particle1="49" particle2="50" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="251" particle1="46" particle2="51" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="252" particle1="48" particle2="51" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="253" particle1="49" particle2="51" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="254" particle1="50" particle2="51" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="255" particle1="46" particle2="52" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="256" particle1="48" particle2="52" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="257" particle1="49" particle2="52" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="258" particle1="50" particle2="52" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="259" particle1="51" particle2="52" sigma="1.0"/>
+            <exception chargeProd="-0.0261172927564" epsilon="0.108077668443" index="260" particle1="46" particle2="53" sigma="0.294976565576"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="261" particle1="48" particle2="53" sigma="1.0"/>
+            <exception chargeProd="0.00779454459551" epsilon="0.0328444" index="262" particle1="49" particle2="53" sigma="0.256044291594"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="263" particle1="50" particle2="53" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="264" particle1="51" particle2="53" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="265" particle1="52" particle2="53" sigma="1.0"/>
+            <exception chargeProd="0.270962733428" epsilon="0.179912" index="266" particle1="44" particle2="54" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="267" particle1="46" particle2="54" sigma="1.0"/>
+            <exception chargeProd="0.139835975586" epsilon="0.0768706816205" index="268" particle1="47" particle2="54" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="269" particle1="48" particle2="54" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="270" particle1="49" particle2="54" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="271" particle1="50" particle2="54" sigma="1.0"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="272" particle1="51" particle2="54" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="273" particle1="52" particle2="54" sigma="0.302460114808"/>
+            <exception chargeProd="0.0367927385096" epsilon="0.0768706816205" index="274" particle1="53" particle2="54" sigma="0.302460114808"/>
+            <exception chargeProd="0.187250950697" epsilon="0.395271760691" index="275" particle1="46" particle2="55" sigma="0.310496021246"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="276" particle1="48" particle2="55" sigma="1.0"/>
+            <exception chargeProd="-0.0558838888614" epsilon="0.120121612577" index="277" particle1="49" particle2="55" sigma="0.271563747263"/>
+            <exception chargeProd="0.106377014682" epsilon="0.317088132758" index="278" particle1="50" particle2="55" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="279" particle1="54" particle2="55" sigma="1.0"/>
+            <exception chargeProd="0.142981957327" epsilon="0.35564" index="280" particle1="46" particle2="56" sigma="0.324999852378"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="281" particle1="48" particle2="56" sigma="1.0"/>
+            <exception chargeProd="-0.0426720814112" epsilon="0.108077668443" index="282" particle1="49" particle2="56" sigma="0.286067578395"/>
+            <exception chargeProd="0.0812278587488" epsilon="0.2852954214" index="283" particle1="50" particle2="56" sigma="0.33248340161"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="284" particle1="54" particle2="56" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="285" particle1="55" particle2="56" sigma="1.0"/>
+            <exception chargeProd="-0.00670470428728" epsilon="0.0867002135933" index="286" particle1="48" particle2="57" sigma="0.22343739851"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="287" particle1="54" particle2="57" sigma="1.0"/>
+            <exception chargeProd="-0.134207470749" epsilon="0.120121612577" index="288" particle1="55" particle2="57" sigma="0.201450018146"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="289" particle1="56" particle2="57" sigma="1.0"/>
+            <exception chargeProd="0.00125475597226" epsilon="0.2288648" index="290" particle1="48" particle2="58" sigma="0.339966950842"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="291" particle1="54" particle2="58" sigma="1.0"/>
+            <exception chargeProd="0.025116338951" epsilon="0.317088132758" index="292" particle1="55" particle2="58" sigma="0.317979570479"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="293" particle1="56" particle2="58" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="294" particle1="57" particle2="58" sigma="1.0"/>
+            <exception chargeProd="0.0297894402176" epsilon="0.0768706816205" index="295" particle1="54" particle2="59" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="296" particle1="56" particle2="59" sigma="1.0"/>
+            <exception chargeProd="0.015155876096" epsilon="0.0328444" index="297" particle1="57" particle2="59" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="298" particle1="58" particle2="59" sigma="1.0"/>
+            <exception chargeProd="0.0297894402176" epsilon="0.0768706816205" index="299" particle1="54" particle2="60" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="300" particle1="56" particle2="60" sigma="1.0"/>
+            <exception chargeProd="0.015155876096" epsilon="0.0328444" index="301" particle1="57" particle2="60" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="302" particle1="58" particle2="60" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="303" particle1="59" particle2="60" sigma="1.0"/>
+            <exception chargeProd="0.0297894402176" epsilon="0.0768706816205" index="304" particle1="54" particle2="61" sigma="0.293551127627"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="305" particle1="56" particle2="61" sigma="1.0"/>
+            <exception chargeProd="0.015155876096" epsilon="0.0328444" index="306" particle1="57" particle2="61" sigma="0.177021575294"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="307" particle1="58" particle2="61" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="308" particle1="59" particle2="61" sigma="1.0"/>
+            <exception chargeProd="0.0" epsilon="0.0" index="309" particle1="60" particle2="61" sigma="1.0"/>
+        </exceptions>
+    </force>
+    <force type="GBSAOBCForce">
+        <dielectric solute="1.0" solvent="78.3"/>
+        <cutoff value="1.0"/>
+        <particles count="62">
+            <particle charge="0.07601" index="0" radius="0.125" scale="0.85"/>
+            <particle charge="-0.190264" index="1" radius="0.19" scale="0.72"/>
+            <particle charge="0.07601" index="2" radius="0.125" scale="0.85"/>
+            <particle charge="0.07601" index="3" radius="0.125" scale="0.85"/>
+            <particle charge="0.512403" index="4" radius="0.1875" scale="0.72"/>
+            <particle charge="-0.55017" index="5" radius="0.148" scale="0.85"/>
+            <particle charge="-0.404773" index="6" radius="0.1706" scale="0.79"/>
+            <particle charge="0.294276" index="7" radius="0.115" scale="0.85"/>
+            <particle charge="-0.027733" index="8" radius="0.19" scale="0.72"/>
+            <particle charge="0.120802" index="9" radius="0.125" scale="0.85"/>
+            <particle charge="-0.229951" index="10" radius="0.19" scale="0.72"/>
+            <particle charge="0.077428" index="11" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="12" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="13" radius="0.125" scale="0.85"/>
+            <particle charge="0.570224" index="14" radius="0.1875" scale="0.72"/>
+            <particle charge="-0.555129" index="15" radius="0.148" scale="0.85"/>
+            <particle charge="-0.404773" index="16" radius="0.1706" scale="0.79"/>
+            <particle charge="0.294276" index="17" radius="0.115" scale="0.85"/>
+            <particle charge="-0.027733" index="18" radius="0.19" scale="0.72"/>
+            <particle charge="0.120802" index="19" radius="0.125" scale="0.85"/>
+            <particle charge="-0.229951" index="20" radius="0.19" scale="0.72"/>
+            <particle charge="0.077428" index="21" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="22" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="23" radius="0.125" scale="0.85"/>
+            <particle charge="0.570224" index="24" radius="0.1875" scale="0.72"/>
+            <particle charge="-0.555129" index="25" radius="0.148" scale="0.85"/>
+            <particle charge="-0.404773" index="26" radius="0.1706" scale="0.79"/>
+            <particle charge="0.294276" index="27" radius="0.115" scale="0.85"/>
+            <particle charge="-0.027733" index="28" radius="0.19" scale="0.72"/>
+            <particle charge="0.120802" index="29" radius="0.125" scale="0.85"/>
+            <particle charge="-0.229951" index="30" radius="0.19" scale="0.72"/>
+            <particle charge="0.077428" index="31" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="32" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="33" radius="0.125" scale="0.85"/>
+            <particle charge="0.570224" index="34" radius="0.1875" scale="0.72"/>
+            <particle charge="-0.555129" index="35" radius="0.148" scale="0.85"/>
+            <particle charge="-0.404773" index="36" radius="0.1706" scale="0.79"/>
+            <particle charge="0.294276" index="37" radius="0.115" scale="0.85"/>
+            <particle charge="-0.027733" index="38" radius="0.19" scale="0.72"/>
+            <particle charge="0.120802" index="39" radius="0.125" scale="0.85"/>
+            <particle charge="-0.229951" index="40" radius="0.19" scale="0.72"/>
+            <particle charge="0.077428" index="41" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="42" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="43" radius="0.125" scale="0.85"/>
+            <particle charge="0.570224" index="44" radius="0.1875" scale="0.72"/>
+            <particle charge="-0.555129" index="45" radius="0.148" scale="0.85"/>
+            <particle charge="-0.404773" index="46" radius="0.1706" scale="0.79"/>
+            <particle charge="0.294276" index="47" radius="0.115" scale="0.85"/>
+            <particle charge="-0.027733" index="48" radius="0.19" scale="0.72"/>
+            <particle charge="0.120802" index="49" radius="0.125" scale="0.85"/>
+            <particle charge="-0.229951" index="50" radius="0.19" scale="0.72"/>
+            <particle charge="0.077428" index="51" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="52" radius="0.125" scale="0.85"/>
+            <particle charge="0.077428" index="53" radius="0.125" scale="0.85"/>
+            <particle charge="0.570224" index="54" radius="0.1875" scale="0.72"/>
+            <particle charge="-0.555129" index="55" radius="0.148" scale="0.85"/>
+            <particle charge="-0.423888" index="56" radius="0.1706" scale="0.79"/>
+            <particle charge="0.290111" index="57" radius="0.115" scale="0.85"/>
+            <particle charge="-0.054293" index="58" radius="0.19" scale="0.72"/>
+            <particle charge="0.06269" index="59" radius="0.125" scale="0.85"/>
+            <particle charge="0.06269" index="60" radius="0.125" scale="0.85"/>
+            <particle charge="0.06269" index="61" radius="0.125" scale="0.85"/>
+        </particles>
+    </force>
+    <force type="CMMotionRemover">
+        <frequency value="1"/>
+    </force>
+</forcefield>

@@ -26,6 +26,7 @@
 #include <protomol/topology/GenericTopology.h>
 #include <protomol/topology/BuildTopology.h>
 #include <protomol/topology/BuildTopologyFromTpr.h>
+#include <protomol/topology/BuildTopologyFromXML.h>
 #include <protomol/topology/TopologyUtilities.h>
 
 #include <protomol/output/OutputCollection.h>
@@ -181,18 +182,19 @@ void ProtoMolApp::build() {
   // TPR input for topology, positions and velocities?
   // Then check for Gromacs support
 #if !defined(HAVE_GROMACS)
-  if (config.valid(InputGromacsTprFile::keyword))
+  if (config.valid(InputGromacsTprFile::keyword) && config.valid(InputGromacsXMLFile::keyword))
     THROWS("GROMACS support not available for '" <<
            config[InputGromacsTprFile::keyword].getString() << "'.");
 #endif
 
-  //floag for TPR
+  //flags for GROMACS TPR/XML
   bool GROMACRTPR(false);
+  bool GROMACSXML(false);
   bool GROMACSNEWPOSITIONS(false);
   bool GROMACSNEWVELOCITIES(false);
 
   //test TPR file
-  if( config.valid(InputGromacsTprFile::keyword) ){
+  if( config.valid(InputGromacsTprFile::keyword)){
     GROMACRTPR = true;
     if( config.valid("Checkpoint") ) {
         GROMACSNEWPOSITIONS = true;
@@ -202,6 +204,16 @@ void ProtoMolApp::build() {
     if( config.valid(InputVelocities::keyword) ) GROMACSNEWVELOCITIES = true;
   }
 
+  //test TPR file
+  if( config.valid(InputGromacsXMLFile::keyword)){
+    GROMACSXML = true;
+    GROMACSNEWPOSITIONS = true;
+    GROMACSNEWVELOCITIES = true;
+    if( !config.valid(InputPositions::keyword) ){
+      THROWS("GROMACS PDB input file required for XML input!");
+    }
+  }
+  
   // Read data if not TPR unless positions defined
   if( !GROMACRTPR || GROMACSNEWPOSITIONS || GROMACSNEWVELOCITIES) {
     modManager->read(this);
@@ -214,7 +226,7 @@ void ProtoMolApp::build() {
     topology = topologyFactory.make(&config);
   } catch (const Exception &e) {
 
-    if( !GROMACRTPR ){
+    if( !GROMACRTPR && !GROMACSXML){
       // Try to get some defaults with the postions known ...
       const GenericTopology *prototype =
         topologyFactory.find(config[GenericTopology::keyword].getString());
@@ -237,7 +249,7 @@ void ProtoMolApp::build() {
     if (!topology) throw e;
   }
 
-  if (!GROMACRTPR) {
+  if (!GROMACRTPR && !GROMACSXML) {
     // Using SCPISM parameter? Flag or filename
     if (config[InputDoSCPISM::keyword] || SCPISMParameters) {
 
@@ -301,12 +313,18 @@ void ProtoMolApp::build() {
 
   } else {
     //TPR/GROMACS if here
-    topology->forceFieldFlag = GROMACS;//TPR;
+    topology->forceFieldFlag = GROMACS;//TPR or XML
 
-    // Build the topology from the tpr file
-    buildTopologyFromTpr( topology, positions, velocities,
-                          config[InputGromacsTprFile::keyword].getString(),
-                           GROMACSNEWPOSITIONS, GROMACSNEWVELOCITIES);
+    if(!GROMACSXML){  //if not XML then build topology from TPR
+      // Build the topology from the tpr file
+      buildTopologyFromTpr( topology, positions, velocities,
+                            config[InputGromacsTprFile::keyword].getString(),
+                             GROMACSNEWPOSITIONS, GROMACSNEWVELOCITIES);
+    }else{  //else from XML
+      buildTopologyFromXML( topology, positions, velocities,
+                           config[InputGromacsXMLFile::keyword].getString(),
+                           outputCache.getAtoms());
+    }
   }
 
   // Register Forces
