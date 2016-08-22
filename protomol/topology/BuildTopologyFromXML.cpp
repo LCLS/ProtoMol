@@ -424,8 +424,8 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         tempangle.atom1 = atoi(fnbchild->Attribute( "particle1" ));
         tempangle.atom2 = atoi(fnbchild->Attribute( "particle2" ));
         tempangle.atom3 = atoi(fnbchild->Attribute( "particle3" ));
-        tempangle.restAngle = atof(fnbchild->Attribute( "k" )) * M_PI/180.0;
-        tempangle.forceConstant = atof(fnbchild->Attribute( "length" ))
+        tempangle.restAngle = atof(fnbchild->Attribute( "angle" ));
+        tempangle.forceConstant = atof(fnbchild->Attribute( "k" ))
         * Constant::KJ_KCAL * 0.5; // times 1/2 as Amber is 1/2 k(a-a_0)^2;
         // no Urey-Bradley term specified
         tempangle.ureyBradleyConstant = 0.0;
@@ -446,7 +446,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
       report << "XML name " << child->Name() << ", " << child->Attribute( "type" ) << endr;
 
       //find children of force, HarmonicAngleForce
-      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("tortions");
+      tinyxml2::XMLElement *forceharmonic = child->FirstChildElement("torsions");
 
       //number in file
       const int fhacount = atoi(forceharmonic->Attribute( "count" ));
@@ -464,7 +464,7 @@ void ProtoMol::buildTopologyFromXML(GenericTopology *topo, Vector3DBlock &pos,
         torsion.atom3 = atoi(fnbchild->Attribute( "particle3" ));
         torsion.atom4 = atoi(fnbchild->Attribute( "particle4" ));
         torsion.periodicity.push_back((int)atoi(fnbchild->Attribute( "periodicity" ))); // equiv to mult.
-        torsion.phaseShift.push_back(atof(fnbchild->Attribute( "phase" )) * M_PI / 180.0); // phiA
+          torsion.phaseShift.push_back(atof(fnbchild->Attribute( "phase" )));// * M_PI / 180.0); // phiA
         torsion.forceConstant.push_back(atof(fnbchild->Attribute( "k" )) *
                                         Constant::KJ_KCAL); // cpA
         torsion.multiplicity = 1;
