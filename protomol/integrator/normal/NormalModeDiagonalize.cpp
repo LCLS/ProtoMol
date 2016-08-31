@@ -234,10 +234,9 @@ namespace ProtoMol
             //set new max eigenvalue in C
             app->eigenInfo.myNewCEigval = fabs(blockDiag.eigVal[_rfM]); //safe as eigval set t length sz=_3N >= _rfM
 
+            cout << "Diagonalized at master" << endl;
           }
-          
-          cout << "Diagonalized at master" << endl;
-          
+
           //broadcast *Q from master
           const unsigned int numreals = app->eigenInfo.myEigenvectorLength * app->eigenInfo.myNumEigenvectors * 3;
           Parallel::bcastSlaves(*Q,*Q+numreals);
