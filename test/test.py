@@ -106,8 +106,6 @@ def run_test(protomol_path, conf_file, pwd, parallel):
                 logging.warning('\t\tFailed')
                 testsfailed += 1
                 failedtests.append('Comparison of ' + expects[i] + ' and ' + outputs[i])
-                if args.errorfailure:
-                    sys.exit(1)
         else:
             if comparator.compare(expects[i], outputs[i], epsilon, scaling_factor, ignoreSign):
                 logging.info('\t\tPassed')
@@ -116,8 +114,9 @@ def run_test(protomol_path, conf_file, pwd, parallel):
                 logging.warning('\t\tFailed')
                 testsfailed += 1
                 failedtests.append('Comparison of ' + expects[i] + ' and ' + outputs[i])
-                if args.errorfailure:
-                    sys.exit(1)
+
+    if args.errorfailure:
+        sys.exit(1)
 
     return (tests, testspassed, testsfailed, failedtests)
 
